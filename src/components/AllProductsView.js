@@ -9,17 +9,17 @@ export class AllProductsView extends Component {
   render() {
     //const { products } = this.props
     return (
-      <div>
-        {products.map((product) => {
-          <div key={product.id}>
-            <img src={product.imageUrl} width="200" height="150" />
-            <div>{product.name}</div>
-            <div>{product.price}</div>
-            <div>{product.description}</div>
-            <div>{product.review}</div>
-          </div>;
-        })}
-      </div>
+    //   <div>
+    //     {products.map((product) => {
+    //       <div key={product.id}>
+    //         <img src={product.imageUrl} width="200" height="150" />
+    //         <div>{product.name}</div>
+    //         <div>{product.price}</div>
+    //         <div>{product.description}</div>
+    //         <div>{product.review}</div>
+    //       </div>;
+    //     })}
+    //   </div>
     );
   }
 }
