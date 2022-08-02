@@ -1,8 +1,9 @@
-const db = require("./db");
-const Product = require("./models/product");
-const Review = require("./models/review");
-const User = require("./models/user");
-const Order = require("./models/order");
+const Sequelize = require("sequelize");
+const db = new Sequelize(`postgres://localhost:5432/bakery`);
+const Product = require("./models/product.js");
+const Review = require("./models/review.js");
+const User = require("./models/user.js");
+const Order = require("./models/order.js");
 
 //associations here!
 User.hasMany(Product);
@@ -17,8 +18,8 @@ Order.belongsTo(User);
 Product.hasMany(Review);
 Review.belongsTo(Product);
 
-Order.belongsToMany(Product);
-Product.belongsToMany(Order);
+Order.belongsToMany(Product, { through: "OrderProduct" });
+Product.belongsToMany(Order, { through: "OrderProduct" });
 
 module.exports = {
   db,
