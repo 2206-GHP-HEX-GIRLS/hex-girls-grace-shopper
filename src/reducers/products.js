@@ -1,7 +1,9 @@
 import axios from "axios";
+import product from "../server/db/models/product";
 
 const SET_PRODUCTS = "SET_PRODUCTS";
 const ADD_PRODUCT = "ADD_PRODUCT";
+const EDIT_PRODUCT = "EDIT_PRODUCT";
 
 const setProducts = (products) => {
   return {
@@ -13,6 +15,13 @@ const setProducts = (products) => {
 const addProduct = (product) => {
   return {
     type: ADD_PRODUCT,
+    product,
+  };
+};
+
+const editProduct = (product) => {
+  return {
+    type: EDIT_PRODUCT,
     product,
   };
 };
@@ -39,12 +48,28 @@ export const createProduct = (product) => {
   };
 };
 
+export const updateProduct = (product) => {
+  return async (dispatch) => {
+    try {
+      const { data: updated } = await axios.put(`/api/products/${product.id}`, product)
+      dispatch(editProduct(updated));
+    } catch (err) {
+      console.log(err);
+    }
+  };
+};
+
+
 export default function productsReducer(state = [], action) {
   switch (action.type) {
     case SET_PRODUCTS:
       return action.products;
     case ADD_PRODUCT:
       return [...state, action.campus];
+    case EDIT_PRODUCT:
+      return state.map((product) => {
+        return product.id === action.product.id ? action.product : product;
+      });
     default:
       return state;
   }
