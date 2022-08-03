@@ -11,15 +11,15 @@ export class AllProductsView extends Component {
     const { products } = this.props;
     return (
       <div>
-        {products.map((product) => {
+        {products.map((product) => (
           <div key={product.id}>
             <img src={product.imageUrl} alt="baked goods img" />
             <div>{product.name}</div>
             <div>{product.price}</div>
             <div>{product.description}</div>
             <div>{product.review}</div>
-          </div>;
-        })}
+          </div>
+        ))}
       </div>
     );
   }
