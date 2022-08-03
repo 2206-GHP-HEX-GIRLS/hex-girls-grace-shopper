@@ -1,10 +1,10 @@
-.Home img {
+.Home .category-img {
   max-height: 9rem !important;
   border-radius: 10px;
   box-shadow: 2px 2px 8px 2px rgb(199, 199, 199);
   transition: 120ms ease-in;
 }
 
-.Home img:active {
+.Home .category-img:active {
   transform: scale(0.95);
 }

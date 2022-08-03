@@ -7,7 +7,11 @@ const NavBar = () => {
     <nav className="navbar navbar-expand-lg bg-light NavBarCustom">
       <div className="container-fluid">
         <Link className="navbar-brand" to="/">
-          BB
+          <img
+            src="https://i.imgur.com/VdpY14p.png"
+            alt="logo"
+            className="img-fluid nav-logo"
+          />
         </Link>
         <button
           className="navbar-toggler"
