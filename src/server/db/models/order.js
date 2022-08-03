@@ -3,8 +3,9 @@ const Sequelize = require("sequelize");
 
 const Order = db.define("order", {
   items: {
+    // MAY NEED TO COME BACK TO THIS :)
     type: Sequelize.ARRAY(Sequelize.STRING),
-    defaultValue: {},
+    defaultValue: "",
   },
   total: {
     type: Sequelize.INTEGER,

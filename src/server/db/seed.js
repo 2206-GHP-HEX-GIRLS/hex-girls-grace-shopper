@@ -1,4 +1,4 @@
-const db = require("./index");
+const db = require("./db");
 const { Order, Product, Review, User } = require("./index").models;
 
 const products = [
@@ -6,7 +6,7 @@ const products = [
     name: "Chocolate chip coookie",
     price: 1.5,
     imageUrl: "https://cdn-icons-png.flaticon.com/512/541/541732.png",
-    desctiption: "Yummy",
+    description: "Yummy",
     quantity: 1,
     category: "Cookies",
   },
@@ -14,7 +14,7 @@ const products = [
     name: "Galaxy chip coookie",
     price: 2.5,
     imageUrl: "https://cdn-icons-png.flaticon.com/512/164/164659.png",
-    desctiption: "Out of this world",
+    description: "Out of this world",
     quantity: 1,
     category: "Cookies",
   },
@@ -22,7 +22,7 @@ const products = [
     name: "Strawberry short cake",
     price: 10.0,
     imageUrl: "https://cdn-icons-png.flaticon.com/512/992/992754.png",
-    desctiption: "Short",
+    description: "Short",
     quantity: 1,
     category: "Cakes",
   },
@@ -31,7 +31,7 @@ const products = [
     price: 2.0,
     imageUrl:
       "https://cdn-icons.flaticon.com/png/512/3070/premium/3070562.png?token=exp=1659473775~hmac=d1ad513131ed9a681c6c1c927196ff5f",
-    desctiption: "bent",
+    description: "bent",
     quantity: 1,
     category: "Pastries",
   },
@@ -58,9 +58,12 @@ const seed = async () => {
         return User.create(user);
       })
     );
+    console.log("db synced");
   } catch (error) {
-    console.log(error);
+    console.error(error);
   }
 };
+
+seed();
 
 module.exports = seed;
