@@ -1,7 +1,7 @@
-import axios from "axios";
+import axios from 'axios';
 
-const SET_PRODUCTS = "SET_PRODUCTS";
-const ADD_PRODUCT = "ADD_PRODUCT";
+const SET_PRODUCTS = 'SET_PRODUCTS';
+const ADD_PRODUCT = 'ADD_PRODUCT';
 
 const setProducts = (products) => {
   return {
@@ -20,10 +20,10 @@ const addProduct = (product) => {
 export const fetchProducts = () => {
   return async (dispatch) => {
     try {
-      const { data } = await axios.get("/api/products/");
+      const { data } = await axios.get('/api/products/');
       dispatch(setProducts(data));
     } catch (error) {
-      console.log("Error fetching all products from server", error);
+      console.log('Error fetching all products from server', error);
     }
   };
 };
@@ -31,7 +31,7 @@ export const fetchProducts = () => {
 export const createProduct = (product) => {
   return async (dispatch) => {
     try {
-      const { data: created } = await axios.post("/api/products", product);
+      const { data: created } = await axios.post('/api/products', product);
       dispatch(addProduct(created));
     } catch (err) {
       console.log(err);
