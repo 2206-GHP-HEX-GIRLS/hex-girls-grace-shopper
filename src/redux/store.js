@@ -7,7 +7,7 @@ import loggingMiddleware from 'redux-logger';
 import thunkMiddleware from 'redux-thunk';
 
 export default configureStore(
-  rootReducer,
+  { reducer: rootReducer },
   composeWithDevTools(
     applyMiddleware(
       thunkMiddleware.withExtraArgument({ axios }),
