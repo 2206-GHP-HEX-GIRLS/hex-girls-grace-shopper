@@ -1,0 +1,48 @@
+import React, { useEffect, useState } from 'react';
+import { connect } from 'react-redux';
+import { getSingleProduct } from '../reducers/singleProduct';
+
+const SingleProductView = (props) => {
+  let [product, setSingleProduct] = useState(
+    props.product ? props.product : ''
+  );
+
+  useEffect(() => {
+    props.getSingleProduct();
+  }, [props]);
+
+  useEffect(() => {
+    props.getSingleProduct();
+  }, [product, props]);
+
+  return (
+    <div>
+      <div key={product.id}>
+        <img src={product.imageUrl} alt="baked goods img" />
+        <div>{product.name}</div>
+        <div>{product.price}</div>
+        <div>{product.description}</div>
+        <div>{product.review}</div>
+      </div>
+
+      <select name="Quantity">
+        <option>1</option>
+        <option>2</option>
+        <option>3</option>
+        <option>4</option>
+      </select>
+
+      <button type="submit">Add To Cart🛒</button>
+    </div>
+  );
+};
+
+const mapState = ({ product }) => ({
+  product,
+});
+
+const mapDispatch = (dispatch) => ({
+  getSingleProduct: () => dispatch(getSingleProduct()),
+});
+
+export default connect(mapState, mapDispatch)(SingleProductView);
