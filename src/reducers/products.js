@@ -1,8 +1,11 @@
-import axios from 'axios';
+import axios from "axios";
+import product from "../server/db/models/product";
+
 
 //action type
 const GOT_PRODUCTS = 'GOT_PRODUCTS';
-const ADD_PRODUCT = 'ADD_PRODUCT';
+const ADD_PRODUCT = "ADD_PRODUCT";
+const EDIT_PRODUCT = "EDIT_PRODUCT";
 
 //action creators
 const gotProducts = (products) => {
@@ -16,6 +19,13 @@ const gotProducts = (products) => {
 const addProducts = () => {
   return {
     type: ADD_PRODUCT,
+    product,
+  };
+};
+
+const editProduct = (product) => {
+  return {
+    type: EDIT_PRODUCT,
     product,
   };
 };
@@ -42,16 +52,33 @@ export const createProduct = (product) => {
   };
 };
 
+export const updateProduct = (product) => {
+  return async (dispatch) => {
+    try {
+      const { data: updated } = await axios.put(`/api/products/${product.id}`, product)
+      dispatch(editProduct(updated));
+    } catch (err) {
+      console.log(err);
+    }
+  };
+};
+
+
 
 //initial state
 const initialState = []
 
-const productsReducer = (state = initialState, action) => {
+
+const productsReducer = (state = [], action) => {
   switch (action.type) {
     case GOT_PRODUCTS:
       return action.products
     case ADD_PRODUCT:
-      return [...state, action.products];
+      return [...state, action.product];
+    case EDIT_PRODUCT:
+      return state.map((product) => {
+        return product.id === action.product.id ? action.product : product;
+      });
     default:
       return state;
   }

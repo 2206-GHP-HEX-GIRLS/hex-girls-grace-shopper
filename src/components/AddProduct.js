@@ -32,13 +32,28 @@ class AddProduct extends React.Component {
     return (
       <form id="createProduct" onSubmit={handleSubmit}>
         <label>Product Name:</label>
-        <input name="name" onChange={handleChange} value={name} />
+        <input
+          placeholder="Product Name"
+          name="name"
+          onChange={handleChange}
+          value={name}
+        />
 
         <label>Product Price:</label>
-        <input name="price" onChange={handleChange} value={price} />
+        <input
+          placeholder="Product Price"
+          name="price"
+          onChange={handleChange}
+          value={price}
+        />
 
         <label>Product Description:</label>
-        <input name="description" onChange={handleChange} value={description} />
+        <input
+          placeholder="Product Description"
+          name="description"
+          onChange={handleChange}
+          value={description}
+        />
 
         <button type="submit">Submit</button>
       </form>
