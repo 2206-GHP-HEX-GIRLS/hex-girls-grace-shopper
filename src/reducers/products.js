@@ -15,12 +15,12 @@ export const fetchProducts = () => {
       const { data } = await axios.get('/api/products/');
       dispatch(setProducts(data));
     } catch (error) {
-      console.log('Error fetching all products from server');
+      console.log('Error fetching all products from server', error);
     }
   };
 };
 
-export default function campusesReducer(state = [], action) {
+export default function productsReducer(state = [], action) {
   switch (action.type) {
     case SET_PRODUCTS:
       return action.products;
