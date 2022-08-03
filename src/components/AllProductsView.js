@@ -1,17 +1,14 @@
-import React, { useEffect, useState } from 'react';
-import { connect } from 'react-redux';
-import { fetchProducts } from '../reducers/products';
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { getProducts } from "../reducers/products";
 
-const AllProductsView = (props) => {
-  let [products, setProducts] = useState(props.products ? props.products : '');
-
-  useEffect(() => {
-    props.getProducts();
-  }, [props]);
+const AllProductsView = () => {
+  const products = useSelector((state) => state.products);
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    props.getProducts();
-  }, [products, props]);
+    dispatch(getProducts());
+  }, [dispatch]);
 
   return (
     <div>
@@ -26,12 +23,4 @@ const AllProductsView = (props) => {
   );
 };
 
-const mapState = ({ products }) => ({
-  products,
-});
-
-const mapDispatch = (dispatch) => ({
-  getProducts: () => dispatch(fetchProducts()),
-});
-
-export default connect(mapState, mapDispatch)(AllProductsView);
+export default AllProductsView;
