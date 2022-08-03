@@ -1,20 +1,21 @@
-import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import AllProductsView from './AllProductsView';
-import SingleProductView from './SingleProductView';
+import React from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import AllProductsView from "./AllProductsView";
+import Header from "./Header";
+import Home from "./Home";
+import NavBar from "./NavBar";
 
 const Paths = () => {
   return (
     <Router>
-      <div>
-        <main>
-          <h1>Boolean Bakers</h1>
-        </main>
+      <div className="Paths">
+        <div className="fixed-top">
+          <Header />
+          <NavBar />
+        </div>
         <Routes>
-          <Route path="/allproducts">
-            <Route index element={<AllProductsView />} />
-            <Route path=":id" element={<SingleProductView />} />
-          </Route>
+          <Route path="/allproducts" element={<AllProductsView />} />
+          <Route path="/" element={<Home />} />
         </Routes>
       </div>
     </Router>
