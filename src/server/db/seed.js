@@ -1,4 +1,4 @@
-const db = require('./index');
+const db = require('./db');
 const { Order, Product, Review, User } = require('./index').models;
 
 const products = [
@@ -58,8 +58,9 @@ const seed = async () => {
         return User.create(user);
       })
     );
+    console.log('db synced');
   } catch (error) {
-    console.log(error);
+    console.error(error);
   }
 };
 
