@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 
-//Action definition
+//Action type
 const GOT_SINGLE_PRODUCT = 'GET_SINGLE_PRODUCT';
 const EDIT_PRODUCT = 'EDIT_PRODUCT'
 
@@ -53,7 +53,7 @@ const singleProductReducer = (state = initialState, action) => {
             return action.product
         case EDIT_PRODUCT:
             return action.product
-            
+
         default: return state
     }
 }
