@@ -1,18 +1,22 @@
 import axios from "axios";
 import product from "../server/db/models/product";
 
-const SET_PRODUCTS = "SET_PRODUCTS";
+
+//action type
+const GOT_PRODUCTS = 'GOT_PRODUCTS';
 const ADD_PRODUCT = "ADD_PRODUCT";
 const EDIT_PRODUCT = "EDIT_PRODUCT";
 
-const setProducts = (products) => {
+//action creators
+const gotProducts = (products) => {
   return {
-    type: SET_PRODUCTS,
+    type: GOT_PRODUCTS,
     products,
   };
 };
 
-const addProduct = (product) => {
+//thunk creator
+const addProducts = () => {
   return {
     type: ADD_PRODUCT,
     product,
@@ -29,13 +33,13 @@ const editProduct = (product) => {
 export const fetchProducts = () => {
   return async (dispatch) => {
     try {
-      const { data } = await axios.get('/api/products/');
-      dispatch(setProducts(data));
-    } catch (error) {
-      console.log('Error fetching all products from server', error);
+      const { data: products } = await axios.get('api/products')
+      gispatch(gotProducts(products))
+    }catch (err) {
+      console.log('Error getting products from DB', error)
     }
-  };
-};
+  }
+}
 
 export const createProduct = (product) => {
   return async (dispatch) => {
@@ -60,10 +64,15 @@ export const updateProduct = (product) => {
 };
 
 
-export default function productsReducer(state = [], action) {
+
+//initial state
+const initialState = []
+
+
+const productsReducer = (state = [], action) => {
   switch (action.type) {
-    case SET_PRODUCTS:
-      return action.products;
+    case GOT_PRODUCTS:
+      return action.products
     case ADD_PRODUCT:
       return [...state, action.product];
     case EDIT_PRODUCT:
@@ -74,3 +83,5 @@ export default function productsReducer(state = [], action) {
       return state;
   }
 }
+
+export default productsReducer
