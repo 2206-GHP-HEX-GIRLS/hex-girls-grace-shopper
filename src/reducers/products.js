@@ -29,10 +29,10 @@ const editProduct = (product) => {
 export const fetchProducts = () => {
   return async (dispatch) => {
     try {
-      const { data } = await axios.get("/api/products/");
+      const { data } = await axios.get('/api/products/');
       dispatch(setProducts(data));
     } catch (error) {
-      console.log("Error fetching all products from server", error);
+      console.log('Error fetching all products from server', error);
     }
   };
 };
@@ -40,7 +40,7 @@ export const fetchProducts = () => {
 export const createProduct = (product) => {
   return async (dispatch) => {
     try {
-      const { data: created } = await axios.post("/api/products", product);
+      const { data: created } = await axios.post('/api/products', product);
       dispatch(addProduct(created));
     } catch (err) {
       console.log(err);
@@ -65,7 +65,7 @@ export default function productsReducer(state = [], action) {
     case SET_PRODUCTS:
       return action.products;
     case ADD_PRODUCT:
-      return [...state, action.campus];
+      return [...state, action.product];
     case EDIT_PRODUCT:
       return state.map((product) => {
         return product.id === action.product.id ? action.product : product;
