@@ -40,9 +40,9 @@ const Home = () => {
               <h2>Pastries</h2>
             </div>
             <div className="col-sm-3">
-              <Link to="/">
+              <Link to="/allproducts">
                 <img
-                  src="https://www.nicepng.com/png/detail/758-7586854_arrow-png-transparent-icon-right-arrow-in-circle.png"
+                  src="https://i.insider.com/5dc5ed063afd371308615ae3?width=1000&format=jpeg&auto=webp"
                   alt="see-all"
                   className="img-fluid"
                 />

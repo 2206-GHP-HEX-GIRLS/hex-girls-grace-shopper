@@ -1,12 +1,13 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import "./css/NavBar.css";
 
 const NavBar = () => {
   return (
-    <nav className="navbar navbar-expand-lg bg-light">
+    <nav className="navbar navbar-expand-lg bg-light NavBarCustom">
       <div className="container-fluid">
         <Link className="navbar-brand" to="/">
-          Navbar
+          BB
         </Link>
         <button
           className="navbar-toggler"
@@ -19,21 +20,19 @@ const NavBar = () => {
         >
           <span className="navbar-toggler-icon"></span>
         </button>
-        <div className="collapse navbar-collapse" id="navbarNavDropdown">
-          <ul className="navbar-nav">
+        <div
+          className="collapse navbar-collapse d-flex justify-content-end"
+          id="navbarNavDropdown"
+        >
+          <ul className="navbar-nav ">
             <li className="nav-item">
               <Link className="nav-link active" aria-current="page" to="/">
-                Boolean Bakers
+                Cart
               </Link>
             </li>
             <li className="nav-item">
-              <Link className="nav-link" to="/">
-                Features
-              </Link>
-            </li>
-            <li className="nav-item">
-              <Link className="nav-link" to="/">
-                Pricing
+              <Link className="nav-link" to="/allproducts">
+                Products
               </Link>
             </li>
             <li className="nav-item dropdown">
@@ -44,22 +43,27 @@ const NavBar = () => {
                 data-bs-toggle="dropdown"
                 aria-expanded="false"
               >
-                Dropdown link
+                Account
               </Link>
               <ul className="dropdown-menu">
                 <li>
                   <Link className="dropdown-item" to="/">
-                    Action
+                    Create Account
                   </Link>
                 </li>
                 <li>
                   <Link className="dropdown-item" to="/">
-                    Another action
+                    Orders
                   </Link>
                 </li>
                 <li>
                   <Link className="dropdown-item" to="/">
-                    Something else here
+                    Log In
+                  </Link>
+                </li>
+                <li>
+                  <Link className="dropdown-item" to="/">
+                    Sign Out
                   </Link>
                 </li>
               </ul>
