@@ -1,30 +1,40 @@
 import axios from 'axios';
 
-const SET_PRODUCTS = 'SET_PRODUCTS';
+//action type
+const GOT_PRODUCTS = 'GOT_PRODUCTS';
 
-const setProducts = (products) => {
+//action creators
+const gotProducts = (products) => {
   return {
-    type: SET_PRODUCTS,
+    type: GOT_PRODUCTS,
     products,
   };
 };
 
-export const fetchProducts = () => {
+//thunk creator
+export const getProducts = () => {
   return async (dispatch) => {
     try {
-      const { data } = await axios.get('/api/products/');
-      dispatch(setProducts(data));
-    } catch (error) {
-      console.log('Error fetching all products from server', error);
+      const { data: products } = await axios.get('api/products')
+      gispatch(gotProducts(products))
+    }catch (err) {
+      console.log('Error getting products from DB', error)
     }
-  };
-};
-
-export default function productsReducer(state = [], action) {
-  switch (action.type) {
-    case SET_PRODUCTS:
-      return action.products;
-    default:
-      return state;
   }
 }
+
+
+//initial state
+const initialState = []
+
+//reducer
+const productsReducer = (state = initialState, action) => {
+  switch(action.type) {
+    case GOT_PRODUCTS:
+      return action.products
+
+      default: return state
+  }
+}
+
+export default productsReducer
