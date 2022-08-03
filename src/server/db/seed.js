@@ -1,5 +1,7 @@
 const db = require('./db');
-const { Order, Product, Review, User } = require('./index').models;
+// const { Order, Product, Review, User } = require('./index');
+const Product = require('./models/product');
+const User = require('./models/user');
 
 const products = [
   {
@@ -39,7 +41,7 @@ const products = [
 
 const users = [
   {
-    username: 'Coookie Monster',
+    username: 'Cookie Monster',
     password: '123',
     email: 'sweettooth@gmail.com',
   },
@@ -47,7 +49,7 @@ const users = [
 
 const seed = async () => {
   try {
-    await db.sync();
+    await db.sync({ force: true });
     await Promise.all(
       products.map((product) => {
         return Product.create(product);
@@ -59,11 +61,12 @@ const seed = async () => {
       })
     );
     console.log('db synced');
+    db.close();
   } catch (error) {
     console.error(error);
+    console.error('Failed to seed! :(');
+    db.close();
   }
 };
 
 seed();
-
-module.exports = seed;

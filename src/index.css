@@ -1,13 +1,32 @@
+:root {
+  --title-font: "Alike Angular", serif;
+  --header-font: "Lekton", sans-serif;
+  --category-font: "Square Peg", cursive;
+}
+
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  font-family: var(--header-font);
+  background-color: #ffefe9;
+}
+
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--header-font);
+}
+
+h1 {
+  font-family: var(--title-font);
+}
+
+h2 {
+  font-family: var(--category-font);
+  font-size: 3rem;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }

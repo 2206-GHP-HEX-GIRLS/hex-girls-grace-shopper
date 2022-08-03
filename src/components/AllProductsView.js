@@ -1,17 +1,17 @@
-import React, { useEffect, useState } from "react";
-import { connect } from "react-redux";
-import { fetchProducts } from "../reducers/products";
+import React, { useEffect, useState } from 'react';
+import { connect } from 'react-redux';
+import { fetchProducts } from '../reducers/products';
 
 const AllProductsView = (props) => {
-  let [products, setProducts] = useState(props.products ? props.products : "");
+  let [products, setProducts] = useState(props.products ? props.products : '');
 
   useEffect(() => {
     props.getProducts();
-  }, []);
+  }, [props]);
 
   useEffect(() => {
     props.getProducts();
-  }, [products]);
+  }, [products, props]);
 
   return (
     <div>
@@ -20,8 +20,6 @@ const AllProductsView = (props) => {
           <img src={product.imageUrl} alt="baked goods img" />
           <div>{product.name}</div>
           <div>{product.price}</div>
-          <div>{product.description}</div>
-          <div>{product.review}</div>
         </div>
       ))}
     </div>
