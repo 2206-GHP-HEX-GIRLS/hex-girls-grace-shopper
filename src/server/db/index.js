@@ -1,5 +1,5 @@
 const Sequelize = require("sequelize");
-const db = new Sequelize(`postgres://localhost:5432/bakery`);
+const db = require("./db");
 const Product = require("./models/product.js");
 const Review = require("./models/review.js");
 const User = require("./models/user.js");
