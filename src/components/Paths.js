@@ -1,9 +1,11 @@
-import React from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import AllProductsView from "./AllProductsView";
-import Header from "./Header";
-import Home from "./Home";
-import NavBar from "./NavBar";
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import AllProductsView from './AllProductsView';
+import SingleProductView from './SingleProductView';
+import NotFound from './NotFound';
+import Header from './Header';
+import Home from './Home';
+import NavBar from './NavBar';
 
 const Paths = () => {
   return (
@@ -14,7 +16,11 @@ const Paths = () => {
           <NavBar />
         </div>
         <Routes>
-          <Route path="/allproducts" element={<AllProductsView />} />
+          <Route path="/allproducts">
+            <Route index element={<AllProductsView />} />
+            <Route path=":id" element={<SingleProductView />} />
+          </Route>
+          <Route path="*" element={<NotFound />} />
           <Route path="/" element={<Home />} />
         </Routes>
       </div>
