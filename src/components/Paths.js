@@ -2,6 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import AllProductsView from './AllProductsView';
 import SingleProductView from './SingleProductView';
+import NotFound from './NotFound';
 
 const Paths = () => {
   return (
@@ -15,6 +16,7 @@ const Paths = () => {
             <Route index element={<AllProductsView />} />
             <Route path=":id" element={<SingleProductView />} />
           </Route>
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </div>
     </Router>

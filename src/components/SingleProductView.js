@@ -24,13 +24,15 @@ const SingleProductView = (props) => {
         <div>{product.description}</div>
         <div>{product.review}</div>
       </div>
-
-      <select name="Quantity">
-        <option>1</option>
-        <option>2</option>
-        <option>3</option>
-        <option>4</option>
-      </select>
+      <div>
+        Quantity
+        <select name="Quantity">
+          <option>1</option>
+          <option>2</option>
+          <option>3</option>
+          <option>4</option>
+        </select>
+      </div>
 
       <button type="submit">Add To Cart🛒</button>
     </div>
