@@ -15,7 +15,7 @@ const AllProductsView = () => {
     <div>
       {products.map((product) => (
         <div key={product.id}>
-          <Link to="/allproducts/1">
+          <Link to={`/allproducts/${product.id}`}>
             <img src={product.imageUrl} alt="baked goods img" />
           </Link>
           <div>{product.name}</div>
