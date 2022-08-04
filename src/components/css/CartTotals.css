@@ -1,0 +1,31 @@
+.CartTotals {
+  text-align: center;
+  border: 2px solid var(--nav-color);
+  border-radius: 0.5rem;
+  box-shadow: var(--box-shadow);
+  width: 50%;
+  margin: 0 auto 0.5rem auto;
+  padding: 2rem;
+  background-color: var(--nav-color);
+}
+
+.CartTotals .cont-shopping,
+.checkout {
+  border: none;
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 0.75rem;
+}
+
+.CartTotals .cont-shopping:active,
+.checkout:active {
+  transform: scale(0.98);
+}
+
+.CartTotals .checkout {
+  background-color: #127212;
+}
+
+.CartTotals .cont-shopping {
+  background-color: #e9ba21;
+}

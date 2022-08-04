@@ -1,0 +1,38 @@
+.CartItem {
+  text-align: left;
+  border: 2px solid var(--brown);
+  border-radius: 0.5rem;
+  box-shadow: var(--box-shadow);
+  width: 50%;
+  margin: 0 auto 0.5rem auto;
+  padding: 2rem;
+}
+
+.CartItem img {
+  max-width: 8rem;
+  height: auto;
+}
+
+.CartItem button {
+  border: none;
+  background-color: var(--brown);
+  color: white;
+  border-radius: 0.5rem;
+  box-shadow: var(--box-shadow);
+}
+
+.CartItem button:active {
+  transform: scale(0.98);
+}
+
+.CartItem .qty-increase-btn {
+  background-color: #127212;
+  padding: 0 0.5rem;
+  margin: 0 0.25rem;
+}
+
+.CartItem .qty-decrease-btn {
+  background-color: #c20404;
+  padding: 0 0.5rem;
+  margin: 0 0.25rem;
+}
