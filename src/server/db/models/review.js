@@ -8,5 +8,9 @@ module.exports = db.define('review', {
   },
   rating: {
     type: Sequelize.INTEGER,
+    validate: {
+      max: 5,
+      min: 1,
+    },
   },
 });
