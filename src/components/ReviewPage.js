@@ -6,8 +6,8 @@ const ReviewPage = () => {
     <div>
       <h2 id="fh2">WE APPRECIATE YOUR REVIEW!</h2>
       <h6 id="fh6">
-        Your review will help us to improve our web hosting quality products,
-        and customer services.
+        Your review will help us to improve our quality products and customer
+        services.
       </h6>
 
       <form id="feedback" action="">
@@ -45,7 +45,7 @@ const ReviewPage = () => {
           </div>
         </div>
 
-        <div className="pinfo">Rate our overall services.</div>
+        <div className="pinfo">Rate our product🎂</div>
 
         <div className="form-group">
           <div className="col-md-4 inputGroupContainer">
