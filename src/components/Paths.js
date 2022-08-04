@@ -6,6 +6,7 @@ import NotFound from './NotFound';
 import Header from './Header';
 import Home from './Home';
 import NavBar from './NavBar';
+import Cart from "./Cart";
 import ReviewPage from './ReviewPage';
 
 const Paths = () => {
@@ -24,6 +25,7 @@ const Paths = () => {
           <Route path="/review" element={<ReviewPage />} />
           <Route path="*" element={<NotFound />} />
           <Route path="/" element={<Home />} />
+          <Route path="/cart" element={<Cart />} />
         </Routes>
       </div>
     </Router>
