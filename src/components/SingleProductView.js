@@ -1,20 +1,21 @@
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { getSingleProduct } from '../reducers/singleProduct';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 
 const SingleProductView = (props) => {
+  let { id } = useParams();
   let [product, setSingleProduct] = useState(
     props.product ? props.product : ''
   );
 
   useEffect(() => {
-    props.getSingleProduct();
+    props.getSingleProduct(id);
   }, [props]);
 
   useEffect(() => {
-    props.getSingleProduct();
-  }, [product, props]);
+    props.getSingleProduct(id);
+  }, [id, props]);
 
   return (
     <div>
@@ -46,7 +47,7 @@ const mapState = ({ product }) => ({
 });
 
 const mapDispatch = (dispatch) => ({
-  getSingleProduct: () => dispatch(getSingleProduct()),
+  getSingleProduct: (id) => dispatch(getSingleProduct(id)),
 });
 
 export default connect(mapState, mapDispatch)(SingleProductView);
