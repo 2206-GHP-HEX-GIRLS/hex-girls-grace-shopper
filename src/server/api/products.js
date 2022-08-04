@@ -1,28 +1,27 @@
 const router = require('express').Router();
-const { Product } = require('../db');
+const Product = require('../db/models/product');
 
 //display all products
 router.get('/', async (req, res, next) => {
   try {
     const allProducts = await Product.findAll();
-      res.json(allProducts);
+    res.json(allProducts);
   } catch (error) {
-      next(error);
+    next(error);
   }
 });
 
 //display single product
 router.get('/:id', async (req, res, next) => {
   try {
-    const product = await Product.findbyPk(req.params.id, {
-      include: {model: Reviews, as: 'reviews'}
-    })
-      res.json(product)
+    const product = await Product.findByPk(req.params.id, {
+      include: {model: Product, as: 'product'}
+    });
+    res.json(product);
+  } catch (error) {
+    next(error);
   }
-  catch(error) {
-    next(error)
-  }
-})
+});
 
 //create product
 router.post('/', async (req, res, next) => {
@@ -31,28 +30,27 @@ router.post('/', async (req, res, next) => {
   } catch (error) {
     next(error);
   }
-})
-
+});
 
 //delete product
 router.delete('/:id', async (req, res, next) => {
   try {
-    const product = await Product.findbyPk(req.params.id);
+    const product = await Product.findByPk(req.params.id);
     await product.destroy();
-    res.send(product)
+    res.send(product);
   } catch (error) {
     next(error);
   }
-})
+});
 
 //update product
 router.put('/:id', async (req, res, next) => {
   try {
-    const product = await Product.findbyPk(req.params.id);
-      res.send(await product.update(req.body));
+    const product = await Product.findByPk(req.params.id);
+    res.send(await product.update(req.body));
   } catch (error) {
-    next(error)
+    next(error);
   }
-})
+});
 
 module.exports = router;

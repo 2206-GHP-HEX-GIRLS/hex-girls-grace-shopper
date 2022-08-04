@@ -1,39 +1,29 @@
-import React, { useEffect, useState } from "react";
-import { connect } from "react-redux";
-import { fetchProducts } from "../reducers/products";
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { getProducts } from '../reducers/products';
+import { Link } from 'react-router-dom';
 
-const AllProductsView = (props) => {
-  let [products, setProducts] = useState(props.products ? props.products : "");
-
-  useEffect(() => {
-    props.getProducts();
-  }, []);
+const AllProductsView = () => {
+  const products = useSelector((state) => state.products);
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    props.getProducts();
-  }, [products]);
+    dispatch(getProducts());
+  }, [dispatch]);
 
   return (
     <div>
       {products.map((product) => (
         <div key={product.id}>
-          <img src={product.imageUrl} alt="baked goods img" />
+          <Link to="/allproducts/1">
+            <img src={product.imageUrl} alt="baked goods img" />
+          </Link>
           <div>{product.name}</div>
           <div>{product.price}</div>
-          <div>{product.description}</div>
-          <div>{product.review}</div>
         </div>
       ))}
     </div>
   );
 };
 
-const mapState = ({ products }) => ({
-  products,
-});
-
-const mapDispatch = (dispatch) => ({
-  getProducts: () => dispatch(fetchProducts()),
-});
-
-export default connect(mapState, mapDispatch)(AllProductsView);
+export default AllProductsView;
