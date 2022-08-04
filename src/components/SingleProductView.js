@@ -1,26 +1,17 @@
-import React, { useEffect, useState } from 'react';
-import { connect } from 'react-redux';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { getSingleProduct } from '../reducers/singleProduct';
-import { getProducts } from '../reducers/products';
 import { Link, useParams } from 'react-router-dom';
 
-const SingleProductView = (props) => {
+const SingleProductView = () => {
   let { id } = useParams();
-  let [product, setSingleProduct] = useState({
-    name: props.product.name ? props.product.name : '',
-    price: props.product.price ? props.product.price : '',
-    imageUrl: props.product.imageUrl ? props.product.imageUrl : '',
-    description: props.product.description ? props.product.description : '',
-  });
+
+  const product = useSelector((state) => state.product);
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    props.getSingleProduct(id);
-    props.getProducts();
-  }, [props]);
-
-  useEffect(() => {
-    props.getSingleProduct(id);
-  }, [id, product, props]);
+    dispatch(getSingleProduct(id));
+  }, [dispatch, id]);
 
   return (
     <div>
@@ -47,13 +38,4 @@ const SingleProductView = (props) => {
   );
 };
 
-const mapState = ({ product }) => ({
-  product,
-});
-
-const mapDispatch = (dispatch) => ({
-  getSingleProduct: (id) => dispatch(getSingleProduct(id)),
-  getProducts: () => dispatch(getProducts()),
-});
-
-export default connect(mapState, mapDispatch)(SingleProductView);
+export default SingleProductView;

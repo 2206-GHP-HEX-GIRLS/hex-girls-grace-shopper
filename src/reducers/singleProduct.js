@@ -1,8 +1,8 @@
-import axios from "axios";
+import axios from 'axios';
 
 //Action type
-const GOT_SINGLE_PRODUCT = "GET_SINGLE_PRODUCT";
-const EDIT_PRODUCT = "EDIT_PRODUCT";
+const GOT_SINGLE_PRODUCT = 'GET_SINGLE_PRODUCT';
+const EDIT_PRODUCT = 'EDIT_PRODUCT';
 
 //Action Creator
 const gotSingleProduct = (product) => {
@@ -23,10 +23,10 @@ const editedProduct = (product) => {
 export const getSingleProduct = (id) => {
   return async (dispatch) => {
     try {
-      const { data } = await axios.get(`/api/products/${id}`);
-      dispatch(gotSingleProduct(data));
+      const { data: product } = await axios.get(`/api/products/${id}`);
+      dispatch(gotSingleProduct(product));
     } catch (error) {
-      console.log("Error fetching single product!", error);
+      console.log('Error fetching single product!', error);
     }
   };
 };
@@ -40,7 +40,7 @@ export const editProduct = (product, history) => {
       );
       dispatch(editedProduct(updated));
     } catch (error) {
-      console.log("Error updating product!", error);
+      console.log('Error updating product!', error);
     }
   };
 };
