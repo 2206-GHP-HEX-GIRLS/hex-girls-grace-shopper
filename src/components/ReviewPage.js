@@ -23,7 +23,7 @@ const ReviewPage = () => {
               </span>
               <input
                 name="name"
-                placeholder="John Doe"
+                placeholder="First and Last name"
                 class="form-control"
                 type="text"
               />
@@ -41,7 +41,7 @@ const ReviewPage = () => {
                 name="email"
                 type="email"
                 class="form-control"
-                placeholder="john.doe@yahoo.com"
+                placeholder="Valid Email Address"
               />
             </div>
           </div>
