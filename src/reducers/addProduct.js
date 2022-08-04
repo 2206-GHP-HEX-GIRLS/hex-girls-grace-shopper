@@ -4,19 +4,19 @@ import axios from 'axios';
 const CREATE_PRODUCT = 'CREATE_PRODUCT'
 
 //action creator
-const addedProduct = (products) => {
+const createProduct = (product) => {
     return{
         type: CREATE_PRODUCT,
-        products
+        product
     }
 }
 
 //thunk creator
-export const addProduct = (products, history) => {
+export const addProduct = (product, history) => {
     return async (dispatch) => {
         try {
-            const {data: created} = await axios.post('/api/products', products)
-            dispatch(addedProduct(created))
+            const { data: created } = await axios.post('/api/products', product)
+            dispatch(createProduct(created));
             history.push('/')
         }catch (error){
             console.log('Error adding product to DB!', error)
@@ -31,7 +31,7 @@ const initialState = []
 const addProductReducer = (state = initialState, action) => {
     switch(action.type) {
         case CREATE_PRODUCT:
-            return [...state, action.products]
+            return [...state, action.product]
         default:
             return state
     }
