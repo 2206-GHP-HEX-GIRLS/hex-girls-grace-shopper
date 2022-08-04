@@ -9,6 +9,6 @@ module.exports = db.define('order', {
   },
   total: {
     type: Sequelize.INTEGER,
-    defaultValue: 0,
+    defaultValue: '2.50',
   },
 });
