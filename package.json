@@ -24,11 +24,13 @@
     "redux-thunk": "^2.4.1",
     "sequelize": "^6.21.3",
     "volleyball": "^1.5.1",
-    "web-vitals": "^2.1.4"
+    "web-vitals": "^2.1.4",
+    "nodemon": "^2.0.19"
   },
   "scripts": {
-    "start": "react-scripts start & npm run server",
-    "server": "nodemon ./src/server",
+    "start": "node ./src/server",
+    "start:dev": "react-scripts start & npm run start-server",
+    "start-server": "nodemon ./src/server",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
@@ -51,8 +53,5 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  },
-  "devDependencies": {
-    "nodemon": "^2.0.19"
   }
 }
