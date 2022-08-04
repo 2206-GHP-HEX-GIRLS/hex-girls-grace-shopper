@@ -6,6 +6,7 @@ import NotFound from './NotFound';
 import Header from './Header';
 import Home from './Home';
 import NavBar from './NavBar';
+import ReviewPage from './ReviewPage';
 
 const Paths = () => {
   return (
@@ -19,6 +20,7 @@ const Paths = () => {
           <Route path="/allproducts">
             <Route index element={<AllProductsView />} />
             <Route path=":id" element={<SingleProductView />} />
+            <Route path="/review" element={<ReviewPage />} />
           </Route>
           <Route path="*" element={<NotFound />} />
           <Route path="/" element={<Home />} />
