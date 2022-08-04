@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { getSingleProduct } from '../reducers/singleProduct';
+import { Link } from 'react-router-dom';
+import ReviewPage from './ReviewPage';
 
 const SingleProductView = (props) => {
   let [product, setSingleProduct] = useState(
@@ -16,26 +19,32 @@ const SingleProductView = (props) => {
   }, [product, props]);
 
   return (
-    <div>
-      <div key={product.id}>
-        <img src={product.imageUrl} alt="baked goods img" />
-        <div>{product.name}</div>
-        <div>{product.price}</div>
-        <div>{product.description}</div>
-        <div>{product.review}</div>
-      </div>
+    <Router>
       <div>
-        Quantity
-        <select name="Quantity">
-          <option>1</option>
-          <option>2</option>
-          <option>3</option>
-          <option>4</option>
-        </select>
-      </div>
+        <div key={product.id}>
+          <img src={product.imageUrl} alt="baked goods img" />
+          <div>{product.name}</div>
+          <div>{product.price}</div>
+          <div>{product.description}</div>
+          <div>{product.review}</div>
+        </div>
+        <div>
+          Quantity
+          <select name="Quantity">
+            <option>1</option>
+            <option>2</option>
+            <option>3</option>
+            <option>4</option>
+          </select>
+        </div>
 
-      <button type="submit">Add To Cart🛒</button>
-    </div>
+        <button type="submit">Add To Cart🛒</button>
+        <Link to="/review">Write a review!</Link>
+        <Routes>
+          <Route path="/review" element={<ReviewPage />} />
+        </Routes>
+      </div>
+    </Router>
   );
 };
 

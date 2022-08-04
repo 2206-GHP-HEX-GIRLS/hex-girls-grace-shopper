@@ -1,15 +1,14 @@
-import React from "react";
-import { connect } from "react-redux";
-import { updateProduct } from "../reducers/products";
+import React from 'react';
+import { connect } from 'react-redux';
+import { updateProduct } from '../reducers/products';
 
-
-class AddProduct extends React.Component {
+class EditProduct extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      name: "",
-      price: "",
-      description: "",
+      name: '',
+      price: '',
+      description: '',
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
@@ -29,7 +28,7 @@ class AddProduct extends React.Component {
   }
 
   render() {
-    const { name, price, description } = this.state;    
+    const { name, price, description } = this.state;
     const { handleSubmit, handleChange } = this;
     return (
       <form id="updateProducton" Submit={handleSubmit}>
@@ -67,6 +66,5 @@ const mapState = ({ product }) => ({
 const mapDispatch = (dispatch) => ({
   updateProduct: (id, state) => dispatch(updateProduct(id, state)),
 });
-
 
 export default connect(mapState, mapDispatch)(EditProduct);
