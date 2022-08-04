@@ -1,14 +1,14 @@
-import React from "react";
-import { connect } from "react-redux";
-import { editProduct } from "../reducers/singleProduct";
+import React from 'react';
+import { connect } from 'react-redux';
+import { editProduct } from '../reducers/singleProduct';
 
 class EditProduct extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      name: "",
-      price: "",
-      description: "",
+      name: '',
+      price: '',
+      description: '',
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
