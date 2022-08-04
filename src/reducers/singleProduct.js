@@ -5,17 +5,17 @@ const GOT_SINGLE_PRODUCT = "GET_SINGLE_PRODUCT";
 const EDIT_PRODUCT = "EDIT_PRODUCT";
 
 //Action Creator
-const gotSingleProduct = (products) => {
+const gotSingleProduct = (product) => {
   return {
     type: GOT_SINGLE_PRODUCT,
-    products,
+    product,
   };
 };
 
-const editedProduct = (products) => {
+const editedProduct = (product) => {
   return {
     type: EDIT_PRODUCT,
-    products,
+    product,
   };
 };
 
@@ -31,12 +31,12 @@ export const getSingleProduct = (id) => {
   };
 };
 
-export const editProduct = (products, history) => {
+export const editProduct = (product, history) => {
   return async (dispatch) => {
     try {
       const { data: updated } = await axios.put(
-        `/api/products/${products.id}`,
-        products
+        `/api/products/${product.id}`,
+        product
       );
       dispatch(editedProduct(updated));
     } catch (error) {
