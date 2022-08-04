@@ -7,6 +7,7 @@ import Header from './Header';
 import Home from './Home';
 import NavBar from './NavBar';
 import ReviewPage from './ReviewPage';
+import LogIn from './LogIn';
 
 const Paths = () => {
   return (
@@ -24,6 +25,7 @@ const Paths = () => {
           <Route path="/review" element={<ReviewPage />} />
           <Route path="*" element={<NotFound />} />
           <Route path="/" element={<Home />} />
+          <Route path="/login" element={<LogIn />} />
         </Routes>
       </div>
     </Router>
