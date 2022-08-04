@@ -4,8 +4,6 @@ import './css/ReviewPage.css';
 const ReviewPage = () => {
   return (
     <div>
-      <script src="https://use.fontawesome.com/a6f0361695.js"></script>
-
       <h2 id="fh2">WE APPRECIATE YOUR REVIEW!</h2>
       <h6 id="fh6">
         Your review will help us to improve our web hosting quality products,
