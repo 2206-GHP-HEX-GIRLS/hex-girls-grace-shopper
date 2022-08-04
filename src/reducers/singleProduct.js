@@ -5,15 +5,19 @@ const GOT_SINGLE_PRODUCT = 'GET_SINGLE_PRODUCT';
 const EDIT_PRODUCT = 'EDIT_PRODUCT';
 
 //Action Creator
-const gotSingleProduct = (product) => ({
-  type: GOT_SINGLE_PRODUCT,
-  product,
-});
+const gotSingleProduct = (product) => {
+  return {
+    type: GOT_SINGLE_PRODUCT,
+    product,
+  };
+};
 
-const editedProduct = (product) => ({
-  type: EDIT_PRODUCT,
-  product,
-});
+const editedProduct = (product) => {
+  return {
+    type: EDIT_PRODUCT,
+    product,
+  };
+};
 
 //Thunk Creator
 export const getSingleProduct = (id) => {
