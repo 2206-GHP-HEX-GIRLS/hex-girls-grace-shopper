@@ -23,8 +23,9 @@
 
 #fh2 {
   padding: 2px 15px;
-  color: #ff4d4d;
+  color: #64b6ac;
   text-align: center;
+  font-family: 'Lekton', sans-serif;
 }
 
 @media (max-width: 400px) {
