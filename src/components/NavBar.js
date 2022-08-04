@@ -29,16 +29,6 @@ const NavBar = () => {
           id="navbarNavDropdown"
         >
           <ul className="navbar-nav ">
-            <li className="nav-item">
-              <Link className="nav-link active" aria-current="page" to="/">
-                Cart
-              </Link>
-            </li>
-            <li className="nav-item">
-              <Link className="nav-link" to="/allproducts">
-                Products
-              </Link>
-            </li>
             <li className="nav-item dropdown">
               <Link
                 className="nav-link dropdown-toggle"
@@ -71,6 +61,16 @@ const NavBar = () => {
                   </Link>
                 </li>
               </ul>
+            </li>
+            <li className="nav-item">
+              <Link className="nav-link active" aria-current="page" to="/">
+                Cart
+              </Link>
+            </li>
+            <li className="nav-item">
+              <Link className="nav-link" to="/allproducts">
+                Products
+              </Link>
             </li>
           </ul>
         </div>
