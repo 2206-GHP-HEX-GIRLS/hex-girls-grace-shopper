@@ -1,5 +1,5 @@
 import React from "react";
-import { createProduct } from "../reducers/products";
+import { addProduct } from "../reducers/addProduct";
 import { connect } from "react-redux";
 
 class AddProduct extends React.Component {
@@ -23,7 +23,7 @@ class AddProduct extends React.Component {
 
   handleSubmit(evt) {
     evt.preventDefault();
-    this.props.createProduct({ ...this.state });
+    this.props.addProduct({ ...this.state });
   }
 
   render() {
@@ -62,7 +62,7 @@ class AddProduct extends React.Component {
 }
 
 const mapDispatchToProps = (dispatch, { history }) => ({
-  createProduct: (product) => dispatch(createProduct(product, history)),
+  addProduct: (product) => dispatch(addProduct(product, history)),
 });
 
 export default connect(null, mapDispatchToProps)(AddProduct);

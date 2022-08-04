@@ -1,8 +1,8 @@
-const router = require("express").Router();
-const Product = require("../db/models/product");
+const router = require('express').Router();
+const Product = require('../db/models/product');
 
 //display all products
-router.get("/", async (req, res, next) => {
+router.get('/', async (req, res, next) => {
   try {
     const allProducts = await Product.findAll();
     res.json(allProducts);
@@ -12,9 +12,9 @@ router.get("/", async (req, res, next) => {
 });
 
 //display single product
-router.get("/:id", async (req, res, next) => {
+router.get('/:id', async (req, res, next) => {
   try {
-    const product = await Product.findbyPk(req.params.id);
+    const product = await Product.findByPk(req.params.id);
     res.json(product);
   } catch (error) {
     next(error);
@@ -22,7 +22,7 @@ router.get("/:id", async (req, res, next) => {
 });
 
 //create product
-router.post("/", async (req, res, next) => {
+router.post('/', async (req, res, next) => {
   try {
     res.status(201).send(await Product.create(req.body));
   } catch (error) {
@@ -31,9 +31,9 @@ router.post("/", async (req, res, next) => {
 });
 
 //delete product
-router.delete("/:id", async (req, res, next) => {
+router.delete('/:id', async (req, res, next) => {
   try {
-    const product = await Product.findbyPk(req.params.id);
+    const product = await Product.findByPk(req.params.id);
     await product.destroy();
     res.send(product);
   } catch (error) {
@@ -42,9 +42,9 @@ router.delete("/:id", async (req, res, next) => {
 });
 
 //update product
-router.put("/:id", async (req, res, next) => {
+router.put('/:id', async (req, res, next) => {
   try {
-    const product = await Product.findbyPk(req.params.id);
+    const product = await Product.findByPk(req.params.id);
     res.send(await product.update(req.body));
   } catch (error) {
     next(error);

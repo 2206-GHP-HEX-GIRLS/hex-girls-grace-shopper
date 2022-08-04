@@ -1,15 +1,14 @@
 import React from "react";
 import { connect } from "react-redux";
-import { updateProduct } from "../reducers/products";
+import { editProduct } from "../reducers/singleProduct";
 
-
-class AddProduct extends React.Component {
+class EditProduct extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      name: "",
-      price: "",
-      description: "",
+      name: '',
+      price: '',
+      description: '',
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
@@ -22,14 +21,14 @@ class AddProduct extends React.Component {
   }
   handleSubmit(evt) {
     evt.preventDefault();
-    this.props.updateProduct({
+    this.props.editProduct({
       id: this.props.singleProduct.id,
       ...this.state,
     });
   }
 
   render() {
-    const { name, price, description } = this.state;    
+    const { name, price, description } = this.state;
     const { handleSubmit, handleChange } = this;
     return (
       <form id="updateProducton" Submit={handleSubmit}>
@@ -65,8 +64,7 @@ const mapState = ({ product }) => ({
 });
 
 const mapDispatch = (dispatch) => ({
-  updateProduct: (id, state) => dispatch(updateProduct(id, state)),
+  editProduct: (id, state) => dispatch(editProduct(id, state)),
 });
-
 
 export default connect(mapState, mapDispatch)(EditProduct);

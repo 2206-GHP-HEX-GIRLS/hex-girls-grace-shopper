@@ -1,19 +1,17 @@
-import React, { useEffect, useState } from 'react';
-import { connect } from 'react-redux';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { getSingleProduct } from '../reducers/singleProduct';
+import { Link, useParams } from 'react-router-dom';
 
-const SingleProductView = (props) => {
-  let [product, setSingleProduct] = useState(
-    props.product ? props.product : ''
-  );
+const SingleProductView = () => {
+  let { id } = useParams();
 
-  useEffect(() => {
-    props.getSingleProduct();
-  }, [props]);
+  const product = useSelector((state) => state.product);
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    props.getSingleProduct();
-  }, [product, props]);
+    dispatch(getSingleProduct(id));
+  }, [dispatch, id]);
 
   return (
     <div>
@@ -35,16 +33,9 @@ const SingleProductView = (props) => {
       </div>
 
       <button type="submit">Add To Cart🛒</button>
+      <Link to="/review">Write a review!</Link>
     </div>
   );
 };
 
-const mapState = ({ product }) => ({
-  product,
-});
-
-const mapDispatch = (dispatch) => ({
-  getSingleProduct: () => dispatch(getSingleProduct()),
-});
-
-export default connect(mapState, mapDispatch)(SingleProductView);
+export default SingleProductView;
