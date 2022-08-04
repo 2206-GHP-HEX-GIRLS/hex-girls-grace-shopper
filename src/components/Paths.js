@@ -1,13 +1,13 @@
-import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import AllProductsView from './AllProductsView';
-import SingleProductView from './SingleProductView';
-import NotFound from './NotFound';
-import Header from './Header';
-import Home from './Home';
-import NavBar from './NavBar';
+import React from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import AllProductsView from "./AllProductsView";
+import SingleProductView from "./SingleProductView";
+import NotFound from "./NotFound";
+import Header from "./Header";
+import Home from "./Home";
+import NavBar from "./NavBar";
 import Cart from "./Cart";
-import ReviewPage from './ReviewPage';
+import ReviewPage from "./ReviewPage";
 
 const Paths = () => {
   return (

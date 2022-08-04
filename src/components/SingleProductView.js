@@ -1,7 +1,7 @@
-import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { getSingleProduct } from '../reducers/singleProduct';
-import { Link, useParams } from 'react-router-dom';
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { getSingleProduct } from "../reducers/singleProduct";
+import { Link, useParams } from "react-router-dom";
 
 const SingleProductView = () => {
   let { id } = useParams();
@@ -12,8 +12,6 @@ const SingleProductView = () => {
   useEffect(() => {
     dispatch(getSingleProduct(id));
   }, [dispatch, id]);
-
-  console.log('PRODUCTS: ', product);
 
   return (
     <div>
