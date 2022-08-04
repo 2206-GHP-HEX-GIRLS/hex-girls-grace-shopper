@@ -6,12 +6,14 @@ import { Link, useParams } from 'react-router-dom';
 const SingleProductView = () => {
   let { id } = useParams();
 
-  const product = useSelector((state) => state.product);
+  const product = useSelector((state) => state.singleProduct);
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(getSingleProduct(id));
   }, [dispatch, id]);
+
+  console.log('PRODUCTS: ', product);
 
   return (
     <div>
