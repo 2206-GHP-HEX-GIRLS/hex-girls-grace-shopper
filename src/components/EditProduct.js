@@ -1,6 +1,12 @@
+<<<<<<< HEAD
 import React from 'react';
 import { connect } from 'react-redux';
 import { updateProduct } from '../reducers/products';
+=======
+import React from "react";
+import { connect } from "react-redux";
+import { editProduct } from "../reducers/singleProduct";
+>>>>>>> origin
 
 class EditProduct extends React.Component {
   constructor(props) {
@@ -21,7 +27,7 @@ class EditProduct extends React.Component {
   }
   handleSubmit(evt) {
     evt.preventDefault();
-    this.props.updateProduct({
+    this.props.editProduct({
       id: this.props.singleProduct.id,
       ...this.state,
     });
@@ -64,7 +70,7 @@ const mapState = ({ product }) => ({
 });
 
 const mapDispatch = (dispatch) => ({
-  updateProduct: (id, state) => dispatch(updateProduct(id, state)),
+  editProduct: (id, state) => dispatch(editProduct(id, state)),
 });
 
 export default connect(mapState, mapDispatch)(EditProduct);
