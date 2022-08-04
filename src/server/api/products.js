@@ -1,5 +1,6 @@
 const router = require('express').Router();
 const Product = require('../db/models/product');
+const Review = require('../db/models/review')
 
 //display all products
 router.get('/', async (req, res, next) => {
