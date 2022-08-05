@@ -1,28 +1,19 @@
-* {
+.Register * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-html {
-  font-size: 22px;
+.Register html {
+  font-size: 18px;
   color: #fff;
 }
 
-body {
+.Register body {
   min-height: 100vh;
 }
 
-/* .App {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
-  padding: 1rem 0.5rem;
-} */
-
-section {
+.Register section {
   width: 100%;
   max-width: 420px;
   min-height: 400px;
@@ -32,7 +23,7 @@ section {
   padding: 1rem;
 }
 
-form {
+.Register form {
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
@@ -40,31 +31,31 @@ form {
   padding-bottom: 1rem;
 }
 
-a,
-a:visited {
+.Register a,
+.Register a:visited {
   color: #716561;
 }
 
-input[type="text"],
-input[type="password"],
-input[type="email"],
-button,
-textarea {
+.Register input[type="text"],
+.Register input[type="password"],
+.Register input[type="email"],
+.Register button,
+.Register textarea {
   font-size: 22px;
   padding: 0.25rem;
   border-radius: 0.5rem;
 }
 
-label,
-button {
+.Register label,
+.Register button {
   margin-top: 1rem;
 }
 
-button {
+.Register button {
   padding: 0.5rem;
 }
 
-.instructions {
+.Register .instructions {
   font-size: 0.75rem;
   border-radius: 0.5rem;
   background: #64b6ac;
@@ -74,20 +65,20 @@ button {
   bottom: -10px;
 }
 
-.instructions > svg {
+.Register .instructions > svg {
   margin-right: 0.25rem;
 }
 
-.offscreen {
+.Register .offscreen {
   position: absolute;
   left: -9999px;
 }
 
-.hide {
+.Register .hide {
   display: none;
 }
 
-.errmsg {
+.Register .errmsg {
   background-color: lightpink;
   color: firebrick;
   font-weight: bold;
@@ -95,6 +86,6 @@ button {
   margin-bottom: 0.5rem;
 }
 
-.line {
+.Register .line {
   display: inline-block;
 }
