@@ -21,7 +21,7 @@ const Cart = () => {
           {" "}
           <CartTotals />
         </div>
-        <div className="col-sm-6">
+        <div className="col-sm-6 cart-items">
           {products
             ? products.map((product) => (
                 <CartItem key={product.id} product={product} />
