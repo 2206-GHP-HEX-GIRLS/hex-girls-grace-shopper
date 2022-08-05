@@ -1,3 +1,9 @@
 .Cart {
   margin-top: 9rem;
 }
+
+.Cart .cart-items {
+  overflow: auto;
+  max-height: 65vh;
+  border-top: 1px solid var(--brown);
+}
