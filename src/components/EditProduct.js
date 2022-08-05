@@ -1,6 +1,6 @@
-import React from 'react';
-import { connect } from 'react-redux';
-import { editProduct } from '../reducers/singleProduct';
+import React from "react";
+import { connect } from "react-redux";
+import { editProduct } from "../reducers/singleProduct";
 
 class EditProduct extends React.Component {
   constructor(props) {

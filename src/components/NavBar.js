@@ -63,7 +63,7 @@ const NavBar = () => {
               </ul>
             </li>
             <li className="nav-item">
-              <Link className="nav-link active" aria-current="page" to="/">
+              <Link className="nav-link active" aria-current="page" to="/cart">
                 Cart
               </Link>
             </li>
