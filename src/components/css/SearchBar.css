@@ -1,0 +1,38 @@
+.SearchBar {
+  margin: 1rem auto;
+}
+
+.SearchBar input {
+  width: 30%;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  border: none;
+  box-shadow: var(--box-shadow);
+}
+
+.SearchBar .results {
+  border: 1px solid var(--brown);
+  background: white;
+  border-radius: 0.5rem;
+  padding: 1rem;
+  width: 30%;
+  text-align: left;
+  margin: 0.25rem auto;
+  z-index: 1;
+}
+
+.SearchBar a {
+  display: block;
+  font-size: 1rem;
+}
+
+.SearchBar a:hover {
+  background-color: var(--highlight-color);
+  text-decoration: none;
+  color: var(--nav-color);
+  font-weight: 500;
+}
+
+.SearchBar .hidden {
+  display: none;
+}

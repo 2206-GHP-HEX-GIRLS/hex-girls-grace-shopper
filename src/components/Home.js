@@ -1,10 +1,12 @@
 import React from "react";
 import "./css/Home.css";
 import { Link } from "react-router-dom";
+import SearchBar from "./SearchBar";
 
 const Home = () => {
   return (
     <div className="Home">
+      <SearchBar />
       <main>
         <img
           className="main-logo img-fluid"
