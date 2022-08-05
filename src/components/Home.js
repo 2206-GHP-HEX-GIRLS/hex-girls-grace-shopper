@@ -6,11 +6,11 @@ import SearchBar from "./SearchBar";
 const Home = () => {
   return (
     <div className="Home">
-      <SearchBar />
       <main>
+        <SearchBar />
         <img
           className="main-logo img-fluid"
-          src="https://i.imgur.com/Ld4nxGI.png"
+          src="https://i.imgur.com/iKrhfI0.png"
           alt="main-logo"
         />
         <div className="category-card container">
