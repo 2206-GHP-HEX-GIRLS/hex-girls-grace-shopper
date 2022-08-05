@@ -16,6 +16,7 @@ const SingleProductView = () => {
 
   return (
     <div className="SingleProductView container">
+      <h2>{product.name}</h2>
       <div className="row align-items-center">
         <div className="col-sm-6">
           <img
@@ -24,25 +25,27 @@ const SingleProductView = () => {
             className="img-fluid"
           />
         </div>
-        <div className="col-sm-6">
+        <div className="col-sm-6 p-2">
           <div key={product.id}>
-            <div>{product.name}</div>
-            <div>{product.price}</div>
+            <h3>${product.price}</h3>
             <div>{product.description}</div>
             <div>{product.review}</div>
             <div>
-              Quantity
+              <label htmlFor="Quantity">Qty:</label>
               <select name="Quantity">
                 <option>1</option>
                 <option>2</option>
                 <option>3</option>
                 <option>4</option>
+                <option>5</option>
               </select>
             </div>
-            <button type="submit">Add To Cart🛒</button>
-            <Link to={`/allproducts/${product.id}/review`}>
-              Write a review!
-            </Link>
+            <div className="row mt-4 p-2">
+              <button type="submit">Add To Cart 🛒</button>
+              <Link to={`/allproducts/${product.id}/review`}>
+                Write a review!
+              </Link>
+            </div>
           </div>
         </div>
       </div>
