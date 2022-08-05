@@ -42,7 +42,7 @@ const SingleProductView = (props) => {
       </div>
 
       <button type="submit">Add To Cart🛒</button>
-      <Link to="/review">Write a review!</Link>
+      <Link to={`/allproducts/${product.id}/review`}>Write a review!</Link>
     </div>
   );
 };
