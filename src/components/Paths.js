@@ -18,10 +18,6 @@ const Paths = () => {
           <NavBar />
         </div>
         <Routes>
-          {/* <Route path="/allproducts">
-            <Route index element={<AllProductsView />} />
-            <Route path=":id" element={<SingleProductView />} />
-          </Route> */}
           <Route path="/allproducts" element={<AllProductsView />} />
           <Route path="/allproducts/:id" element={<SingleProductView />} />
           <Route path="/allproducts/:id/review" element={<ReviewPage />} />
