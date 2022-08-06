@@ -105,7 +105,8 @@ const products = [
   {
     name: 'Cream Puff',
     price: 1.25,
-    imageUrl: 'https://i.imgur.com/etqhIPo.png',
+    imageUrl:
+      'https://cdn-icons.flaticon.com/png/512/842/premium/842784.png?token=exp=1659787922~hmac=c016afa8a5dabeea6d1af73c84b5e4b7',
     description:
       'French choux pastry ball with a sweet and moist filling of pastry cream.',
     quantity: 11,
