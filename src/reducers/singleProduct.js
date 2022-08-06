@@ -31,13 +31,10 @@ export const getSingleProduct = (id) => {
   };
 };
 
-export const editProduct = (product, history) => {
+export const editProduct = (product, id) => {
   return async (dispatch) => {
     try {
-      const { data: updated } = await axios.put(
-        `/api/products/${product.id}`,
-        product
-      );
+      const { data: updated } = await axios.put(`/api/products/${id}`, product);
       dispatch(editedProduct(updated));
     } catch (error) {
       console.log('Error updating product!', error);
