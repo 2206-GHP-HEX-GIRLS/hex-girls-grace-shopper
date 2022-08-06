@@ -1,5 +1,6 @@
 const router = require('express').Router();
-const { Cart } = require('../db/');
+const Cart = require('../db/models/lineitem');
+// const { Order, User, Product } = require('../db/') might need to eventually require
 
 //display cart
 router.get('/:id', async (req, res, next) => {
