@@ -1,14 +1,14 @@
-import React from "react";
-import { addProduct } from "../reducers/addProduct";
-import { connect } from "react-redux";
+import React from 'react';
+import { addProduct } from '../reducers/addProduct';
+import { connect } from 'react-redux';
 
 class AddProduct extends React.Component {
   constructor() {
     super();
     this.state = {
-      name: "",
-      price: "",
-      description: "",
+      name: '',
+      price: '',
+      description: '',
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -27,7 +27,8 @@ class AddProduct extends React.Component {
   }
 
   render() {
-    const { name, price, description } = this.state;
+    const { name, price, description, category, ImageUrl, quantity } =
+      this.state;
     const { handleSubmit, handleChange } = this;
     return (
       <form id="createProduct" onSubmit={handleSubmit}>
@@ -55,14 +56,44 @@ class AddProduct extends React.Component {
           value={description}
         />
 
+        <label>Product Quantity:</label>
+        <input
+          placeholder="Product Quantity"
+          name="quantity"
+          onChange={handleChange}
+          value={quantity}
+        />
+
+        <label>Product Category:</label>
+        <input
+          placeholder="Product Category"
+          name="category"
+          onChange={handleChange}
+          value={category}
+        />
+
+        <label>ImageUrl:</label>
+        <input
+          placeholder="Product ImageUrl"
+          name="ImageUrl"
+          onChange={handleChange}
+          value={ImageUrl}
+        />
+
         <button type="submit">Submit</button>
       </form>
     );
   }
 }
 
-const mapDispatchToProps = (dispatch, { history }) => ({
+const mapState = (state) => {
+  return {
+    product: state.singleProduct,
+  };
+};
+
+const mapDispatch = (dispatch, { history }) => ({
   addProduct: (product) => dispatch(addProduct(product, history)),
 });
 
-export default connect(null, mapDispatchToProps)(AddProduct);
+export default connect(mapState, mapDispatch)(AddProduct);
