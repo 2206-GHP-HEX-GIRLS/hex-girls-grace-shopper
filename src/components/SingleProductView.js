@@ -1,8 +1,8 @@
-import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { getSingleProduct } from "../reducers/singleProduct";
-import { Link, useParams } from "react-router-dom";
-import "./css/SingleProductView.css";
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { getSingleProduct } from '../reducers/singleProduct';
+import { Link, useParams } from 'react-router-dom';
+import './css/SingleProductView.css';
 
 const SingleProductView = () => {
   let { id } = useParams();
@@ -42,9 +42,7 @@ const SingleProductView = () => {
             </div>
             <div className="row mt-4 p-2">
               <button type="submit">Add To Cart 🛒</button>
-              <Link to={`/allproducts/${product.id}/review`}>
-                Write a review!
-              </Link>
+              <Link to={`/products/${product.id}/review`}>Write a review!</Link>
             </div>
           </div>
         </div>
