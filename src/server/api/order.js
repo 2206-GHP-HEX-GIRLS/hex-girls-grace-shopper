@@ -19,3 +19,4 @@ router.get('/:id', async (req, res, next) => {
 //component route/frontend route.
 
 //update item in cart?
+module.exports = router;
