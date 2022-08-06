@@ -19,9 +19,9 @@ const Paths = () => {
           <NavBar />
         </div>
         <Routes>
-          <Route path="/allproducts" element={<AllProductsView />} />
-          <Route path="/allproducts/:id" element={<SingleProductView />} />
-          <Route path="/allproducts/:id/review" element={<ReviewPage />} />
+          <Route path="/products" element={<AllProductsView />} />
+          <Route path="/products/:id" element={<SingleProductView />} />
+          <Route path="/products/:id/review" element={<ReviewPage />} />
           <Route path="*" element={<NotFound />} />
           <Route path="/" element={<Home />} />
           <Route path="/register" element={<Register />} />
