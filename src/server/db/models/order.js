@@ -6,4 +6,9 @@ module.exports = db.define('order', {
     type: Sequelize.DECIMAL(10, 2),
     defaultValue: 0,
   },
+  isPurchased: {
+    type: Sequelize.BOOLEAN,
+    defaultValue: false,
+    allowNull: false,
+  },
 });
