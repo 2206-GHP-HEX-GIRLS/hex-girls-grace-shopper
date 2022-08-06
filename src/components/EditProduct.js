@@ -1,14 +1,15 @@
-import React from "react";
-import { connect } from "react-redux";
-import { editProduct } from "../reducers/singleProduct";
+import React from 'react';
+import { connect } from 'react-redux';
+import { editProduct } from '../reducers/singleProduct';
 
 class EditProduct extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      name: '',
-      price: '',
-      description: '',
+      name: this.props.product.name,
+      price: this.props.product.price,
+      description: this.props.product.description,
+      quantity: this.props.product.quantity,
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
@@ -22,37 +23,30 @@ class EditProduct extends React.Component {
   handleSubmit(evt) {
     evt.preventDefault();
     this.props.editProduct({
-      id: this.props.singleProduct.id,
+      id: this.props.product.id,
       ...this.state,
+    });
+    this.setState({
+      name: this.props.product.name,
+      price: this.props.product.price,
+      description: this.props.product.description,
+      id: this.props.product.id,
     });
   }
 
   render() {
-    const { name, price, description } = this.state;
+    const { name, price, description, quantity } = this.state;
     const { handleSubmit, handleChange } = this;
     return (
       <form id="updateProducton" Submit={handleSubmit}>
         <label name="name">Product Name:</label>
-        <input
-          placeholder="Update Product Name"
-          name="name"
-          value={name}
-          onChange={handleChange}
-        />
+        <input name="name" value={name} onChange={handleChange} />
         <label>Price:</label>
-        <input
-          placeholder="Update Product Price"
-          name="price"
-          value={price}
-          onChange={handleChange}
-        />
+        <input name="price" value={price} onChange={handleChange} />
+        <label>Quantity:</label>
+        <input name="quantity" value={quantity} onChange={handleChange} />
         <label>Description:</label>
-        <input
-          placeholder="Update Product Description"
-          name="description"
-          value={description}
-          onChange={handleChange}
-        />
+        <input name="description" value={description} onChange={handleChange} />
         <button type="submit">Update Product</button>
       </form>
     );
@@ -64,7 +58,7 @@ const mapState = ({ product }) => ({
 });
 
 const mapDispatch = (dispatch) => ({
-  editProduct: (id, state) => dispatch(editProduct(id, state)),
+  editProduct: (product, id) => dispatch(editProduct(product, id)),
 });
 
 export default connect(mapState, mapDispatch)(EditProduct);
