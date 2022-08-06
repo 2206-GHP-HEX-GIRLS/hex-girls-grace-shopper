@@ -11,7 +11,6 @@ module.exports = db.define('user', {
     type: Sequelize.STRING,
     allowNull: false,
   },
-
   email: {
     type: Sequelize.STRING,
     allowNull: false,
@@ -20,5 +19,9 @@ module.exports = db.define('user', {
       notEmpty: true,
       isEmail: true,
     },
+  },
+  isAdmin: {
+    type: Sequelize.BOOLEAN,
+    defaultValue: false,
   },
 });
