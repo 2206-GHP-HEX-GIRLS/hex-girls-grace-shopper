@@ -1,15 +1,15 @@
 const router = require('express').Router();
-const Cart = require('../db/models/lineitem')
+const { Cart } = require('../db/');
 
 //display cart
 router.get('/:id', async (req, res, next) => {
-    try{
-        const cart = await Cart.findByPk(req.params.id)
+  try {
+    const cart = await Cart.findByPk(req.params.id);
     res.json(cart);
-} catch (error) {
+  } catch (error) {
     next(error);
-}
-})
+  }
+});
 
 //delete item from cart
 
