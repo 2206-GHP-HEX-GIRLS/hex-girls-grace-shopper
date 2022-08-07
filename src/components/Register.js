@@ -1,6 +1,7 @@
 import React, { useRef, useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import './css/Register.css';
+import axios from 'axios';
 
 const USER_REGEX = /^[A-z][A-z0-9-_]{3,23}$/;
 const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/;
@@ -8,7 +9,7 @@ const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/;
 const Register = () => {
   const userRef = useRef();
 
-  const [email, setEmail] = useState('');
+  // const [email, setEmail] = useState('');
 
   const [user, setUser] = useState('');
   const [validName, setValidName] = useState(false);
@@ -40,6 +41,13 @@ const Register = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     //HANDLE SUBMIT FORM!
+    await axios.post('/register', JSON.stringify({ user, pwd }), {
+      headers: { 'Content-Type': 'application/json' },
+      withCredentials: true,
+    });
+    setUser('');
+    setPwd('');
+    setMatchPwd('');
   };
 
   return (
@@ -55,14 +63,14 @@ const Register = () => {
         <section>
           <h1>Register</h1>
           <form onSubmit={handleSubmit}>
-            <label htmlFor="email">Email:</label>
+            {/* <label htmlFor="email">Email:</label>
             <input
               type="email"
               autoComplete="off"
               onChange={(e) => setEmail(e.target.value)}
               value={email}
               required
-            />
+            /> */}
 
             <label htmlFor="username">Username:</label>
             <input
@@ -124,7 +132,9 @@ const Register = () => {
               className={
                 matchFocus && !validMatch ? 'instructions' : 'offscreen'
               }
-            ></p>
+            >
+              Must match the first password.
+            </p>
 
             <button
               disabled={!validName || !validPwd || !validMatch ? true : false}

@@ -20,7 +20,6 @@
 
 .Register input[type='text'],
 .Register input[type='password'],
-.Register input[type='email'],
 .Register button,
 .Register textarea {
   font-size: 22px;
