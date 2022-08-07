@@ -41,7 +41,7 @@ const NavBar = () => {
               </Link>
               <ul className="dropdown-menu">
                 <li>
-                  <Link className="dropdown-item" to="/Register">
+                  <Link className="dropdown-item" to="/register">
                     Create Account
                   </Link>
                 </li>

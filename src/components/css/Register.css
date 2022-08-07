@@ -1,26 +1,8 @@
-.Register * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-.Register html {
-  font-size: 18px;
-  color: #fff;
-}
-
-.Register body {
-  min-height: 100vh;
-}
-
 .Register section {
-  width: 100%;
   max-width: 420px;
   min-height: 400px;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
   padding: 1rem;
+  margin-top: 10rem;
 }
 
 .Register form {
@@ -36,9 +18,9 @@
   color: #716561;
 }
 
-.Register input[type="text"],
-.Register input[type="password"],
-.Register input[type="email"],
+.Register input[type='text'],
+.Register input[type='password'],
+.Register input[type='email'],
 .Register button,
 .Register textarea {
   font-size: 22px;
@@ -49,6 +31,11 @@
 .Register label,
 .Register button {
   margin-top: 1rem;
+}
+
+.Register label {
+  display: flex;
+  align-items: center;
 }
 
 .Register button {
@@ -76,14 +63,6 @@
 
 .Register .hide {
   display: none;
-}
-
-.Register .errmsg {
-  background-color: lightpink;
-  color: firebrick;
-  font-weight: bold;
-  padding: 0.5rem;
-  margin-bottom: 0.5rem;
 }
 
 .Register .line {
