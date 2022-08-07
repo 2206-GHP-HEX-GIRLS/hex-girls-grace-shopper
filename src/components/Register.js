@@ -22,7 +22,7 @@ const Register = () => {
   const [validMatch, setValidMatch] = useState(false);
   const [matchFocus, setMatchFocus] = useState(false);
 
-  const [success, setSuccess] = useState(false);
+  const [success] = useState(false);
 
   useEffect(() => {
     userRef.current.focus();
