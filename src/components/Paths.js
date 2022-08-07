@@ -25,12 +25,9 @@ const Paths = () => {
           <Route path="/products/:id/review" element={<ReviewPage />} />
           <Route path="*" element={<NotFound />} />
           <Route path="/" element={<Home />} />
-<<<<<<< HEAD
-          <Route path="/login" element={<LogIn />} />
-=======
           <Route path="/register" element={<Register />} />
           <Route path="/cart" element={<Cart />} />
->>>>>>> ac3fe635bbf4a70daa80391740ac6ff08409a75f
+          <Route path="/login" element={<LogIn />} />
         </Routes>
       </div>
     </Router>
