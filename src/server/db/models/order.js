@@ -2,13 +2,13 @@ const db = require('../db');
 const Sequelize = require('sequelize');
 
 module.exports = db.define('order', {
-  items: {
-    // MAY NEED TO COME BACK TO THIS :)
-    type: Sequelize.ARRAY(Sequelize.STRING),
-    defaultValue: '',
-  },
   total: {
-    type: Sequelize.INTEGER,
+    type: Sequelize.DECIMAL(10, 2),
     defaultValue: 0,
+  },
+  isPurchased: {
+    type: Sequelize.BOOLEAN,
+    defaultValue: false,
+    allowNull: false,
   },
 });

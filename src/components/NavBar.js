@@ -41,7 +41,7 @@ const NavBar = () => {
               </Link>
               <ul className="dropdown-menu">
                 <li>
-                  <Link className="dropdown-item" to="/">
+                  <Link className="dropdown-item" to="/Register">
                     Create Account
                   </Link>
                 </li>
@@ -63,12 +63,12 @@ const NavBar = () => {
               </ul>
             </li>
             <li className="nav-item">
-              <Link className="nav-link active" aria-current="page" to="/">
+              <Link className="nav-link active" aria-current="page" to="/cart">
                 Cart
               </Link>
             </li>
             <li className="nav-item">
-              <Link className="nav-link" to="/allproducts">
+              <Link className="nav-link" to="/products">
                 Products
               </Link>
             </li>

@@ -6,6 +6,8 @@ import NotFound from './NotFound';
 import Header from './Header';
 import Home from './Home';
 import NavBar from './NavBar';
+import Cart from './Cart';
+import Register from './Register';
 import ReviewPage from './ReviewPage';
 import LogIn from './LogIn';
 
@@ -18,14 +20,17 @@ const Paths = () => {
           <NavBar />
         </div>
         <Routes>
-          <Route path="/allproducts">
-            <Route index element={<AllProductsView />} />
-            <Route path=":id" element={<SingleProductView />} />
-          </Route>
-          <Route path="/review" element={<ReviewPage />} />
+          <Route path="/products" element={<AllProductsView />} />
+          <Route path="/products/:id" element={<SingleProductView />} />
+          <Route path="/products/:id/review" element={<ReviewPage />} />
           <Route path="*" element={<NotFound />} />
           <Route path="/" element={<Home />} />
+<<<<<<< HEAD
           <Route path="/login" element={<LogIn />} />
+=======
+          <Route path="/register" element={<Register />} />
+          <Route path="/cart" element={<Cart />} />
+>>>>>>> ac3fe635bbf4a70daa80391740ac6ff08409a75f
         </Routes>
       </div>
     </Router>

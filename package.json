@@ -4,6 +4,10 @@
   "private": true,
   "proxy": "http://localhost:8080",
   "dependencies": {
+    "@emotion/react": "^11.10.0",
+    "@emotion/styled": "^11.10.0",
+    "@mui/icons-material": "^5.8.4",
+    "@mui/material": "^5.9.3",
     "@reduxjs/toolkit": "^1.8.3",
     "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/react": "^13.3.0",
@@ -29,7 +33,8 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "react-scripts start & npm run server",
+    "start": "node ./src/server",
+    "start:dev": "react-scripts start & npm run server",
     "server": "nodemon ./src/server",
     "build": "react-scripts build",
     "test": "react-scripts test",

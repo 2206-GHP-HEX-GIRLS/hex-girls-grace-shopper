@@ -5,15 +5,19 @@ const GOT_SINGLE_PRODUCT = 'GET_SINGLE_PRODUCT';
 const EDIT_PRODUCT = 'EDIT_PRODUCT';
 
 //Action Creator
-const gotSingleProduct = (product) => ({
-  type: GOT_SINGLE_PRODUCT,
-  product,
-});
+const gotSingleProduct = (product) => {
+  return {
+    type: GOT_SINGLE_PRODUCT,
+    product,
+  };
+};
 
-const editedProduct = (product) => ({
-  type: EDIT_PRODUCT,
-  product,
-});
+const editedProduct = (product) => {
+  return {
+    type: EDIT_PRODUCT,
+    product,
+  };
+};
 
 //Thunk Creator
 export const getSingleProduct = (id) => {
@@ -27,13 +31,10 @@ export const getSingleProduct = (id) => {
   };
 };
 
-export const editProduct = (product, history) => {
+export const editProduct = (product, id) => {
   return async (dispatch) => {
     try {
-      const { data: updated } = await axios.put(
-        `/api/products/${product.id}`,
-        product
-      );
+      const { data: updated } = await axios.put(`/api/products/${id}`, product);
       dispatch(editedProduct(updated));
     } catch (error) {
       console.log('Error updating product!', error);

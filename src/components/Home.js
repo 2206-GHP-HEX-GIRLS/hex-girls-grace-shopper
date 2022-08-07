@@ -1,14 +1,16 @@
-import React from "react";
-import "./css/Home.css";
-import { Link } from "react-router-dom";
+import React from 'react';
+import './css/Home.css';
+import { Link } from 'react-router-dom';
+import SearchBar from './SearchBar';
 
 const Home = () => {
   return (
     <div className="Home">
       <main>
+        <SearchBar />
         <img
           className="main-logo img-fluid"
-          src="https://i.imgur.com/Ld4nxGI.png"
+          src="https://i.imgur.com/iKrhfI0.png"
           alt="main-logo"
         />
         <div className="category-card container">
@@ -44,7 +46,7 @@ const Home = () => {
               <h2>Pastries</h2>
             </div>
             <div className="col-sm-3">
-              <Link to="/allproducts">
+              <Link to="/products">
                 <img
                   src="https://i.insider.com/5dc5ed063afd371308615ae3?width=1000&format=jpeg&auto=webp"
                   alt="see-all"

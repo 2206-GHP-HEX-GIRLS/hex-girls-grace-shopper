@@ -1,0 +1,10 @@
+.AllProductsView {
+  margin-top: 3rem;
+}
+
+.AllProductsView select {
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 1rem;
+  background-color: white;
+}

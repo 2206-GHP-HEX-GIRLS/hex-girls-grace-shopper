@@ -1,7 +1,11 @@
+.Home {
+  margin-top: 4rem;
+}
+
 .Home .category-img {
   max-height: 9rem !important;
   border-radius: 10px;
-  box-shadow: 2px 2px 8px 2px rgb(199, 199, 199);
+  box-shadow: 2px 2px 8px 2px #c7c7c7;
   transition: 120ms ease-in;
 }
 
