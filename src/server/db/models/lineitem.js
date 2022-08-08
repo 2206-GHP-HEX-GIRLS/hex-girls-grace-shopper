@@ -4,6 +4,8 @@ const Sequelize = require('sequelize');
 module.exports = db.define('lineitem', {
   quantity: {
     type: Sequelize.INTEGER,
-    defaultValue: 1,
+    validate: {
+      min: 0
+    }
   },
 });
