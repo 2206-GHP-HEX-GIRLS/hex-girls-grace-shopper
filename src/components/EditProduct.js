@@ -1,64 +1,59 @@
-import React from 'react';
-import { connect } from 'react-redux';
-import { editProduct } from '../reducers/singleProduct';
+import React, { useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { editProduct } from "../reducers/singleProduct";
+import "./css/EditProduct.css";
 
-class EditProduct extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      name: this.props.product.name,
-      price: this.props.product.price,
-      description: this.props.product.description,
-      quantity: this.props.product.quantity,
-    };
-    this.handleSubmit = this.handleSubmit.bind(this);
-    this.handleChange = this.handleChange.bind(this);
-  }
+const EditProduct = () => {
+  const product = useSelector((state) => state.product);
+  const dispatch = useDispatch();
+  let [editedProduct, setEditedProduct] = useState({
+    name: "",
+    price: 0.0,
+    description: "",
+  });
 
-  handleChange(evt) {
-    this.setState({
+  const handleChange = (evt) => {
+    evt.preventDefault();
+    setEditedProduct({
+      ...editedProduct,
       [evt.target.name]: evt.target.value,
     });
-  }
-  handleSubmit(evt) {
-    evt.preventDefault();
-    this.props.editProduct({
-      id: this.props.product.id,
-      ...this.state,
-    });
-    this.setState({
-      name: this.props.product.name,
-      price: this.props.product.price,
-      description: this.props.product.description,
-      id: this.props.product.id,
-    });
-  }
+  };
 
-  render() {
-    const { name, price, description, quantity } = this.state;
-    const { handleSubmit, handleChange } = this;
-    return (
+  const handleSubmit = (evt) => {
+    evt.preventDefault();
+    setEditedProduct({ name: "", price: 0.0, description: "" });
+    dispatch(editProduct(product.id, editedProduct));
+  };
+
+  return (
+    <div className="EditProduct">
       <form id="updateProducton" Submit={handleSubmit}>
         <label name="name">Product Name:</label>
-        <input name="name" value={name} onChange={handleChange} />
+        <input
+          placeholder="Update Product Name"
+          name="name"
+          value={editedProduct.name}
+          onChange={handleChange}
+        />
         <label>Price:</label>
-        <input name="price" value={price} onChange={handleChange} />
-        <label>Quantity:</label>
-        <input name="quantity" value={quantity} onChange={handleChange} />
+        <input
+          placeholder="Update Product Price"
+          name="price"
+          value={editedProduct.price}
+          onChange={handleChange}
+        />
         <label>Description:</label>
-        <input name="description" value={description} onChange={handleChange} />
+        <input
+          placeholder="Update Product Description"
+          name="description"
+          value={editedProduct.description}
+          onChange={handleChange}
+        />
         <button type="submit">Update Product</button>
       </form>
-    );
-  }
-}
+    </div>
+  );
+};
 
-const mapState = ({ product }) => ({
-  product,
-});
-
-const mapDispatch = (dispatch) => ({
-  editProduct: (product, id) => dispatch(editProduct(product, id)),
-});
-
-export default connect(mapState, mapDispatch)(EditProduct);
+export default EditProduct;
