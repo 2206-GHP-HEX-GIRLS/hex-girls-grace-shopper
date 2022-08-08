@@ -1,0 +1,47 @@
+.EditProduct {
+  margin-top: 8rem;
+}
+
+.EditProduct form {
+  padding: 1rem;
+}
+
+.EditProduct input,
+.EditProduct label,
+.EditProduct textarea,
+.EditProduct select {
+  display: block;
+  margin: 0 auto;
+  padding: 0.25rem 1rem;
+  width: 100%;
+  border-radius: 0.25rem;
+  border: none;
+}
+
+.EditProduct input,
+.EditProduct textarea,
+.EditProduct select {
+  box-shadow: var(--box-shadow);
+}
+
+.EditProduct select {
+  padding: 0.4rem 1rem;
+}
+
+.EditProduct label {
+  text-align: left;
+}
+
+.EditProduct button {
+  margin: 2rem;
+  border: none;
+  background-color: var(--brown);
+  color: white;
+  border-radius: 0.5rem;
+  box-shadow: var(--box-shadow);
+  padding: 0.25rem 1rem;
+}
+
+.EditProduct button:active {
+  transform: scale(0.98);
+}
