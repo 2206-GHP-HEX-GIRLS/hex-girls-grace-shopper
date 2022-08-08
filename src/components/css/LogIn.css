@@ -1,11 +1,11 @@
-.Register section {
+.LogIn section {
   max-width: 420px;
   min-height: 400px;
   padding: 1rem;
   margin-top: 10rem;
 }
 
-.Register form {
+.LogIn form {
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
@@ -13,35 +13,36 @@
   padding-bottom: 1rem;
 }
 
-.Register a,
-.Register a:visited {
+.LogIn a,
+.LogIn a:visited {
   color: #716561;
 }
 
-.Register input[type='text'],
-.Register input[type='password'],
-.Register button,
-.Register textarea {
+.LogIn input[type='text'],
+.LogIn input[type='password'],
+.LogIn input[type='email'],
+.LogIn button,
+.LogIn textarea {
   font-size: 22px;
   padding: 0.25rem;
   border-radius: 0.5rem;
 }
 
-.Register label,
-.Register button {
+.LogIn label,
+.LogIn button {
   margin-top: 1rem;
 }
 
-.Register label {
+.LogIn label {
   display: flex;
   align-items: center;
 }
 
-.Register button {
+.LogIn button {
   padding: 0.5rem;
 }
 
-.Register .instructions {
+.LogIn .instructions {
   font-size: 0.75rem;
   border-radius: 0.5rem;
   background: #64b6ac;
@@ -51,19 +52,19 @@
   bottom: -10px;
 }
 
-.Register .instructions > svg {
+.LogIn .instructions > svg {
   margin-right: 0.25rem;
 }
 
-.Register .offscreen {
+.LogIn .offscreen {
   position: absolute;
   left: -9999px;
 }
 
-.Register .hide {
+.LogIn .hide {
   display: none;
 }
 
-.Register .line {
+.LogIn .line {
   display: inline-block;
 }
