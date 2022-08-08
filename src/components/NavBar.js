@@ -1,6 +1,6 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import "./css/NavBar.css";
+import React from 'react';
+import { Link } from 'react-router-dom';
+import './css/NavBar.css';
 
 const NavBar = () => {
   return (
@@ -41,7 +41,7 @@ const NavBar = () => {
               </Link>
               <ul className="dropdown-menu">
                 <li>
-                  <Link className="dropdown-item" to="/Register">
+                  <Link className="dropdown-item" to="/register">
                     Create Account
                   </Link>
                 </li>
@@ -51,7 +51,7 @@ const NavBar = () => {
                   </Link>
                 </li>
                 <li>
-                  <Link className="dropdown-item" to="/">
+                  <Link className="dropdown-item" to="/login">
                     Log In
                   </Link>
                 </li>
@@ -68,7 +68,7 @@ const NavBar = () => {
               </Link>
             </li>
             <li className="nav-item">
-              <Link className="nav-link" to="/allproducts">
+              <Link className="nav-link" to="/products">
                 Products
               </Link>
             </li>

@@ -1,11 +1,11 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import "./css/AllProductsCard.css";
+import React from 'react';
+import { Link } from 'react-router-dom';
+import './css/AllProductsCard.css';
 
 const AllProductsCard = ({ product }) => {
   return (
     <div className="AllProductsCard col-sm-3">
-      <Link to={`/allproducts/${product.id}`}>
+      <Link to={`/products/${product.id}`}>
         <img
           src={product.imageUrl}
           alt="bakedgoods img"
@@ -13,7 +13,7 @@ const AllProductsCard = ({ product }) => {
         />
       </Link>
       <h5>{product.name}</h5>
-      <p>{product.price}</p>
+      <p>${product.price}</p>
     </div>
   );
 };

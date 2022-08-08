@@ -4,10 +4,10 @@ import axios from "axios";
 const DELETE_PRODUCT = "DELETE_PRODUCT";
 
 //action creator
-const deletedProduct = (products) => {
+const deletedProduct = (product) => {
   return {
     type: DELETE_PRODUCT,
-    products,
+    product,
   };
 };
 
@@ -30,7 +30,7 @@ const initialState = [];
 const deleteProductReducer = (state = initialState, action) => {
   switch (action.type) {
     case DELETE_PRODUCT:
-      return state.filter((products) => products.id !== action.students.id);
+      return state.filter((product) => product.id !== action.product.id);
     default:
       return state;
   }

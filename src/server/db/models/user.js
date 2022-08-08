@@ -11,14 +11,17 @@ module.exports = db.define('user', {
     type: Sequelize.STRING,
     allowNull: false,
   },
-
-  email: {
-    type: Sequelize.STRING,
-    allowNull: false,
-    unique: true,
-    validate: {
-      notEmpty: true,
-      isEmail: true,
-    },
+  // email: {
+  //   type: Sequelize.STRING,
+  //   allowNull: false,
+  //   unique: true,
+  //   validate: {
+  //     notEmpty: true,
+  //     isEmail: true,
+  //   },
+  // },
+  isAdmin: {
+    type: Sequelize.BOOLEAN,
+    defaultValue: false,
   },
 });

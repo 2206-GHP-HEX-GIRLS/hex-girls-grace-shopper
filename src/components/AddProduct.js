@@ -9,6 +9,9 @@ const AddProduct = () => {
     name: "",
     price: 0.0,
     description: "",
+    quantity: 0,
+    category: "",
+    imageUrl: "",
   });
 
   const handleChange = (evt) => {
@@ -21,7 +24,14 @@ const AddProduct = () => {
 
   const handleSubmit = (evt) => {
     evt.preventDefault();
-    setProduct({ name: "", price: 0.0, description: "" });
+    setProduct({
+      name: "",
+      price: 0.0,
+      description: "",
+      quantity: 0,
+      category: "",
+      imageUrl: "",
+    });
     dispatch(addProduct(product));
   };
 
@@ -36,6 +46,15 @@ const AddProduct = () => {
 
         <label>Product Description:</label>
         <input placeholder="Product Description" name="description" />
+
+        <label>Product Quantity:</label>
+        <input placeholder="Product Quantity" name="quantity" />
+
+        <label>Product Category:</label>
+        <input placeholder="Product Category" name="category" />
+
+        <label>ImageUrl:</label>
+        <input placeholder="Product ImageUrl" name="ImageUrl" />
 
         <button type="submit">Submit</button>
       </form>

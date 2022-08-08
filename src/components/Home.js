@@ -1,7 +1,7 @@
-import React from "react";
-import "./css/Home.css";
-import { Link } from "react-router-dom";
-import SearchBar from "./SearchBar";
+import React from 'react';
+import './css/Home.css';
+import { Link } from 'react-router-dom';
+import SearchBar from './SearchBar';
 
 const Home = () => {
   return (
@@ -46,7 +46,7 @@ const Home = () => {
               <h2>Pastries</h2>
             </div>
             <div className="col-sm-3">
-              <Link to="/allproducts">
+              <Link to="/products">
                 <img
                   src="https://i.insider.com/5dc5ed063afd371308615ae3?width=1000&format=jpeg&auto=webp"
                   alt="see-all"
