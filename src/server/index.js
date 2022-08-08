@@ -14,21 +14,21 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // static middleware
-// if (process.env.NODE_ENV === 'production') {
-//   app.use(express.static(path.join(__dirname, '../../build')));
-// } else {
-app.use(express.static(path.join(__dirname, '../../public')));
-// }
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static(path.join(__dirname, '../../build')));
+} else {
+  app.use(express.static(path.join(__dirname, '../../public')));
+}
 
 app.use('/api', require('./api')); // include our routes!
 
 app.get('*', (req, res) => {
-  // if (process.env.NODE_ENV === 'production') {
-  //   res.sendFile(path.join(__dirname, '../../build/index.html'));
-  // } else {
-  res.sendFile(path.join(__dirname, '../../public/index.html'));
-});
-// }); // Send index.html for any other requests
+  if (process.env.NODE_ENV === 'production') {
+    res.sendFile(path.join(__dirname, '../../build/index.html'));
+  } else {
+    res.sendFile(path.join(__dirname, '../../public/index.html'));
+  }
+}); // Send index.html for any other requests
 
 // error handling middleware
 app.use((err, req, res, next) => {
