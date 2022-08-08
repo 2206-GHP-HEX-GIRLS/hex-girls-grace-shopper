@@ -1,5 +1,6 @@
 const router = require('express').Router();
 const { User } = require('../db/');
+const bcrypt = require('bcrypt');
 
 router.get('/', async (req, res, next) => {
   try {
@@ -14,12 +15,13 @@ router.get('/', async (req, res, next) => {
 
 router.post('/', async (req, res, next) => {
   try {
+    const hashedPwd = await bcrypt.hash(req.body.password, 5);
     const newUser = await User.create({
-      email: req.body.email,
       username: req.body.username,
-      password: req.body.password,
+      password: hashedPwd,
     });
-    res.send(newUser);
+    console.log('BACK END: ', newUser);
+    res.status(201).json({ success: `New user ${newUser.username} created!` });
   } catch (err) {
     next(err);
   }
