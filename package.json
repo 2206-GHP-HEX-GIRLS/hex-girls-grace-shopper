@@ -2,6 +2,9 @@
   "name": "hex-girls",
   "version": "0.1.0",
   "private": true,
+  "engines": {
+    "node": "16.x"
+  },
   "proxy": "http://localhost:8080",
   "dependencies": {
     "@reduxjs/toolkit": "^1.8.3",
