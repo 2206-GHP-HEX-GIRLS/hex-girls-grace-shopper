@@ -41,7 +41,7 @@
     "start": "node ./src/server",
     "start:dev": "react-scripts start & npm run server",
     "server": "nodemon ./src/server",
-    "heroku-prebuild": "npm i --force",
+    "heroku-prebuild": "npm i --legacy-peer-deps",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
