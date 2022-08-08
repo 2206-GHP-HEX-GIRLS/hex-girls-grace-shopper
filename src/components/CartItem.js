@@ -1,9 +1,13 @@
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
 import "./css/CartItem.css";
 
 const CartItem = ({ product }) => {
+  const dispatch = useDispatch();
+
   const removeFromCart = () => {
-    console.log("removed");
+    console.log("removed from cart");
+    // dispatch(removeFromCart(product.id))
   };
 
   let [qty, setQty] = useState(1); // this will eventually be passed down as a prop (maybe)

@@ -12,14 +12,13 @@ const deletedProduct = (product) => {
 };
 
 //thunk creator
-export const deleteProduct = (id, history) => {
+export const deleteProduct = (id) => {
   return async (dispatch) => {
     try {
-      const { data: products } = await axios.delete(`/api/products/${id}`);
+      const { data: products } = await axios.delete(`/api/students/${id}`);
       dispatch(deletedProduct(products));
-      history.push('/');
     } catch (error) {
-      console.log('Error deleting product from DB', error);
+      console.log("Error deleting Student from DB", error);
     }
   };
 };

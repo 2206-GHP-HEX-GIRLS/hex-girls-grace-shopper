@@ -7,6 +7,7 @@ import "./css/Cart.css";
 
 const Cart = () => {
   const products = useSelector((state) => state.products);
+  // const cart = useSelector((state) => state.cart) // will eventually be the state from our cart
   const dispatch = useDispatch();
 
   useEffect(() => {

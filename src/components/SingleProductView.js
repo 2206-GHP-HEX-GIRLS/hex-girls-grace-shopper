@@ -14,6 +14,12 @@ const SingleProductView = () => {
     dispatch(getSingleProduct(id));
   }, [dispatch, id]);
 
+  const addToCart = (evt) => {
+    evt.preventDefault();
+    console.log("added to cart");
+    // dispatch(addToCart(product))
+  };
+
   return (
     <div className="SingleProductView container">
       <h2>{product.name}</h2>
