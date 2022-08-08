@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { addProduct } from "../reducers/addProduct";
 import { useDispatch } from "react-redux";
+import "./css/AddProduct.css";
 
 const AddProduct = () => {
   const dispatch = useDispatch();
@@ -25,18 +26,20 @@ const AddProduct = () => {
   };
 
   return (
-    <form id="createProduct" onSubmit={handleSubmit} onChange={handleChange}>
-      <label>Product Name:</label>
-      <input placeholder="Product Name" name="name" />
+    <div className="AddProduct">
+      <form id="createProduct" onSubmit={handleSubmit} onChange={handleChange}>
+        <label>Product Name:</label>
+        <input placeholder="Product Name" name="name" />
 
-      <label>Product Price:</label>
-      <input placeholder="Product Price" name="price" />
+        <label>Product Price:</label>
+        <input placeholder="Product Price" name="price" />
 
-      <label>Product Description:</label>
-      <input placeholder="Product Description" name="description" />
+        <label>Product Description:</label>
+        <input placeholder="Product Description" name="description" />
 
-      <button type="submit">Submit</button>
-    </form>
+        <button type="submit">Submit</button>
+      </form>
+    </div>
   );
 };
 
