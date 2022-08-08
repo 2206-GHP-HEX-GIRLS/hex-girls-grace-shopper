@@ -41,10 +41,14 @@ const Register = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     //HANDLE SUBMIT FORM!
-    await axios.post('/register', JSON.stringify({ user, pwd }), {
-      headers: { 'Content-Type': 'application/json' },
-      withCredentials: true,
-    });
+    await axios.post(
+      '/api/register',
+      JSON.stringify({ username: user, password: pwd }),
+      {
+        headers: { 'Content-Type': 'application/json' },
+        withCredentials: true,
+      }
+    );
     setUser('');
     setPwd('');
     setMatchPwd('');
