@@ -1,68 +1,43 @@
-import React from "react";
+import React, { useState } from "react";
 import { addProduct } from "../reducers/addProduct";
-import { connect } from "react-redux";
+import { useDispatch } from "react-redux";
 
-class AddProduct extends React.Component {
-  constructor() {
-    super();
-    this.state = {
-      name: "",
-      price: "",
-      description: "",
-    };
-    this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
-  }
+const AddProduct = () => {
+  const dispatch = useDispatch();
+  let [product, setProduct] = useState({
+    name: "",
+    price: 0.0,
+    description: "",
+  });
 
-  handleChange(evt) {
+  const handleChange = (evt) => {
     evt.preventDefault();
-    this.setState({
+    setProduct({
+      ...product,
       [evt.target.name]: evt.target.value,
     });
-  }
+  };
 
-  handleSubmit(evt) {
+  const handleSubmit = (evt) => {
     evt.preventDefault();
-    this.props.addProduct({ ...this.state });
-  }
+    setProduct({ name: "", price: 0.0, description: "" });
+    dispatch(addProduct(product));
+  };
 
-  render() {
-    const { name, price, description } = this.state;
-    const { handleSubmit, handleChange } = this;
-    return (
-      <form id="createProduct" onSubmit={handleSubmit}>
-        <label>Product Name:</label>
-        <input
-          placeholder="Product Name"
-          name="name"
-          onChange={handleChange}
-          value={name}
-        />
+  return (
+    <form id="createProduct" onSubmit={handleSubmit} onChange={handleChange}>
+      <label>Product Name:</label>
+      <input placeholder="Product Name" name="name" />
 
-        <label>Product Price:</label>
-        <input
-          placeholder="Product Price"
-          name="price"
-          onChange={handleChange}
-          value={price}
-        />
+      <label>Product Price:</label>
+      <input placeholder="Product Price" name="price" />
 
-        <label>Product Description:</label>
-        <input
-          placeholder="Product Description"
-          name="description"
-          onChange={handleChange}
-          value={description}
-        />
+      <label>Product Description:</label>
+      <input placeholder="Product Description" name="description" />
 
-        <button type="submit">Submit</button>
-      </form>
-    );
-  }
-}
+      <button type="submit">Submit</button>
+    </form>
+  );
+};
 
-const mapDispatchToProps = (dispatch, { history }) => ({
-  addProduct: (product) => dispatch(addProduct(product, history)),
-});
-
-export default connect(null, mapDispatchToProps)(AddProduct);
+export default AddProduct;

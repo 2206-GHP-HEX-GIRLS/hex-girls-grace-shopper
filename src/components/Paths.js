@@ -1,14 +1,16 @@
-import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import AllProductsView from './AllProductsView';
-import SingleProductView from './SingleProductView';
-import NotFound from './NotFound';
-import Header from './Header';
-import Home from './Home';
-import NavBar from './NavBar';
-import Cart from './Cart';
-import Register from './Register';
-import ReviewPage from './ReviewPage';
+import React from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import AllProductsView from "./AllProductsView";
+import SingleProductView from "./SingleProductView";
+import NotFound from "./NotFound";
+import Header from "./Header";
+import Home from "./Home";
+import NavBar from "./NavBar";
+import Cart from "./Cart";
+import Register from "./Register";
+import ReviewPage from "./ReviewPage";
+import AddProduct from "./AddProduct";
+import EditProduct from "./EditProduct";
 
 const Paths = () => {
   return (
@@ -19,13 +21,15 @@ const Paths = () => {
           <NavBar />
         </div>
         <Routes>
-          <Route path="/allproducts" element={<AllProductsView />} />
-          <Route path="/allproducts/:id" element={<SingleProductView />} />
-          <Route path="/allproducts/:id/review" element={<ReviewPage />} />
+          <Route path="/products" element={<AllProductsView />} />
+          <Route path="/products/:id" element={<SingleProductView />} />
+          <Route path="/products/:id/review" element={<ReviewPage />} />
           <Route path="*" element={<NotFound />} />
           <Route path="/" element={<Home />} />
           <Route path="/register" element={<Register />} />
           <Route path="/cart" element={<Cart />} />
+          <Route path="/products/add" element={<AddProduct />} />
+          <Route path="/products/edit" element={<EditProduct />} />
         </Routes>
       </div>
     </Router>
