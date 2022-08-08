@@ -1,7 +1,7 @@
-import axios from 'axios';
+import axios from "axios";
 
 //action types
-const DELETE_PRODUCT = 'DELETE_PRODUCT';
+const DELETE_PRODUCT = "DELETE_PRODUCT";
 
 //action creator
 const deletedProduct = (product) => {
