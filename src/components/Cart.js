@@ -16,7 +16,7 @@ const Cart = () => {
 
   return (
     <div className="Cart container">
-      <h1>Your Cart</h1>
+      <h2>Your Cart</h2>
       <div className="row">
         <div className="col-sm-6">
           {" "}
