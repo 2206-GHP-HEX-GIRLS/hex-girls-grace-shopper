@@ -1,7 +1,7 @@
 import React, { useRef, useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { createUser } from '../reducers/user';
 import './css/Register.css';
-import axios from 'axios';
 
 const USER_REGEX = /^[A-z][A-z0-9-_]{3,23}$/;
 const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/;
@@ -38,13 +38,9 @@ const Register = () => {
     setValidMatch(pwd === matchPwd);
   }, [pwd, matchPwd]);
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    //HANDLE SUBMIT FORM!
-    await axios.post('/register', JSON.stringify({ user, pwd }), {
-      headers: { 'Content-Type': 'application/json' },
-      withCredentials: true,
-    });
+    createUser(JSON.stringify({ username: user, password: pwd }));
     setUser('');
     setPwd('');
     setMatchPwd('');

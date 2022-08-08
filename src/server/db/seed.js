@@ -143,14 +143,12 @@ const products = [
 
 const users = [
   {
-    username: 'Cookie Monster',
-    password: '123',
-    email: 'sweettooth@gmail.com',
+    username: 'CookieMonster',
+    password: 'CookieMonster123!',
   },
   {
-    username: 'Bent Croissant',
-    password: '456',
-    email: 'flakeyfullstack@gmail.com',
+    username: 'BentCroissant',
+    password: 'BentCroissant456!',
   },
 ];
 
