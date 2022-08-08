@@ -25,7 +25,7 @@ const AddProduct = () => {
     dispatch(addProduct(product));
   };
 
-  return (
+return (
     <div className="AddProduct">
       <form id="createProduct" onSubmit={handleSubmit} onChange={handleChange}>
         <label>Product Name:</label>
@@ -36,6 +36,30 @@ const AddProduct = () => {
 
         <label>Product Description:</label>
         <input placeholder="Product Description" name="description" />
+
+        <label>Product Quantity:</label>
+        <input
+          placeholder="Product Quantity"
+          name="quantity"
+          onChange={handleChange}
+          value={quantity}
+        />
+
+        <label>Product Category:</label>
+        <input
+          placeholder="Product Category"
+          name="category"
+          onChange={handleChange}
+          value={category}
+        />
+
+        <label>ImageUrl:</label>
+        <input
+          placeholder="Product ImageUrl"
+          name="ImageUrl"
+          onChange={handleChange}
+          value={ImageUrl}
+        />
 
         <button type="submit">Submit</button>
       </form>
