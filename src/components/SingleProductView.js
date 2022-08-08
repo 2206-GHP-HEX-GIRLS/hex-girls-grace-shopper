@@ -13,6 +13,12 @@ const SingleProductView = () => {
     dispatch(getSingleProduct(id));
   }, [dispatch, id]);
 
+  const addToCart = (evt) => {
+    evt.preventDefault();
+    console.log("added to cart");
+    // dispatch(addToCart(product))
+  };
+
   return (
     <div>
       <div key={product.id}>
@@ -32,7 +38,7 @@ const SingleProductView = () => {
         </select>
       </div>
 
-      <button type="submit">Add To Cart🛒</button>
+      <button onClick={addToCart}>Add To Cart🛒</button>
       <Link to={`/allproducts/${product.id}/review`}>Write a review!</Link>
     </div>
   );
