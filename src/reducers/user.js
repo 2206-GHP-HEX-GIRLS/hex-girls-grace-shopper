@@ -30,6 +30,7 @@ export const createUser = (user) => {
 export const loginUser = (user) => {
   return async (dispatch) => {
     const { data } = await axios.post('/api/users/login', user);
+    // const {accessToken, roles} = data;
     dispatch(loggedinUser(data));
   };
 };

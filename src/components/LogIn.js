@@ -23,10 +23,10 @@ const LogIn = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    // setAuth({ user, pwd, roles, accessToken });
     try {
       loginUser(JSON.stringify({ username: user, password: pwd }));
+
+      // setAuth({ user, pwd, roles, accessToken });
 
       setUser('');
       setPwd('');
