@@ -6,6 +6,7 @@ import SearchBar from "./SearchBar";
 const Home = () => {
   return (
     <div className="Home">
+      <h1 className="mb-5">Welcome to Boolean Bakers!</h1>
       <main>
         <div className="category-card container">
           <div className="row align-items-top">
