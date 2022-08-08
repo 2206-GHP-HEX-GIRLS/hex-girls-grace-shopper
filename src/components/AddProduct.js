@@ -38,7 +38,7 @@ const AddProduct = () => {
 
   return (
     <div className="AddProduct">
-      <h1>Add Product</h1>
+      <h2>Add Product</h2>
       <form
         id="createProduct"
         className="container"
