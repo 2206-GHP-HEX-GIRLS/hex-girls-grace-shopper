@@ -9,6 +9,7 @@ import NavBar from './NavBar';
 import Cart from './Cart';
 import Register from './Register';
 import ReviewPage from './ReviewPage';
+import LogIn from './LogIn';
 
 const Paths = () => {
   return (
@@ -26,6 +27,7 @@ const Paths = () => {
           <Route path="/" element={<Home />} />
           <Route path="/register" element={<Register />} />
           <Route path="/cart" element={<Cart />} />
+          <Route path="/login" element={<LogIn />} />
         </Routes>
       </div>
     </Router>
