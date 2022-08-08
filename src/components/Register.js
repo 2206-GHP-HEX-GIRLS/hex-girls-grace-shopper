@@ -23,7 +23,7 @@ const Register = () => {
   const [validMatch, setValidMatch] = useState(false);
   const [matchFocus, setMatchFocus] = useState(false);
 
-  const [success] = useState(false);
+  const [success, setSuccess] = useState(false);
 
   useEffect(() => {
     userRef.current.focus();
@@ -41,6 +41,7 @@ const Register = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     createUser(JSON.stringify({ username: user, password: pwd }));
+    setSuccess(true);
     setUser('');
     setPwd('');
     setMatchPwd('');
