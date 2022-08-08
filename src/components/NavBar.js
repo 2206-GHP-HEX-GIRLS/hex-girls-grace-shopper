@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import "./css/NavBar.css";
 
 const NavBar = () => {
@@ -13,7 +14,7 @@ const NavBar = () => {
             className="img-fluid nav-logo"
           />
         </Link>
-        <button
+        {/* <button
           className="navbar-toggler"
           type="button"
           data-bs-toggle="collapse"
@@ -23,7 +24,7 @@ const NavBar = () => {
           aria-label="Toggle navigation"
         >
           <span className="navbar-toggler-icon"></span>
-        </button>
+        </button> */}
         <div
           className="collapse navbar-collapse d-flex justify-content-end"
           id="navbarNavDropdown"
@@ -41,7 +42,7 @@ const NavBar = () => {
               </Link>
               <ul className="dropdown-menu">
                 <li>
-                  <Link className="dropdown-item" to="/">
+                  <Link className="dropdown-item" to="/register">
                     Create Account
                   </Link>
                 </li>
@@ -51,7 +52,7 @@ const NavBar = () => {
                   </Link>
                 </li>
                 <li>
-                  <Link className="dropdown-item" to="/">
+                  <Link className="dropdown-item" to="/login">
                     Log In
                   </Link>
                 </li>
@@ -64,11 +65,11 @@ const NavBar = () => {
             </li>
             <li className="nav-item">
               <Link className="nav-link active" aria-current="page" to="/cart">
-                Cart
+                <ShoppingCartIcon />
               </Link>
             </li>
             <li className="nav-item">
-              <Link className="nav-link" to="/allproducts">
+              <Link className="nav-link" to="/products">
                 Products
               </Link>
             </li>

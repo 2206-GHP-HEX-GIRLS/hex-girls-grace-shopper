@@ -1,0 +1,95 @@
+.Register section {
+  padding: 0.5rem;
+}
+
+.Register form {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  flex-grow: 1;
+}
+
+.Register a,
+.Register a:visited {
+  color: #716561;
+}
+
+.Register input[type="text"],
+.Register input[type="password"],
+.Register button,
+.Register textarea {
+  font-size: 1rem;
+  padding: 0.25rem;
+  border-radius: 0.5rem;
+}
+
+.Register input,
+.Register label {
+  display: block;
+  margin: 0 auto;
+  padding: 0.25rem 1rem;
+  width: 100%;
+  border-radius: 0.25rem;
+  border: none;
+}
+
+.Register input,
+.Register textarea,
+.Register select {
+  box-shadow: var(--box-shadow);
+}
+
+.Register button {
+  border: none;
+  background-color: var(--brown);
+  color: white;
+  border-radius: 0.5rem;
+  box-shadow: var(--box-shadow);
+}
+
+.Register button:active {
+  transform: scale(0.98);
+}
+
+.Register label,
+.Register button {
+  margin-top: 0.5rem;
+}
+
+.Register label {
+  display: flex;
+  align-items: center;
+}
+
+.Register button {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  padding: 0.5rem;
+}
+
+.Register .instructions {
+  font-size: 0.75rem;
+  border-radius: 0.5rem;
+  background: #64b6ac;
+  color: #fff;
+  padding: 0.25rem;
+  position: relative;
+  bottom: -10px;
+}
+
+.Register .instructions > svg {
+  margin-right: 0.25rem;
+}
+
+.Register .offscreen {
+  position: absolute;
+  left: -9999px;
+}
+
+.Register .hide {
+  display: none;
+}
+
+.Register .line {
+  display: inline-block;
+}

@@ -1,68 +1,83 @@
-import React from "react";
+import React, { useState } from "react";
 import { addProduct } from "../reducers/addProduct";
-import { connect } from "react-redux";
+import { useDispatch } from "react-redux";
+import { Link } from "react-router-dom";
+import "./css/AddProduct.css";
 
-class AddProduct extends React.Component {
-  constructor() {
-    super();
-    this.state = {
-      name: "",
-      price: "",
-      description: "",
-    };
-    this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
-  }
+const AddProduct = () => {
+  const dispatch = useDispatch();
+  let [product, setProduct] = useState({
+    name: "",
+    price: 0.0,
+    description: "",
+    quantity: 0,
+    category: "",
+    imageUrl: "",
+  });
 
-  handleChange(evt) {
+  const handleChange = (evt) => {
     evt.preventDefault();
-    this.setState({
+    setProduct({
+      ...product,
       [evt.target.name]: evt.target.value,
     });
-  }
+  };
 
-  handleSubmit(evt) {
+  const handleSubmit = (evt) => {
     evt.preventDefault();
-    this.props.addProduct({ ...this.state });
-  }
+    setProduct({
+      name: "",
+      price: 0.0,
+      description: "",
+      quantity: 0,
+      category: "",
+      imageUrl: "",
+    });
+    dispatch(addProduct(product));
+  };
 
-  render() {
-    const { name, price, description } = this.state;
-    const { handleSubmit, handleChange } = this;
-    return (
-      <form id="createProduct" onSubmit={handleSubmit}>
-        <label>Product Name:</label>
-        <input
-          placeholder="Product Name"
-          name="name"
-          onChange={handleChange}
-          value={name}
-        />
+  return (
+    <div className="AddProduct">
+      <h2>Add Product</h2>
+      <form
+        id="createProduct"
+        className="container"
+        onSubmit={handleSubmit}
+        onChange={handleChange}
+      >
+        <div className="row">
+          <div className="col-sm-6">
+            <label>Product Name:</label>
+            <input required name="name" type="text" />
 
-        <label>Product Price:</label>
-        <input
-          placeholder="Product Price"
-          name="price"
-          onChange={handleChange}
-          value={price}
-        />
+            <label>Product Price:</label>
+            <input required name="price" type="number" placeholder="0.00" />
 
-        <label>Product Description:</label>
-        <input
-          placeholder="Product Description"
-          name="description"
-          onChange={handleChange}
-          value={description}
-        />
+            <label>Product Description:</label>
+            <textarea required name="description" type="text" />
+          </div>
+          <div className="col-sm-6">
+            <label>Product Quantity:</label>
+            <input required name="quantity" type="number" placeholder="0" />
 
-        <button type="submit">Submit</button>
+            <label>Product Category:</label>
+            <select name="category" onChange={handleChange}>
+              <option>Cookies</option>
+              <option>Cakes</option>
+              <option>Pastries</option>
+            </select>
+
+            <label>ImageUrl:</label>
+            <input name="ImageUrl" type="text" placeholder="https://" />
+          </div>
+        </div>
+
+        <Link to="/products">
+          <button type="submit">Add Product</button>
+        </Link>
       </form>
-    );
-  }
-}
+    </div>
+  );
+};
 
-const mapDispatchToProps = (dispatch, { history }) => ({
-  addProduct: (product) => dispatch(addProduct(product, history)),
-});
-
-export default connect(null, mapDispatchToProps)(AddProduct);
+export default AddProduct;

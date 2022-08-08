@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getProducts } from "../reducers/products";
 import AllProductsCard from "./AllProductsCard";
+import SearchBar from "./SearchBar";
 import "./css/AllProductsView.css";
 
 const AllProductsView = () => {
@@ -52,6 +53,7 @@ const AllProductsView = () => {
 
   return (
     <div className="AllProductsView container">
+      <SearchBar />
       <h1>All Products</h1>
       <select onChange={(e) => filterProducts(e)}>
         <option>All</option>

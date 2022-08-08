@@ -1,15 +1,16 @@
 const router = require('express').Router();
-const Cart = require('../db/models/lineitem')
+const Cart = require('../db/models/lineitem');
+// const { Order, User, Product } = require('../db/') might need to eventually require
 
 //display cart
 router.get('/:id', async (req, res, next) => {
-    try{
-        const cart = await Cart.findByPk(req.params.id)
+  try {
+    const cart = await Cart.findByPk(req.params.id);
     res.json(cart);
-} catch (error) {
+  } catch (error) {
     next(error);
-}
-})
+  }
+});
 
 //delete item from cart
 
@@ -18,3 +19,4 @@ router.get('/:id', async (req, res, next) => {
 //component route/frontend route.
 
 //update item in cart?
+module.exports = router;

@@ -3,7 +3,7 @@
   border: 2px solid var(--nav-color);
   border-radius: 0.5rem;
   box-shadow: var(--box-shadow);
-  width: 50%;
+  width: 100%;
   margin: 0 auto 0.5rem auto;
   padding: 2rem;
   background-color: var(--nav-color);
