@@ -12,11 +12,10 @@ const createdUser = (user) => {
 };
 
 //Thunk Creator
-export const createUser = (user, history) => {
+export const createUser = (user) => {
   return async (dispatch) => {
     const { data } = await axios.post('/api/users', user);
     dispatch(createdUser(data));
-    history.push('/');
   };
 };
 

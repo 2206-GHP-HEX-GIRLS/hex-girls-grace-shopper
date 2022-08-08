@@ -28,11 +28,11 @@ const LogIn = () => {
       setUser('');
       setPwd('');
     } catch (err) {
-      if (!err?.response) {
+      if (!err.response) {
         setErrMsg('No Server Response');
-      } else if (err.response?.status === 400) {
+      } else if (err.response.status === 400) {
         setErrMsg('Missing Username or Password');
-      } else if (err.response?.status === 401) {
+      } else if (err.response.status === 401) {
         setErrMsg('Unauthorized');
       } else {
         setErrMsg('Login Failed');
