@@ -1,6 +1,7 @@
 import React, { useRef, useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import './css/LogIn.css';
+import { loginUser } from '../reducers/user';
 // import { GoogleLogin } from 'react-google-login';
 
 const LogIn = () => {
@@ -10,7 +11,7 @@ const LogIn = () => {
   const [user, setUser] = useState('');
   const [pwd, setPwd] = useState('');
   const [errMsg, setErrMsg] = useState('');
-  const [success] = useState(false);
+  const [success, setSuccess] = useState(false);
 
   useEffect(() => {
     userRef.current.focus();
@@ -22,11 +23,14 @@ const LogIn = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    // setAuth({ user, pwd, roles, accessToken });
     try {
+      loginUser(JSON.stringify({ username: user, password: pwd }));
+
+      // setAuth({ user, pwd, roles, accessToken });
+
       setUser('');
       setPwd('');
+      setSuccess(true);
     } catch (err) {
       if (!err.response) {
         setErrMsg('No Server Response');
