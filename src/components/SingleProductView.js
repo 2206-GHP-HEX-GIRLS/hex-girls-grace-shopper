@@ -47,24 +47,12 @@ const SingleProductView = () => {
               </select>
             </div>
             <div className="row mt-4 p-2">
-              <button type="submit">Add To Cart 🛒</button>
+              <button onClick={addToCart}>Add To Cart 🛒</button>
               <Link to={`/products/${product.id}/review`}>Write a review!</Link>
             </div>
           </div>
         </div>
       </div>
-      <div>
-        Quantity
-        <select name="Quantity">
-          <option>1</option>
-          <option>2</option>
-          <option>3</option>
-          <option>4</option>
-        </select>
-      </div>
-
-      <button onClick={addToCart}>Add To Cart🛒</button>
-      <Link to={`/allproducts/${product.id}/review`}>Write a review!</Link>
     </div>
   );
 };
