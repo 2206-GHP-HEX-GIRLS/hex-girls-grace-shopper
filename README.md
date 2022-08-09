@@ -1,3 +1,104 @@
+# **Welcome to Boolean Bakers**
+
+![Logo](./public/BooleanBakerLogo.png)
+
+## **About**
+
+Boolean Baker is a full-featured e-commerce website built by a team of four amazing bakers. We have everything you need to satisfy that sweet tooth.
+
+## **Table of Contents**
+
+- [Bakers](#Bakers)
+- [Getting Started](#Getting-Started)
+- [Starting Server](#Starting-Server)
+- [Ingredients](#Ingredients)
+- [Create React App](#Create-React-App)
+- [Heroku](#Heroku)
+
+## **Bakers**
+
+> [Yukstor Mei](https://github.com/ymei0072) <br/>
+> [Dakota Fabro](https://github.com/dakotafabro) <br/>
+> [Eve Frances](https://github.com/L0tusPetal) <br/>
+> [Kimberly Ma](https://github.com/KimBuyCookies)
+
+
+## **Getting Started**
+
+Step 1: Clone Repo
+
+```sh
+git clone git@github.com:2206-GHP-HEX-GIRLS/hex-girls-grace-shopper.git
+```
+
+Step 2: Create Database
+
+```sh
+createdb bakery
+```
+
+Step 3: Install
+
+```sh
+npm install
+```
+
+## Starting Server
+
+```sh
+npm run start:dev
+```
+
+## **Ingredients**
+
+### React
+
+[![React](https://skillicons.dev/icons?i=react)](https://skillicons.dev)
+
+<!-- <https://reactjs.org/> -->
+
+- React is a JavaScript library for building user interfaces.
+
+- React will efficiently update and render only the components that need to be rerendered.
+
+- React is component-based and allows for each component to manage their own state.
+
+### Redux
+
+[![Redux](https://skillicons.dev/icons?i=redux)](https://redux.js.org/)
+
+<!-- <https://redux.js.org/> -->
+
+- Redux is an open-source JavaScript library for state management.
+
+- Redux works together with React Native and Node to build complex user interfaces and retrieve data from the database, while easily managing state.
+
+### Node.js
+
+[![Nodes](https://skills.thijs.gg/icons?i=nodejs)](https://nodejs.org/en/)
+
+<!-- <https://nodejs.org/en/> -->
+
+- Node is a JavaScript runtime environment built on Chrome's V8 JavaScript engine
+
+### Express
+
+[![Express](https://skillicons.dev/icons?i=express)](https://expressjs.com/)
+
+<!-- <https://expressjs.com/> -->
+
+- Express is a minimal and flexible Node.js web application framework that provides a robust set of features for web and mobile applications.
+
+### PostgreSQL
+
+[![PostgreSQL](https://skills.thijs.gg/icons?i=postgres)](hhttps://www.postgresql.org/)
+
+<!-- <https://www.postgresql.org/> -->
+
+- PostgreSQL is an open source object-relational database system that uses and extends the SQL language
+
+## **Create React App**
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
@@ -68,3 +169,5 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+## **Heroku**
