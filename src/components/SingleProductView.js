@@ -53,6 +53,19 @@ const SingleProductView = () => {
               </button>
               <Link to={`/products/${product.id}/review`}>Write a review!</Link>
             </div>
+            <div>
+              <br></br>
+              <br></br>
+              <h3>⭐️Reviews⭐️</h3>
+              {/* {product.reviews.length > 0 &&
+                product.reviews.map((review, i) => (
+                  <div key={review.id}>
+                    Review #{++i}: {review.content}
+                    <br></br>
+                    Rating: {review.rating} ⭐️'s!
+                  </div>
+                ))} */}
+            </div>
           </div>
         </div>
       </div>
