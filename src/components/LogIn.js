@@ -1,6 +1,7 @@
 import React, { useRef, useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import './css/LogIn.css';
+
 import { fetchUser } from '../reducers/user';
 import { useDispatch } from 'react-redux';
 
@@ -28,6 +29,7 @@ firebase.initializeApp({
 });
 
 const auth = firebase.auth();
+import { loginUser } from '../reducers/user';
 
 const LogIn = () => {
   const [googleUser] = useAuthState(auth);
@@ -38,7 +40,7 @@ const LogIn = () => {
   const [user, setUser] = useState('');
   const [pwd, setPwd] = useState('');
   const [errMsg, setErrMsg] = useState('');
-  const [success] = useState(false);
+  const [success, setSuccess] = useState(false);
 
   // useEffect(() => {
   //   userRef.current.focus();
@@ -61,6 +63,7 @@ const LogIn = () => {
 
       setUser('');
       setPwd('');
+      setSuccess(true);
     } catch (err) {
       if (!err.response) {
         setErrMsg('No Server Response');

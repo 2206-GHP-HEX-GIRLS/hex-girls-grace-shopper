@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { addProduct } from "../reducers/addProduct";
 import { useDispatch } from "react-redux";
+import { Link } from "react-router-dom";
 import "./css/AddProduct.css";
 
 const AddProduct = () => {
@@ -37,26 +38,43 @@ const AddProduct = () => {
 
   return (
     <div className="AddProduct">
-      <form id="createProduct" onSubmit={handleSubmit} onChange={handleChange}>
-        <label>Product Name:</label>
-        <input placeholder="Product Name" name="name" />
+      <h2>Add Product</h2>
+      <form
+        id="createProduct"
+        className="container"
+        onSubmit={handleSubmit}
+        onChange={handleChange}
+      >
+        <div className="row">
+          <div className="col-sm-6">
+            <label>Product Name:</label>
+            <input required name="name" type="text" />
 
-        <label>Product Price:</label>
-        <input placeholder="Product Price" name="price" />
+            <label>Product Price:</label>
+            <input required name="price" type="number" placeholder="0.00" />
 
-        <label>Product Description:</label>
-        <input placeholder="Product Description" name="description" />
+            <label>Product Description:</label>
+            <textarea required name="description" type="text" />
+          </div>
+          <div className="col-sm-6">
+            <label>Product Quantity:</label>
+            <input required name="quantity" type="number" placeholder="0" />
 
-        <label>Product Quantity:</label>
-        <input placeholder="Product Quantity" name="quantity" />
+            <label>Product Category:</label>
+            <select name="category" onChange={handleChange}>
+              <option>Cookies</option>
+              <option>Cakes</option>
+              <option>Pastries</option>
+            </select>
 
-        <label>Product Category:</label>
-        <input placeholder="Product Category" name="category" />
+            <label>ImageUrl:</label>
+            <input name="ImageUrl" type="text" placeholder="https://" />
+          </div>
+        </div>
 
-        <label>ImageUrl:</label>
-        <input placeholder="Product ImageUrl" name="ImageUrl" />
-
-        <button type="submit">Submit</button>
+        <Link to="/products">
+          <button type="submit">Add Product</button>
+        </Link>
       </form>
     </div>
   );

@@ -3,9 +3,9 @@
 }
 
 .SearchBar input {
-  width: 30%;
   padding: 0.5rem;
   border-radius: 0.5rem;
+  width: 80%;
   border: none;
   box-shadow: var(--box-shadow);
 }
@@ -14,11 +14,12 @@
   border: 1px solid var(--brown);
   background: white;
   border-radius: 0.5rem;
-  padding: 1rem;
-  width: 40%;
+  padding: 0.25rem;
   text-align: left;
   margin: 0.25rem auto;
   z-index: 1;
+  width: 25%;
+  position: fixed;
 }
 
 .SearchBar a {

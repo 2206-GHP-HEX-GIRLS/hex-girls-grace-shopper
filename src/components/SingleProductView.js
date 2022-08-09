@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getSingleProduct } from "../reducers/singleProduct";
 import { Link, useParams } from "react-router-dom";
+import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import "./css/SingleProductView.css";
 
 const SingleProductView = () => {
@@ -24,17 +25,17 @@ const SingleProductView = () => {
     <div className="SingleProductView container">
       <h2>{product.name}</h2>
       <div className="row align-items-center">
-        <div className="col-sm-6">
+        <div className="col-sm-4">
           <img
             src={product.imageUrl}
             alt="baked goods img"
             className="img-fluid"
           />
         </div>
-        <div className="col-sm-6 p-2">
+        <div className="col-sm-8 p-2">
           <div key={product.id}>
             <h3>${product.price}</h3>
-            <div>{product.description}</div>
+            <div className="text-start">{product.description}</div>
             <div>{product.review}</div>
             <div>
               <label htmlFor="Quantity">Qty:</label>
@@ -47,7 +48,9 @@ const SingleProductView = () => {
               </select>
             </div>
             <div className="row mt-4 p-2">
-              <button onClick={addToCart}>Add To Cart 🛒</button>
+              <button onClick={addToCart} className="mb-2">
+                Add To Cart <ShoppingCartIcon />
+              </button>
               <Link to={`/products/${product.id}/review`}>Write a review!</Link>
             </div>
           </div>
