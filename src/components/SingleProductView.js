@@ -36,7 +36,7 @@ const SingleProductView = () => {
           <div key={product.id}>
             <h3>${product.price}</h3>
             <div className="text-start">{product.description}</div>
-            <div>{product.reviews}</div>
+            <div>{product.review}</div>
             <div>
               <label htmlFor="Quantity">Qty:</label>
               <select name="Quantity">

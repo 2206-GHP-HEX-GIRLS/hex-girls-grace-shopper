@@ -1,3 +1,7 @@
+.SingleProductView {
+  padding: 10rem;
+}
+
 .SingleProductView img {
   max-height: 10rem;
 }
