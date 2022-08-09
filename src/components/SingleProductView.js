@@ -1,9 +1,9 @@
-import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { getSingleProduct } from "../reducers/singleProduct";
-import { Link, useParams } from "react-router-dom";
-import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
-import "./css/SingleProductView.css";
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { getSingleProduct } from '../reducers/singleProduct';
+import { Link, useParams } from 'react-router-dom';
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import './css/SingleProductView.css';
 
 const SingleProductView = () => {
   let { id } = useParams();
@@ -17,7 +17,7 @@ const SingleProductView = () => {
 
   const addToCart = (evt) => {
     evt.preventDefault();
-    console.log("added to cart");
+    console.log('added to cart');
     // dispatch(addToCart(product))
   };
 
@@ -36,7 +36,7 @@ const SingleProductView = () => {
           <div key={product.id}>
             <h3>${product.price}</h3>
             <div className="text-start">{product.description}</div>
-            <div>{product.review}</div>
+            <div>{product.reviews}</div>
             <div>
               <label htmlFor="Quantity">Qty:</label>
               <select name="Quantity">
