@@ -1,14 +1,15 @@
-import React, { useRef, useState, useEffect } from "react";
-import { Link } from "react-router-dom";
-import { createUser } from "../reducers/user";
-import "./css/Register.css";
+import React, { useRef, useState, useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { Link } from 'react-router-dom';
+import { createUser } from '../reducers/user';
+import './css/Register.css';
 
 const USER_REGEX = /^[A-z][A-z0-9-_]{3,23}$/;
 const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/;
 
 const Register = () => {
   const userRef = useRef();
-
+  const dispatch = useDispatch();
   // const [email, setEmail] = useState('');
 
   const [user, setUser] = useState("");
@@ -40,7 +41,7 @@ const Register = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    createUser(JSON.stringify({ username: user, password: pwd }));
+    dispatch(createUser({ username: user, password: pwd }));
     setSuccess(true);
     setUser("");
     setPwd("");

@@ -1,5 +1,5 @@
-import "./App.css";
-import Paths from "./components/Paths";
+import './App.css';
+import Paths from './components/Paths';
 
 function App() {
   return (
