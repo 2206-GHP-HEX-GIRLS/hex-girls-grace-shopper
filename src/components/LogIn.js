@@ -1,6 +1,8 @@
 import React, { useRef, useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import './css/LogIn.css';
+import { fetchUser } from '../reducers/user';
+import { useDispatch } from 'react-redux';
 
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/firestore';
@@ -31,6 +33,7 @@ const LogIn = () => {
   const [googleUser] = useAuthState(auth);
   const userRef = useRef();
   const errRef = useRef();
+  const dispatch = useDispatch();
 
   const [user, setUser] = useState('');
   const [pwd, setPwd] = useState('');
@@ -53,6 +56,9 @@ const LogIn = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     try {
+      //LOG IN FUNCTIONALITY NEEDS FIXING
+      dispatch(fetchUser({ username: user, password: pwd }));
+
       setUser('');
       setPwd('');
     } catch (err) {

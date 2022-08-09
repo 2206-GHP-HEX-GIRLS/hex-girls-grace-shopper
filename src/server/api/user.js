@@ -4,10 +4,15 @@ const bcrypt = require('bcrypt');
 
 router.get('/', async (req, res, next) => {
   try {
-    const users = await User.findAll({
-      attributes: ['id', 'email'],
+    const users = await User.findOne({
+      where: {
+        username: req.body.username,
+      },
     });
+    // const match = await bcrypt.compare(password, user.password);
+    // if (match) {
     res.json(users);
+    // }
   } catch (err) {
     next(err);
   }
@@ -15,7 +20,6 @@ router.get('/', async (req, res, next) => {
 
 router.post('/', async (req, res, next) => {
   try {
-    console.log('REQ.PW', req.body.password);
     const hashedPwd = await bcrypt.hash(req.body.password, 5);
     const newUser = await User.create({
       username: req.body.username,
