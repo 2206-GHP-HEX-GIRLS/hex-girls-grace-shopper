@@ -1,7 +1,7 @@
-import React from "react";
-import "./css/Home.css";
-import { Link } from "react-router-dom";
-import SearchBar from "./SearchBar";
+import React from 'react';
+import './css/Home.css';
+import { Link } from 'react-router-dom';
+import SearchBar from './SearchBar';
 
 const Home = () => {
   return (
@@ -33,7 +33,7 @@ const Home = () => {
                 <div className="col-sm-6">
                   <Link to="/">
                     <img
-                      src="https://images.aws.nestle.recipes/original/5b069c3ed2feea79377014f6766fcd49_Original_NTH_Chocolate_Chip_Cookie.jpg"
+                      src="https://img.freepik.com/premium-photo/cake-with-white-cream-chocolate-drips-pomegranate-nuts-chocolate-decor_199620-5923.jpg?w=2000"
                       alt="cakes"
                       className="img-fluid category-img"
                     />
@@ -45,7 +45,7 @@ const Home = () => {
                 <div className="col-sm-6">
                   <Link to="/">
                     <img
-                      src="https://images.aws.nestle.recipes/original/5b069c3ed2feea79377014f6766fcd49_Original_NTH_Chocolate_Chip_Cookie.jpg"
+                      src="https://nomadparadise.com/wp-content/uploads/2022/03/french-pastries-05.jpg"
                       alt="pastries"
                       className="img-fluid category-img"
                     />
