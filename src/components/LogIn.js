@@ -29,7 +29,6 @@ firebase.initializeApp({
 });
 
 const auth = firebase.auth();
-import { loginUser } from '../reducers/user';
 
 const LogIn = () => {
   const [googleUser] = useAuthState(auth);
