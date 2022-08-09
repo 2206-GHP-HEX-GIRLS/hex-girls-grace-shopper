@@ -33,7 +33,7 @@ const Home = () => {
                 <div className="col-sm-6">
                   <Link to="/">
                     <img
-                      src="https://img.freepik.com/premium-photo/cake-with-white-cream-chocolate-drips-pomegranate-nuts-chocolate-decor_199620-5923.jpg?w=2000"
+                      src="https://i.imgur.com/YJ5ajzZ.jpg"
                       alt="cakes"
                       className="img-fluid category-img"
                     />
@@ -45,7 +45,7 @@ const Home = () => {
                 <div className="col-sm-6">
                   <Link to="/">
                     <img
-                      src="https://nomadparadise.com/wp-content/uploads/2022/03/french-pastries-05.jpg"
+                      src="https://i.imgur.com/qWdYPVi.jpg"
                       alt="pastries"
                       className="img-fluid category-img"
                     />
