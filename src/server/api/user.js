@@ -15,7 +15,7 @@ router.get('/', async (req, res, next) => {
 
 router.post('/', async (req, res, next) => {
   try {
-    console.log('PASSWORD', req.body);
+    console.log('REQ.PW', req.body.password);
     const hashedPwd = await bcrypt.hash(req.body.password, 5);
     const newUser = await User.create({
       username: req.body.username,
