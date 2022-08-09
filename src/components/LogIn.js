@@ -1,10 +1,11 @@
 import React, { useRef, useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { initializeApp } from 'firebase/app';
-import { GoogleAuthProvider, signInWithPopup, getAuth } from 'firebase/auth';
 import './css/LogIn.css';
+
+import firebase from 'firebase/compat/app';
 import 'firebase/compat/firestore';
 import 'firebase/compat/auth';
+import { useAuthState } from 'react-firebase-hooks/auth';
 
 // initializeApp({
 //   apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
@@ -14,7 +15,8 @@ import 'firebase/compat/auth';
 //   messagingSenderId: process.env.REACT_APP_FIREBASE_MSG_SENDR_ID,
 //   appId: process.env.REACT_APP_FIREBASE_APP_ID,
 // });
-initializeApp({
+
+firebase.initializeApp({
   apiKey: 'AIzaSyAXsNmNFLAlhe9llgpU7lkayqvt4yuPhb0',
   authDomain: 'booleanbakers.firebaseapp.com',
   projectId: 'booleanbakers',
@@ -23,10 +25,10 @@ initializeApp({
   appId: '1:792285495931:web:281671c3184a6efee398de',
 });
 
-// const auth = getAuth(app);
-const auth = getAuth();
+const auth = firebase.auth();
 
 const LogIn = () => {
+  const [googleUser] = useAuthState(auth);
   const userRef = useRef();
   const errRef = useRef();
 
@@ -35,17 +37,17 @@ const LogIn = () => {
   const [errMsg, setErrMsg] = useState('');
   const [success] = useState(false);
 
-  useEffect(() => {
-    userRef.current.focus();
-  }, []);
+  // useEffect(() => {
+  //   userRef.current.focus();
+  // }, []);
 
   useEffect(() => {
     setErrMsg('');
   }, [user, pwd]);
 
   const signInWithGoogle = () => {
-    const provider = new GoogleAuthProvider();
-    signInWithPopup(provider);
+    const provider = new firebase.auth.GoogleAuthProvider();
+    auth.signInWithPopup(provider);
   };
 
   const handleSubmit = (e) => {
@@ -63,19 +65,32 @@ const LogIn = () => {
       } else {
         setErrMsg('Login Failed');
       }
-      errRef.current.focus();
+      // errRef.current.focus();
     }
   };
 
+  function SignOut() {
+    return (
+      auth.currentUser && (
+        <button className="signOutButton" onClick={() => auth.signOut()}>
+          Sign Out
+        </button>
+      )
+    );
+  }
+
   return (
     <div className="LogIn">
-      {success ? (
+      {googleUser || success ? (
         <section>
           <h1>You are logged in!</h1>
           <br />
           <p>
             <Link to="/">Go to Home</Link>
           </p>
+          <>
+            <SignOut />
+          </>
         </section>
       ) : (
         <section>
