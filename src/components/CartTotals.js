@@ -1,12 +1,15 @@
-import React from "react";
-import "./css/CartTotals.css";
+import React from 'react';
+import { Link } from 'react-router-dom';
+import './css/CartTotals.css';
 
 const CartTotals = () => {
   return (
     <div className="CartTotals container ">
       <div className="row align-items-center">
         <div className="col-sm-4">
-          <button className="cont-shopping">Continue Shopping</button>
+          <Link to="/products">
+            <button className="cont-shopping">Continue Shopping</button>
+          </Link>
         </div>
         <div className="col-sm-4">
           <h6>Subtotal: $35.00</h6>

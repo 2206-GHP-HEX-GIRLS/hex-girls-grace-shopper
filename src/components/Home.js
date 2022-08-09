@@ -1,7 +1,7 @@
-import React from "react";
-import "./css/Home.css";
-import { Link } from "react-router-dom";
-import SearchBar from "./SearchBar";
+import React from 'react';
+import './css/Home.css';
+import { Link } from 'react-router-dom';
+import SearchBar from './SearchBar';
 
 const Home = () => {
   return (
@@ -33,7 +33,7 @@ const Home = () => {
                 <div className="col-sm-6">
                   <Link to="/">
                     <img
-                      src="https://images.aws.nestle.recipes/original/5b069c3ed2feea79377014f6766fcd49_Original_NTH_Chocolate_Chip_Cookie.jpg"
+                      src="https://i.imgur.com/YJ5ajzZ.jpg"
                       alt="cakes"
                       className="img-fluid category-img"
                     />
@@ -45,7 +45,7 @@ const Home = () => {
                 <div className="col-sm-6">
                   <Link to="/">
                     <img
-                      src="https://images.aws.nestle.recipes/original/5b069c3ed2feea79377014f6766fcd49_Original_NTH_Chocolate_Chip_Cookie.jpg"
+                      src="https://i.imgur.com/qWdYPVi.jpg"
                       alt="pastries"
                       className="img-fluid category-img"
                     />
