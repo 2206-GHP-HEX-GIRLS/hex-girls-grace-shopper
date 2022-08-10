@@ -57,11 +57,8 @@ const LogIn = () => {
   const signInWithGoogle = async () => {
     const provider = new firebase.auth.GoogleAuthProvider();
     const profile = await auth.signInWithPopup(provider);
-    window.localStorage.setItem(
-      "COOKIE",
-      profile.credential.idToken.slice(0, 15)
-    );
-    console.log("set");
+    console.log(profile);
+    window.localStorage.setItem("COOKIE", profile.credential.idToken);
   };
 
   const setCookie = async (username) => {
