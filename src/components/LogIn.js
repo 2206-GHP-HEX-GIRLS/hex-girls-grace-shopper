@@ -48,16 +48,17 @@ const LogIn = () => {
   // }, []);
 
   useEffect(() => {
-    window.localStorage.setItem("COOKIE", guestCookie);
-  }, [guestCookie]);
-
-  useEffect(() => {
     setErrMsg("");
   }, [userInfo]);
 
-  const signInWithGoogle = () => {
+  const signInWithGoogle = async () => {
     const provider = new firebase.auth.GoogleAuthProvider();
-    auth.signInWithPopup(provider);
+    const profile = await auth.signInWithPopup(provider);
+    window.localStorage.setItem(
+      "COOKIE",
+      profile.credential.idToken.slice(0, 15)
+    );
+    console.log("set");
   };
 
   const setCookie = async (username) => {
@@ -80,10 +81,6 @@ const LogIn = () => {
       //LOG IN FUNCTIONALITY NEEDS FIXING
       setCookie(userInfo.username);
       dispatch(fetchUser(userInfo));
-
-      setUserInfo({ username: "", password: "" });
-
-      // instead of doing this, we should set the cookie maybe in the route - gonna try that lol
       setUserInfo({ username: "", password: "" });
       setSuccess(true);
     } catch (err) {
@@ -101,6 +98,7 @@ const LogIn = () => {
   };
 
   function SignOut() {
+    window.localStorage.removeItem("COOKIE");
     return (
       auth.currentUser && (
         <button className="signOutButton" onClick={() => auth.signOut()}>
