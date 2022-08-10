@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { useParams } from 'react-router';
 import { addNewReview } from '../reducers/review';
 import './css/ReviewPage.css';
@@ -10,9 +10,10 @@ const ReviewPage = () => {
 
   let [newReview, setReview] = useState({ rating: '', content: '' });
 
-  // useEffect(() => {
-  //   dispatch(addNewReview(review, id));
-  // }, [dispatch, id, review]);
+  const handleChange = (e) => {
+    e.preventDefault();
+    setReview({ ...newReview, [e.target.name]: e.target.value });
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -28,7 +29,7 @@ const ReviewPage = () => {
         services.
       </h6>
 
-      <form id="feedback" onSubmit={handleSubmit}>
+      <form id="feedback" onSubmit={handleSubmit} onChange={handleChange}>
         <div className="pinfo">Rate our product🎂</div>
 
         <div className="form-group">
@@ -37,12 +38,12 @@ const ReviewPage = () => {
               <span className="input-group-addon">
                 <i className="fa fa-heart"></i>
               </span>
-              <select className="form-control" id="rating">
-                <option value="1star">1</option>
-                <option value="2stars">2</option>
-                <option value="3stars">3</option>
-                <option value="4stars">4</option>
-                <option value="5stars">5</option>
+              <select className="form-control" id="rating" name="rating">
+                <option value={1}>1</option>
+                <option value={2}>2</option>
+                <option value={3}>3</option>
+                <option value={4}>4</option>
+                <option value={5}>5</option>
               </select>
             </div>
           </div>
@@ -57,6 +58,7 @@ const ReviewPage = () => {
                 <i className="fa fa-pencil"></i>
               </span>
               <textarea
+                name="content"
                 className="form-control"
                 id="content"
                 rows="3"
