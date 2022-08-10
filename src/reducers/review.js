@@ -9,9 +9,9 @@ export const addReview = (review) => {
   };
 };
 
-export const addNewReview = (review) => async (dispatch) => {
+export const addNewReview = (review, id) => async (dispatch) => {
   try {
-    const { data } = await axios.post('/api/review', review);
+    const { data } = await axios.post(`/api/review/${id}`, review);
     dispatch(addReview(data));
   } catch (error) {
     console.error(error);

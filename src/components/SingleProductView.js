@@ -21,8 +21,6 @@ const SingleProductView = () => {
     // dispatch(addToCart(product))
   };
 
-  console.log('THIS IS THE SINGLE PRODUCT:', product);
-
   return (
     <div className="SingleProductView container">
       <h2>{product.name}</h2>
