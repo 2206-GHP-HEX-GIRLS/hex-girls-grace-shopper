@@ -2,6 +2,7 @@ import axios from "axios";
 
 //Action type
 const SET_GUEST = "SET_GUEST";
+const SET_GUEST_STATUS = "SET_GUEST_STATUS";
 
 //Action Creator
 const _setGuest = (guest) => ({
@@ -15,8 +16,7 @@ export const setGuest = (guestId) => {
     const { data } = await axios.post(`/api/users/guest`, {
       accountId: guestId,
     });
-    console.log(data);
-    // dispatch(_setGuest(data));
+    dispatch(_setGuest(data));
   };
 };
 
@@ -27,6 +27,8 @@ const initialState = {};
 const guestUserReducer = (state = initialState, action) => {
   switch (action.type) {
     case SET_GUEST:
+      return action.guest;
+    case SET_GUEST_STATUS:
       return action.guest;
     default:
       return state;

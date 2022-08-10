@@ -1,7 +1,7 @@
 import React, { useRef, useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import "./css/LogIn.css";
-import { hashRandom, hashString } from "react-hash-string";
+import { hashString } from "react-hash-string";
 
 import { fetchUser } from "../reducers/user";
 import { useDispatch } from "react-redux";
@@ -10,6 +10,7 @@ import firebase from "firebase/compat/app";
 import "firebase/compat/firestore";
 import "firebase/compat/auth";
 import { useAuthState } from "react-firebase-hooks/auth";
+import { setGuest } from "../reducers/guest";
 
 // firebase.initializeApp({
 //   apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
@@ -36,10 +37,8 @@ const LogIn = () => {
   const userRef = useRef();
   const errRef = useRef();
   const dispatch = useDispatch();
-  const guestCookie = hashRandom();
 
   let [userInfo, setUserInfo] = useState({ username: "", password: "" });
-
   let [errMsg, setErrMsg] = useState("");
   let [success, setSuccess] = useState(false);
 
@@ -78,11 +77,10 @@ const LogIn = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     try {
-      //LOG IN FUNCTIONALITY NEEDS FIXING
       setCookie(userInfo.username);
       dispatch(fetchUser(userInfo));
       setUserInfo({ username: "", password: "" });
-      setSuccess(true);
+      setSuccess(true); // THIS NEEDS TO CHANGE ONLY AFTER SUCCESSFUL LOGIN
     } catch (err) {
       if (!err.response) {
         setErrMsg("No Server Response");
@@ -108,6 +106,12 @@ const LogIn = () => {
     );
   }
 
+  const setGuestInfo = () => {
+    const guestCookie = Math.floor(Math.random() * 10000000) + 1;
+    dispatch(setGuest(guestCookie));
+    window.sessionStorage.setItem("userSession", guestCookie);
+  };
+
   return (
     <div className="LogIn container">
       {googleUser || success ? (
@@ -115,7 +119,7 @@ const LogIn = () => {
           <h1>You are logged in!</h1>
           <br />
           <p>
-            <Link to="/">Go to Home</Link>
+            <Link to="/home">Go to Home</Link>
           </p>
           <>
             <SignOut />
@@ -146,13 +150,18 @@ const LogIn = () => {
             Sign in with Google
           </button>
 
-          <p>
+          <div>
             Need an Account?
             <br />
-            <span className="line">
+            <div className="line">
               <Link to="/register">Sign Up</Link>
-            </span>
-          </p>
+            </div>
+            <div>
+              <Link to="/home" onClick={setGuestInfo}>
+                Continue As Guest
+              </Link>
+            </div>
+          </div>
         </section>
       )}
     </div>

@@ -2,16 +2,8 @@ import React from "react";
 import "./css/Home.css";
 import { Link } from "react-router-dom";
 import SearchBar from "./SearchBar";
-import { useDispatch } from "react-redux";
-import { setGuest } from "../reducers/guest";
 
 const Home = () => {
-  const guestCookie = Math.floor(Math.random() * 10000000) + 1;
-  const dispatch = useDispatch();
-  console.log(guestCookie);
-
-  dispatch(setGuest(guestCookie));
-
   return (
     <div className="Home">
       <h1 className="mb-5">Welcome to Boolean Bakers!</h1>
