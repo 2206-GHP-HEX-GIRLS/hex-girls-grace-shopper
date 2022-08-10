@@ -10,13 +10,22 @@ import 'firebase/compat/firestore';
 import 'firebase/compat/auth';
 import { useAuthState } from 'react-firebase-hooks/auth';
 
+// firebase.initializeApp({
+//   apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
+//   authDomain: process.env.REACT_APP_FIREBASE_AUTH_DOMAIN,
+//   projectId: process.env.REACT_APP_FIREBASE_PROJ_ID,
+//   storageBucket: process.env.REACT_APP_FIREBASE_STOR_BUCKET,
+//   messagingSenderId: process.env.REACT_APP_FIREBASE_MSG_SENDR_ID,
+//   appId: process.env.REACT_APP_FIREBASE_APP_ID,
+// });
+
 firebase.initializeApp({
-  apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
-  authDomain: process.env.REACT_APP_FIREBASE_AUTH_DOMAIN,
-  projectId: process.env.REACT_APP_FIREBASE_PROJ_ID,
-  storageBucket: process.env.REACT_APP_FIREBASE_STOR_BUCKET,
-  messagingSenderId: process.env.REACT_APP_FIREBASE_MSG_SENDR_ID,
-  appId: process.env.REACT_APP_FIREBASE_APP_ID,
+  apiKey: 'AIzaSyAXsNmNFLAlhe9llgpU7lkayqvt4yuPhb0',
+  authDomain: 'booleanbakers.firebaseapp.com',
+  projectId: 'booleanbakers',
+  storageBucket: 'booleanbakers.appspot.com',
+  messagingSenderId: '792285495931',
+  appId: '1:792285495931:web:281671c3184a6efee398de',
 });
 
 const auth = firebase.auth();
