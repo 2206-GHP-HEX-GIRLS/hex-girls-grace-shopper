@@ -1,8 +1,8 @@
-import axios from "axios";
+import axios from 'axios';
 
 //Action type
-const CREATE_USER = "CREATE_USER";
-const GET_USER = "GET_USER";
+const CREATE_USER = 'CREATE_USER';
+const GET_USER = 'GET_USER';
 
 //Action Creator
 const createdUser = (user) => {
@@ -20,17 +20,15 @@ const setUser = (user) => ({
 //Thunk Creator
 export const createUser = (user) => {
   return async (dispatch) => {
-    const { data } = await axios.post("/api/users", user);
+    const { data } = await axios.post('/api/users', user);
     dispatch(createdUser(data));
   };
 };
 
 export const fetchUser = (user) => {
   return async (dispatch) => {
-    const response = await axios.get(
-      `/api/users/${user.username}/${user.password}`
-    );
-    dispatch(setUser(response.data));
+    const { data } = await axios.post(`/api/users/user`, user);
+    dispatch(setUser(data));
   };
 };
 

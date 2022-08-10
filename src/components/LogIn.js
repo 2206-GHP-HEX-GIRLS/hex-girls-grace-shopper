@@ -1,6 +1,7 @@
 import React, { useRef, useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import "./css/LogIn.css";
+import { hashRandom, hashString } from "react-hash-string";
 
 import { fetchUser } from "../reducers/user";
 import { useDispatch } from "react-redux";
@@ -10,7 +11,7 @@ import "firebase/compat/firestore";
 import "firebase/compat/auth";
 import { useAuthState } from "react-firebase-hooks/auth";
 
-// initializeApp({
+// firebase.initializeApp({
 //   apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
 //   authDomain: process.env.REACT_APP_FIREBASE_AUTH_DOMAIN,
 //   projectId: process.env.REACT_APP_FIREBASE_PROJ_ID,
@@ -35,6 +36,7 @@ const LogIn = () => {
   const userRef = useRef();
   const errRef = useRef();
   const dispatch = useDispatch();
+  const guestCookie = hashRandom();
 
   let [userInfo, setUserInfo] = useState({ username: "", password: "" });
 
@@ -46,12 +48,22 @@ const LogIn = () => {
   // }, []);
 
   useEffect(() => {
+    window.localStorage.setItem("COOKIE", guestCookie);
+  }, [guestCookie]);
+
+  useEffect(() => {
     setErrMsg("");
   }, [userInfo]);
 
   const signInWithGoogle = () => {
     const provider = new firebase.auth.GoogleAuthProvider();
     auth.signInWithPopup(provider);
+  };
+
+  const setCookie = async (username) => {
+    let cookie = hashString(username);
+    window.localStorage.setItem("COOKIE", cookie);
+    return null;
   };
 
   const handleChange = (e) => {
@@ -66,8 +78,12 @@ const LogIn = () => {
     e.preventDefault();
     try {
       //LOG IN FUNCTIONALITY NEEDS FIXING
+      setCookie(userInfo.username);
       dispatch(fetchUser(userInfo));
 
+      setUserInfo({ username: "", password: "" });
+
+      // instead of doing this, we should set the cookie maybe in the route - gonna try that lol
       setUserInfo({ username: "", password: "" });
       setSuccess(true);
     } catch (err) {
@@ -95,7 +111,7 @@ const LogIn = () => {
   }
 
   return (
-    <div className="LogIn">
+    <div className="LogIn container">
       {googleUser || success ? (
         <section>
           <h1>You are logged in!</h1>
@@ -128,7 +144,9 @@ const LogIn = () => {
             <button>Sign In</button>
           </form>
 
-          <button onClick={signInWithGoogle}>Sign in with Google</button>
+          <button className="mb-3" onClick={signInWithGoogle}>
+            Sign in with Google
+          </button>
 
           <p>
             Need an Account?

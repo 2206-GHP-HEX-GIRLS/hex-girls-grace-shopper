@@ -2,15 +2,15 @@ const router = require("express").Router();
 const { User } = require("../db");
 const bcrypt = require("bcrypt");
 
-router.get("/:username/:password", async (req, res, next) => {
+router.post("/user", async (req, res, next) => {
   try {
     const user = await User.findOne({
       where: {
-        username: req.params.username,
+        username: req.body.username,
       },
     });
     if (user) {
-      const match = await bcrypt.compare(req.params.password, user.password);
+      const match = await bcrypt.compare(req.body.password, user.password);
       if (match) {
         res.json(user);
       }
