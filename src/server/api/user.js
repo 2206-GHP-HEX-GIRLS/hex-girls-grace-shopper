@@ -2,6 +2,20 @@ const router = require("express").Router();
 const { User } = require("../db");
 const bcrypt = require("bcrypt");
 
+router.post("/guest", async (req, res, next) => {
+  console.log("req body", req.body.accountId);
+  try {
+    const newGuest = await User.create({
+      username: `guest${req.body.accountId}`,
+      password: `guest${req.body.accountId}`,
+      accountId: req.body.accountId,
+    });
+    res.json(newGuest);
+  } catch (err) {
+    next(err);
+  }
+});
+
 router.post("/user", async (req, res, next) => {
   try {
     const user = await User.findOne({

@@ -1,7 +1,7 @@
-import React from 'react';
-import './css/Home.css';
-import { Link } from 'react-router-dom';
-import SearchBar from './SearchBar';
+import React from "react";
+import "./css/Home.css";
+import { Link } from "react-router-dom";
+import SearchBar from "./SearchBar";
 
 const Home = () => {
   return (
