@@ -18,7 +18,7 @@ export const addProduct = (product) => {
       const { data: created } = await axios.post("/api/products", product);
       dispatch(createProduct(created));
     } catch (error) {
-      console.log("Error adding product to DB!", error);
+      console.error("Error adding product to DB!", error);
     }
   };
 };

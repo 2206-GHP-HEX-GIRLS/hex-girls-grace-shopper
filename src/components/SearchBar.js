@@ -1,17 +1,17 @@
-import React, { useEffect, useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { getProducts } from '../reducers/products';
-import { Link } from 'react-router-dom';
-import SearchIcon from '@mui/icons-material/Search';
-import ClearIcon from '@mui/icons-material/Clear';
-import './css/SearchBar.css';
+import React, { useEffect, useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { getProducts } from "../reducers/products";
+import { Link } from "react-router-dom";
+import SearchIcon from "@mui/icons-material/Search";
+import ClearIcon from "@mui/icons-material/Clear";
+import "./css/SearchBar.css";
 
 const SearchBar = () => {
   const allProducts = useSelector((state) => state.products);
   const dispatch = useDispatch();
   let [filteredProducts, setFilteredProducts] = useState(allProducts);
-  let [showResults, setShowResults] = useState('results hidden');
-  let [searchWord, setSearchWord] = useState('');
+  let [showResults, setShowResults] = useState("results hidden");
+  let [searchWord, setSearchWord] = useState("");
 
   useEffect(() => {
     dispatch(getProducts());
@@ -26,13 +26,11 @@ const SearchBar = () => {
 
     if (searchWord.length !== 0) {
       setFilteredProducts(filtered);
-      setShowResults('results');
+      setShowResults("results");
     } else if (searchWord <= 0) {
-      setShowResults('results hidden');
+      setShowResults("results hidden");
     }
   };
-
-  console.log(searchWord);
 
   return (
     <div className="SearchBar container">
@@ -49,8 +47,8 @@ const SearchBar = () => {
           ) : (
             <ClearIcon
               onClick={() => {
-                setSearchWord('');
-                setShowResults('results hidden');
+                setSearchWord("");
+                setShowResults("results hidden");
               }}
             />
           )}
@@ -65,7 +63,7 @@ const SearchBar = () => {
           ))}
         </div>
       ) : (
-        ''
+        ""
       )}
     </div>
   );
