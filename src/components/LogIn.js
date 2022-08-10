@@ -1,6 +1,7 @@
 import React, { useRef, useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import './css/LogIn.css';
+import Cookie from './Cookie';
 
 import { fetchUser } from '../reducers/user';
 import { useDispatch } from 'react-redux';
@@ -67,7 +68,7 @@ const LogIn = () => {
     try {
       //LOG IN FUNCTIONALITY NEEDS FIXING
       dispatch(fetchUser(userInfo));
-
+      Cookie(userInfo.username);
       setUserInfo({ username: '', password: '' });
       setSuccess(true);
     } catch (err) {
