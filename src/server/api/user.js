@@ -1,16 +1,16 @@
-const router = require("express").Router();
-const { User } = require("../db");
-const bcrypt = require("bcrypt");
+const router = require('express').Router();
+const { User } = require('../db');
+const bcrypt = require('bcrypt');
 
-router.get("/:username/:password", async (req, res, next) => {
+router.post('/user', async (req, res, next) => {
   try {
     const user = await User.findOne({
       where: {
-        username: req.params.username,
+        username: req.body.username,
       },
     });
     if (user) {
-      const match = await bcrypt.compare(req.params.password, user.password);
+      const match = await bcrypt.compare(req.body.password, user.password);
       if (match) {
         res.json(user);
       }
@@ -20,7 +20,7 @@ router.get("/:username/:password", async (req, res, next) => {
   }
 });
 
-router.post("/", async (req, res, next) => {
+router.post('/', async (req, res, next) => {
   try {
     const hashedPwd = await bcrypt.hash(req.body.password, 5);
     const newUser = await User.create({
@@ -33,13 +33,13 @@ router.post("/", async (req, res, next) => {
   }
 });
 
-router.post("/login", async (req, res, next) => {
+router.post('/login', async (req, res, next) => {
   try {
     const { username, password } = req.body;
     if (!username || !password)
       return res
         .status(400)
-        .json({ message: "Username and password are required." });
+        .json({ message: 'Username and password are required.' });
 
     const foundUser = await User.find((person) => person.username === username);
     if (!foundUser) return res.sendStatus(401); //unauth'd!
@@ -55,7 +55,7 @@ router.post("/login", async (req, res, next) => {
   } catch (error) {}
 });
 
-router.delete("/:id", async (req, res, next) => {
+router.delete('/:id', async (req, res, next) => {
   try {
     const deleteUser = await User.findByPk(req.params.id);
     if (!deleteUser) {
