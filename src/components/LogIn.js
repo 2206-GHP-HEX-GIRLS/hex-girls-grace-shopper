@@ -1,7 +1,7 @@
 import React, { useRef, useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import "./css/LogIn.css";
-import Cookie from "./Cookie";
+import { hashRandom, hashString } from "react-hash-string";
 
 import { fetchUser } from "../reducers/user";
 import { useDispatch } from "react-redux";
@@ -36,6 +36,7 @@ const LogIn = () => {
   const userRef = useRef();
   const errRef = useRef();
   const dispatch = useDispatch();
+  const guestCookie = hashRandom();
 
   let [userInfo, setUserInfo] = useState({ username: "", password: "" });
 
@@ -47,12 +48,22 @@ const LogIn = () => {
   // }, []);
 
   useEffect(() => {
+    window.localStorage.setItem("COOKIE", guestCookie);
+  }, [guestCookie]);
+
+  useEffect(() => {
     setErrMsg("");
   }, [userInfo]);
 
   const signInWithGoogle = () => {
     const provider = new firebase.auth.GoogleAuthProvider();
     auth.signInWithPopup(provider);
+  };
+
+  const setCookie = async (username) => {
+    let cookie = hashString(username);
+    window.localStorage.setItem("COOKIE", cookie);
+    return null;
   };
 
   const handleChange = (e) => {
@@ -67,11 +78,12 @@ const LogIn = () => {
     e.preventDefault();
     try {
       //LOG IN FUNCTIONALITY NEEDS FIXING
+      setCookie(userInfo.username);
       dispatch(fetchUser(userInfo));
 
       setUserInfo({ username: "", password: "" });
 
-      Cookie(userInfo.username);
+      // instead of doing this, we should set the cookie maybe in the route - gonna try that lol
       setUserInfo({ username: "", password: "" });
       setSuccess(true);
     } catch (err) {
