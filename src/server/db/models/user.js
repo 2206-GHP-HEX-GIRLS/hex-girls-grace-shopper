@@ -24,6 +24,9 @@ const User = db.define("user", {
     type: Sequelize.BOOLEAN,
     defaultValue: false,
   },
+  accountId: {
+    type: Sequelize.BIGINT,
+  },
 });
 
 User.byToken = async (token) => {
