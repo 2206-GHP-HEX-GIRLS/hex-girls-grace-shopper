@@ -30,7 +30,6 @@ export const fetchUser = (user) => {
     const response = await axios.get(
       `/api/users/${user.username}/${user.password}`
     );
-    console.log(response);
     dispatch(setUser(response.data));
   };
 };

@@ -3,7 +3,6 @@ const { User } = require("../db");
 const bcrypt = require("bcrypt");
 
 router.get("/:username/:password", async (req, res, next) => {
-  console.log("req params", req.params);
   try {
     const user = await User.findOne({
       where: {
