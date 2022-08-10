@@ -1,10 +1,9 @@
-import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { getSingleProduct } from "../reducers/singleProduct";
-import { Link, useParams } from "react-router-dom";
-import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
-import { addToCart } from "../reducers/cart";
-import "./css/SingleProductView.css";
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { getSingleProduct } from '../reducers/singleProduct';
+import { Link, useParams } from 'react-router-dom';
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import './css/SingleProductView.css';
 
 const SingleProductView = () => {
   let { id } = useParams();
@@ -14,13 +13,15 @@ const SingleProductView = () => {
 
   useEffect(() => {
     dispatch(getSingleProduct(id));
-  }, [dispatch, id]);
+  }, [id]);
 
   const _addToCart = (evt) => {
     evt.preventDefault();
-    console.log("added to cart");
-    dispatch(addToCart(product));
+    console.log('added to cart');
+    // dispatch(addToCart(product))
   };
+
+  console.log('THIS IS THE SINGLE PRODUCT:', product);
 
   return (
     <div className="SingleProductView container">
@@ -37,7 +38,6 @@ const SingleProductView = () => {
           <div key={product.id}>
             <h3>${product.price}</h3>
             <div className="text-start">{product.description}</div>
-            <div>{product.review}</div>
             <div>
               <label htmlFor="Quantity">Qty:</label>
               <select name="Quantity">
@@ -53,6 +53,19 @@ const SingleProductView = () => {
                 Add To Cart <ShoppingCartIcon />
               </button>
               <Link to={`/products/${product.id}/review`}>Write a review!</Link>
+            </div>
+            <div>
+              <br></br>
+              <br></br>
+              <h3>⭐️Reviews⭐️</h3>
+              {product.reviews &&
+                product.reviews.map((review, i) => (
+                  <div key={review.id}>
+                    Review #{++i}: {review.content}
+                    <br></br>
+                    Rating: {review.rating} ⭐️'s!
+                  </div>
+                ))}
             </div>
           </div>
         </div>
