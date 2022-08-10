@@ -1,31 +1,22 @@
-import React, { useRef, useState, useEffect } from "react";
-import { Link } from "react-router-dom";
-import "./css/LogIn.css";
+import React, { useRef, useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
+import './css/LogIn.css';
 
-import { fetchUser } from "../reducers/user";
-import { useDispatch } from "react-redux";
+import { fetchUser } from '../reducers/user';
+import { useDispatch } from 'react-redux';
 
-import firebase from "firebase/compat/app";
-import "firebase/compat/firestore";
-import "firebase/compat/auth";
-import { useAuthState } from "react-firebase-hooks/auth";
-
-// initializeApp({
-//   apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
-//   authDomain: process.env.REACT_APP_FIREBASE_AUTH_DOMAIN,
-//   projectId: process.env.REACT_APP_FIREBASE_PROJ_ID,
-//   storageBucket: process.env.REACT_APP_FIREBASE_STOR_BUCKET,
-//   messagingSenderId: process.env.REACT_APP_FIREBASE_MSG_SENDR_ID,
-//   appId: process.env.REACT_APP_FIREBASE_APP_ID,
-// });
+import firebase from 'firebase/compat/app';
+import 'firebase/compat/firestore';
+import 'firebase/compat/auth';
+import { useAuthState } from 'react-firebase-hooks/auth';
 
 firebase.initializeApp({
-  apiKey: "AIzaSyAXsNmNFLAlhe9llgpU7lkayqvt4yuPhb0",
-  authDomain: "booleanbakers.firebaseapp.com",
-  projectId: "booleanbakers",
-  storageBucket: "booleanbakers.appspot.com",
-  messagingSenderId: "792285495931",
-  appId: "1:792285495931:web:281671c3184a6efee398de",
+  apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
+  authDomain: process.env.REACT_APP_FIREBASE_AUTH_DOMAIN,
+  projectId: process.env.REACT_APP_FIREBASE_PROJ_ID,
+  storageBucket: process.env.REACT_APP_FIREBASE_STOR_BUCKET,
+  messagingSenderId: process.env.REACT_APP_FIREBASE_MSG_SENDR_ID,
+  appId: process.env.REACT_APP_FIREBASE_APP_ID,
 });
 
 const auth = firebase.auth();
@@ -36,9 +27,9 @@ const LogIn = () => {
   const errRef = useRef();
   const dispatch = useDispatch();
 
-  let [userInfo, setUserInfo] = useState({ username: "", password: "" });
+  let [userInfo, setUserInfo] = useState({ username: '', password: '' });
 
-  let [errMsg, setErrMsg] = useState("");
+  let [errMsg, setErrMsg] = useState('');
   let [success, setSuccess] = useState(false);
 
   // useEffect(() => {
@@ -46,7 +37,7 @@ const LogIn = () => {
   // }, []);
 
   useEffect(() => {
-    setErrMsg("");
+    setErrMsg('');
   }, [userInfo]);
 
   const signInWithGoogle = () => {
@@ -68,17 +59,17 @@ const LogIn = () => {
       //LOG IN FUNCTIONALITY NEEDS FIXING
       dispatch(fetchUser(userInfo));
 
-      setUserInfo({ username: "", password: "" });
+      setUserInfo({ username: '', password: '' });
       setSuccess(true);
     } catch (err) {
       if (!err.response) {
-        setErrMsg("No Server Response");
+        setErrMsg('No Server Response');
       } else if (err.response.status === 400) {
-        setErrMsg("Missing Username or Password");
+        setErrMsg('Missing Username or Password');
       } else if (err.response.status === 401) {
-        setErrMsg("Unauthorized");
+        setErrMsg('Unauthorized');
       } else {
-        setErrMsg("Login Failed");
+        setErrMsg('Login Failed');
       }
       // errRef.current.focus();
     }
@@ -109,7 +100,7 @@ const LogIn = () => {
         </section>
       ) : (
         <section>
-          <p ref={errRef} className={errMsg ? "errmsg" : "offscreen"}>
+          <p ref={errRef} className={errMsg ? 'errmsg' : 'offscreen'}>
             {errMsg}
           </p>
           <h1>Sign In</h1>
