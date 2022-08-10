@@ -38,7 +38,11 @@ const LogIn = () => {
   const errRef = useRef();
   const dispatch = useDispatch();
 
-  let [userInfo, setUserInfo] = useState({ username: "", password: "" });
+  let [userInfo, setUserInfo] = useState({
+    username: "",
+    password: "",
+    accountId: 0,
+  });
   let [errMsg, setErrMsg] = useState("");
   let [success, setSuccess] = useState(false);
 
@@ -71,6 +75,7 @@ const LogIn = () => {
     setUserInfo({
       ...userInfo,
       [e.target.name]: e.target.value,
+      accountId: accountNumGen(),
     });
   };
 
@@ -106,8 +111,12 @@ const LogIn = () => {
     );
   }
 
+  const accountNumGen = () => {
+    return Math.floor(Math.random() * 10000000) + 1;
+  };
+
   const setGuestInfo = () => {
-    const guestCookie = Math.floor(Math.random() * 10000000) + 1;
+    const guestCookie = accountNumGen();
     dispatch(setGuest(guestCookie));
     window.sessionStorage.setItem("userSession", guestCookie);
   };
