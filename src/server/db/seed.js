@@ -149,21 +149,33 @@ const users = [
 
 const reviews = [
   {
-    content: 'wow what a great croissant',
+    content: 'Wow! What a great croissant',
     rating: 5,
     userId: 1,
-    productId: 4,
+    productId: 11,
   },
   {
-    content: 'wow what a great cake',
+    content: 'Wow! What a great cake',
     rating: 2,
     userId: 2,
-    productId: 3,
+    productId: 6,
   },
   {
-    content: 'wow what a yummy cookie',
-    rating: 2,
+    content: 'Wow! What a yummy cookie',
+    rating: 5,
     userId: 1,
+    productId: 2,
+  },
+  {
+    content: 'This cookie is so soft',
+    rating: 4,
+    userId: 2,
+    productId: 2,
+  },
+  {
+    content: 'This cookie has so much chocolate, I love it!',
+    rating: 4,
+    userId: 2,
     productId: 2,
   },
 ];
