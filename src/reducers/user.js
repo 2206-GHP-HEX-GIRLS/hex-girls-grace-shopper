@@ -2,7 +2,7 @@ import axios from 'axios';
 
 //Action type
 const CREATE_USER = 'CREATE_USER';
-const LOGIN_USER = 'LOGIN_USER';
+const GET_USER = 'GET_USER';
 
 //Action Creator
 const createdUser = (user) => {
@@ -12,12 +12,10 @@ const createdUser = (user) => {
   };
 };
 
-const loggedinUser = (user) => {
-  return {
-    type: LOGIN_USER,
-    user,
-  };
-};
+const setUser = (user) => ({
+  type: GET_USER,
+  user,
+});
 
 //Thunk Creator
 export const createUser = (user) => {
@@ -27,23 +25,22 @@ export const createUser = (user) => {
   };
 };
 
-export const loginUser = (user) => {
+export const fetchUser = (user) => {
   return async (dispatch) => {
-    const { data } = await axios.post('/api/users/login', user);
-    // const {accessToken, roles} = data;
-    dispatch(loggedinUser(data));
+    const { data } = await axios.post(`/api/users/user`, user);
+    dispatch(setUser(data));
   };
 };
 
 //Initial State
-const initialState = [];
+const initialState = {};
 
 //Reducer
 const userReducer = (state = initialState, action) => {
   switch (action.type) {
     case CREATE_USER:
-      return [...state, action.user];
-    case LOGIN_USER:
+      return action.user;
+    case GET_USER:
       return action.user;
     default:
       return state;

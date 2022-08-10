@@ -1,13 +1,14 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
+import { removeFromCart } from "../reducers/cart";
 import "./css/CartItem.css";
 
 const CartItem = ({ product }) => {
   const dispatch = useDispatch();
 
-  const removeFromCart = () => {
+  const _removeFromCart = () => {
     console.log("removed from cart");
-    // dispatch(removeFromCart(product.id))
+    dispatch(removeFromCart(product));
   };
 
   let [qty, setQty] = useState(1); // this will eventually be passed down as a prop (maybe)
@@ -45,7 +46,7 @@ const CartItem = ({ product }) => {
                 </p>
                 <p>Subtotal: ${subtotal}</p>
               </div>
-              <button onClick={removeFromCart}>Remove From Cart</button>
+              <button onClick={_removeFromCart}>Remove From Cart</button>
             </div>
           </div>
         </div>

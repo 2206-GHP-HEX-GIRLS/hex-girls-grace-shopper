@@ -1,9 +1,9 @@
-const db = require('./db');
-const Product = require('./models/product');
-const Review = require('./models/review');
-const User = require('./models/user');
-const Order = require('./models/order');
-const LineItem = require('./models/lineitem');
+const db = require("./db");
+const Product = require("./models/product");
+const Review = require("./models/review");
+const User = require("./models/user");
+const Order = require("./models/order");
+const LineItem = require("./models/lineitem");
 
 //associations here!
 User.hasMany(Review);
@@ -28,4 +28,5 @@ module.exports = {
   User,
   Review,
   Order,
+  LineItem,
 };

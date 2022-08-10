@@ -15,7 +15,7 @@ const SingleProductView = () => {
     dispatch(getSingleProduct(id));
   }, [dispatch, id]);
 
-  const addToCart = (evt) => {
+  const _addToCart = (evt) => {
     evt.preventDefault();
     console.log('added to cart');
     // dispatch(addToCart(product))
@@ -48,7 +48,7 @@ const SingleProductView = () => {
               </select>
             </div>
             <div className="row mt-4 p-2">
-              <button onClick={addToCart} className="mb-2">
+              <button onClick={_addToCart} className="mb-2">
                 Add To Cart <ShoppingCartIcon />
               </button>
               <Link to={`/products/${product.id}/review`}>Write a review!</Link>

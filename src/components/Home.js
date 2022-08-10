@@ -21,7 +21,7 @@ const Home = () => {
             <div className="col-sm-8">
               <div className="row">
                 <div className="col-sm-6">
-                  <Link to="/">
+                  <Link to="/products/category/Cookies">
                     <img
                       src="https://images.aws.nestle.recipes/original/5b069c3ed2feea79377014f6766fcd49_Original_NTH_Chocolate_Chip_Cookie.jpg"
                       alt="cookies"
@@ -31,7 +31,7 @@ const Home = () => {
                   <h2>Cookies</h2>
                 </div>
                 <div className="col-sm-6">
-                  <Link to="/">
+                  <Link to="/products/category/Cakes">
                     <img
                       src="https://i.imgur.com/YJ5ajzZ.jpg"
                       alt="cakes"
@@ -43,7 +43,7 @@ const Home = () => {
               </div>
               <div className="row">
                 <div className="col-sm-6">
-                  <Link to="/">
+                  <Link to="/products/category/Pastries">
                     <img
                       src="https://i.imgur.com/qWdYPVi.jpg"
                       alt="pastries"
