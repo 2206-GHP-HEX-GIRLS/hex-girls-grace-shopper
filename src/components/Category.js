@@ -1,7 +1,7 @@
-import React, { useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { Link, useParams } from "react-router-dom";
-import { fetchCategories } from "../reducers/category";
+import React, { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { Link, useParams } from 'react-router-dom';
+import { fetchCategories } from '../reducers/category';
 
 const Category = () => {
   let { category } = useParams();
@@ -11,20 +11,28 @@ const Category = () => {
   useEffect(() => {
     dispatch(fetchCategories(categories, category));
   }, [dispatch]);
-  console.log("Categories", categories);
+
   return (
     <div className="category container">
-      <div className="row align-items-center">
-        <h1>{category.name}</h1>
-        {/* {categories.length > 0
-          ? categories.map((category) => (
-              <li key={category.name}>
-                <Link to={`/products/${category.id}`}>
-                  {category ? category.name : "no snacks here"}
-                </Link>
-              </li>
-            ))
-          : ""} */}
+      <div>
+        <h1>{category}</h1>
+        <div className="row align-items-center">
+          {categories.length > 0
+            ? categories.map((category) => (
+                <div key={category.id} className="col-sm-4">
+                  <h2>{category.name}</h2>
+                  <Link to={`/products/${category.id}`}>
+                    <img
+                      src={category.imageUrl}
+                      alt="baked goods img"
+                      className="img-fluid mb-3"
+                    />
+                  </Link>
+                  <p>${category.price}</p>
+                </div>
+              ))
+            : ''}
+        </div>
       </div>
     </div>
   );
