@@ -4,6 +4,7 @@ import productsReducer from "./products";
 import singleProductReducer from "./singleProduct";
 import userReducer from "./user";
 import categoryReducer from "./category";
+import reviewReducer from "./review";
 import guestUserReducer from "./guest";
 
 const rootReducer = combineReducers({
@@ -13,6 +14,7 @@ const rootReducer = combineReducers({
   cart: cartReducer,
   category: categoryReducer,
   guest: guestUserReducer,
+  review: reviewReducer,
 });
 
 export default rootReducer;
