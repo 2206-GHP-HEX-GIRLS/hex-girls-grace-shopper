@@ -1,6 +1,6 @@
-import axios from "axios";
+import axios from 'axios';
 
-const GET_CATEGORIES = "GET_CATEGORIES";
+const GET_CATEGORIES = 'GET_CATEGORIES';
 
 const setCategories = (categories) => ({
   type: GET_CATEGORIES,
@@ -10,7 +10,6 @@ const setCategories = (categories) => ({
 export const fetchCategories = (category, param) => {
   return async (dispatch) => {
     const { data } = await axios.get(`/api/category/${param}`, category);
-
     dispatch(setCategories(data));
   };
 };
