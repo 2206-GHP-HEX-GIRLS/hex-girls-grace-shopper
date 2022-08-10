@@ -1,14 +1,14 @@
-import React, { useRef, useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import './css/LogIn.css';
+import React, { useRef, useState, useEffect } from "react";
+import { Link } from "react-router-dom";
+import "./css/LogIn.css";
 
-import { fetchUser } from '../reducers/user';
-import { useDispatch } from 'react-redux';
+import { fetchUser } from "../reducers/user";
+import { useDispatch } from "react-redux";
 
-import firebase from 'firebase/compat/app';
-import 'firebase/compat/firestore';
-import 'firebase/compat/auth';
-import { useAuthState } from 'react-firebase-hooks/auth';
+import firebase from "firebase/compat/app";
+import "firebase/compat/firestore";
+import "firebase/compat/auth";
+import { useAuthState } from "react-firebase-hooks/auth";
 
 // initializeApp({
 //   apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
@@ -20,12 +20,12 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 // });
 
 firebase.initializeApp({
-  apiKey: 'AIzaSyAXsNmNFLAlhe9llgpU7lkayqvt4yuPhb0',
-  authDomain: 'booleanbakers.firebaseapp.com',
-  projectId: 'booleanbakers',
-  storageBucket: 'booleanbakers.appspot.com',
-  messagingSenderId: '792285495931',
-  appId: '1:792285495931:web:281671c3184a6efee398de',
+  apiKey: "AIzaSyAXsNmNFLAlhe9llgpU7lkayqvt4yuPhb0",
+  authDomain: "booleanbakers.firebaseapp.com",
+  projectId: "booleanbakers",
+  storageBucket: "booleanbakers.appspot.com",
+  messagingSenderId: "792285495931",
+  appId: "1:792285495931:web:281671c3184a6efee398de",
 });
 
 const auth = firebase.auth();
@@ -36,42 +36,49 @@ const LogIn = () => {
   const errRef = useRef();
   const dispatch = useDispatch();
 
-  const [user, setUser] = useState('');
-  const [pwd, setPwd] = useState('');
-  const [errMsg, setErrMsg] = useState('');
-  const [success, setSuccess] = useState(false);
+  let [userInfo, setUserInfo] = useState({ username: "", password: "" });
+
+  let [errMsg, setErrMsg] = useState("");
+  let [success, setSuccess] = useState(false);
 
   // useEffect(() => {
   //   userRef.current.focus();
   // }, []);
 
   useEffect(() => {
-    setErrMsg('');
-  }, [user, pwd]);
+    setErrMsg("");
+  }, [userInfo]);
 
   const signInWithGoogle = () => {
     const provider = new firebase.auth.GoogleAuthProvider();
     auth.signInWithPopup(provider);
   };
 
+  const handleChange = (e) => {
+    e.preventDefault();
+    setUserInfo({
+      ...userInfo,
+      [e.target.name]: e.target.value,
+    });
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     try {
       //LOG IN FUNCTIONALITY NEEDS FIXING
-      dispatch(fetchUser({ username: user, password: pwd }));
+      dispatch(fetchUser(userInfo));
 
-      setUser('');
-      setPwd('');
+      setUserInfo({ username: "", password: "" });
       setSuccess(true);
     } catch (err) {
       if (!err.response) {
-        setErrMsg('No Server Response');
+        setErrMsg("No Server Response");
       } else if (err.response.status === 400) {
-        setErrMsg('Missing Username or Password');
+        setErrMsg("Missing Username or Password");
       } else if (err.response.status === 401) {
-        setErrMsg('Unauthorized');
+        setErrMsg("Unauthorized");
       } else {
-        setErrMsg('Login Failed');
+        setErrMsg("Login Failed");
       }
       // errRef.current.focus();
     }
@@ -102,30 +109,22 @@ const LogIn = () => {
         </section>
       ) : (
         <section>
-          <p ref={errRef} className={errMsg ? 'errmsg' : 'offscreen'}>
+          <p ref={errRef} className={errMsg ? "errmsg" : "offscreen"}>
             {errMsg}
           </p>
           <h1>Sign In</h1>
-          <form onSubmit={handleSubmit}>
+          <form onSubmit={handleSubmit} onChange={handleChange}>
             <label htmlFor="username">Username:</label>
             <input
               type="text"
-              id="username"
+              name="username"
               ref={userRef}
               autoComplete="off"
-              onChange={(e) => setUser(e.target.value)}
-              value={user}
               required
             />
 
             <label htmlFor="password">Password:</label>
-            <input
-              type="password"
-              id="password"
-              onChange={(e) => setPwd(e.target.value)}
-              value={pwd}
-              required
-            />
+            <input name="password" type="password" id="password" required />
             <button>Sign In</button>
           </form>
 
