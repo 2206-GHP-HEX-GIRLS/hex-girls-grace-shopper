@@ -59,4 +59,25 @@ User.authenticate = async ({ username, password }) => {
   throw error;
 };
 
+User.prototype.addLineItems = async function(product) {
+  let cart = await this.getLineItems();
+  let lineItem = cart.lineItems.find(
+    (lineItem) => lineItem.productId === product.id
+  );
+  if (lineItem) {
+    lineItem.quantity++;
+    await lineItem.save();
+  }
+  else {
+    await LineItem.create({
+      productId: product.id,
+      orderId: cart.id,
+      quantity: 1,
+      price: product.price,
+    });
+  }
+  return this.getLineItems();
+};
+
+
 module.exports = User;
