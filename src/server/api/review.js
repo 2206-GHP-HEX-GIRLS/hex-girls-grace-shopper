@@ -33,16 +33,14 @@ router.get('/:userId', async (req, res, next) => {
 
 router.post('/:productId', async (req, res, next) => {
   try {
-    if (req.user.id === req.params.id) {
-      const { content, rating } = req.body;
-      const user = req.user.id;
-      const newReview = await Review.create({
-        rating,
-        content,
-        user,
-      });
-      res.json(newReview);
-    } else res.status(403).send();
+    const { content, rating } = req.body;
+    const productId = req.params.productId;
+    const newReview = await Review.create({
+      rating,
+      content,
+      productId,
+    });
+    res.json(newReview);
   } catch (error) {
     next(error);
   }

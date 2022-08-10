@@ -1,7 +1,26 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { useParams } from 'react-router';
+import { addNewReview } from '../reducers/review';
 import './css/ReviewPage.css';
 
 const ReviewPage = () => {
+  let { id } = useParams();
+  const dispatch = useDispatch();
+
+  let [newReview, setReview] = useState({ rating: '', content: '' });
+
+  const handleChange = (e) => {
+    e.preventDefault();
+    setReview({ ...newReview, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    dispatch(addNewReview(newReview, id));
+    setReview({ rating: '', content: '' });
+  };
+
   return (
     <div>
       <h2 id="fh2">WE APPRECIATE YOUR REVIEW!</h2>
@@ -10,41 +29,7 @@ const ReviewPage = () => {
         services.
       </h6>
 
-      <form id="feedback" action="">
-        <div className="pinfo">Your personal info</div>
-
-        <div className="form-group">
-          <div className="col-md-4 inputGroupContainer">
-            <div className="input-group">
-              <span className="input-group-addon">
-                <i className="fa fa-user"></i>
-              </span>
-              <input
-                name="name"
-                placeholder="First and Last name"
-                className="form-control"
-                type="text"
-              />
-            </div>
-          </div>
-        </div>
-
-        <div className="form-group">
-          <div className="col-md-4 inputGroupContainer">
-            <div className="input-group">
-              <span className="input-group-addon">
-                <i className="fa fa-envelope"></i>
-              </span>
-              <input
-                name="email"
-                type="email"
-                className="form-control"
-                placeholder="Valid Email Address"
-              />
-            </div>
-          </div>
-        </div>
-
+      <form id="feedback" onSubmit={handleSubmit} onChange={handleChange}>
         <div className="pinfo">Rate our product🎂</div>
 
         <div className="form-group">
@@ -53,12 +38,12 @@ const ReviewPage = () => {
               <span className="input-group-addon">
                 <i className="fa fa-heart"></i>
               </span>
-              <select className="form-control" id="rate">
-                <option value="1star">1</option>
-                <option value="2stars">2</option>
-                <option value="3stars">3</option>
-                <option value="4stars">4</option>
-                <option value="5stars">5</option>
+              <select className="form-control" id="rating" name="rating">
+                <option value={1}>1</option>
+                <option value={2}>2</option>
+                <option value={3}>3</option>
+                <option value={4}>4</option>
+                <option value={5}>5</option>
               </select>
             </div>
           </div>
@@ -73,8 +58,9 @@ const ReviewPage = () => {
                 <i className="fa fa-pencil"></i>
               </span>
               <textarea
+                name="content"
                 className="form-control"
-                id="review"
+                id="content"
                 rows="3"
               ></textarea>
             </div>
