@@ -1,15 +1,15 @@
-import React, { useRef, useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import './css/LogIn.css';
-import Cookie from './Cookie';
+import React, { useRef, useState, useEffect } from "react";
+import { Link } from "react-router-dom";
+import "./css/LogIn.css";
+import { hashRandom, hashString } from "react-hash-string";
 
-import { fetchUser } from '../reducers/user';
-import { useDispatch } from 'react-redux';
+import { fetchUser } from "../reducers/user";
+import { useDispatch } from "react-redux";
 
-import firebase from 'firebase/compat/app';
-import 'firebase/compat/firestore';
-import 'firebase/compat/auth';
-import { useAuthState } from 'react-firebase-hooks/auth';
+import firebase from "firebase/compat/app";
+import "firebase/compat/firestore";
+import "firebase/compat/auth";
+import { useAuthState } from "react-firebase-hooks/auth";
 
 // firebase.initializeApp({
 //   apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
@@ -21,12 +21,12 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 // });
 
 firebase.initializeApp({
-  apiKey: 'AIzaSyAXsNmNFLAlhe9llgpU7lkayqvt4yuPhb0',
-  authDomain: 'booleanbakers.firebaseapp.com',
-  projectId: 'booleanbakers',
-  storageBucket: 'booleanbakers.appspot.com',
-  messagingSenderId: '792285495931',
-  appId: '1:792285495931:web:281671c3184a6efee398de',
+  apiKey: "AIzaSyAXsNmNFLAlhe9llgpU7lkayqvt4yuPhb0",
+  authDomain: "booleanbakers.firebaseapp.com",
+  projectId: "booleanbakers",
+  storageBucket: "booleanbakers.appspot.com",
+  messagingSenderId: "792285495931",
+  appId: "1:792285495931:web:281671c3184a6efee398de",
 });
 
 const auth = firebase.auth();
@@ -36,10 +36,11 @@ const LogIn = () => {
   const userRef = useRef();
   const errRef = useRef();
   const dispatch = useDispatch();
+  const guestCookie = hashRandom();
 
-  let [userInfo, setUserInfo] = useState({ username: '', password: '' });
+  let [userInfo, setUserInfo] = useState({ username: "", password: "" });
 
-  let [errMsg, setErrMsg] = useState('');
+  let [errMsg, setErrMsg] = useState("");
   let [success, setSuccess] = useState(false);
 
   // useEffect(() => {
@@ -47,12 +48,22 @@ const LogIn = () => {
   // }, []);
 
   useEffect(() => {
-    setErrMsg('');
+    window.localStorage.setItem("COOKIE", guestCookie);
+  }, [guestCookie]);
+
+  useEffect(() => {
+    setErrMsg("");
   }, [userInfo]);
 
   const signInWithGoogle = () => {
     const provider = new firebase.auth.GoogleAuthProvider();
     auth.signInWithPopup(provider);
+  };
+
+  const setCookie = async (username) => {
+    let cookie = hashString(username);
+    window.localStorage.setItem("COOKIE", cookie);
+    return null;
   };
 
   const handleChange = (e) => {
@@ -67,19 +78,23 @@ const LogIn = () => {
     e.preventDefault();
     try {
       //LOG IN FUNCTIONALITY NEEDS FIXING
+      setCookie(userInfo.username);
       dispatch(fetchUser(userInfo));
-      Cookie(userInfo.username);
-      setUserInfo({ username: '', password: '' });
+
+      setUserInfo({ username: "", password: "" });
+
+      // instead of doing this, we should set the cookie maybe in the route - gonna try that lol
+      setUserInfo({ username: "", password: "" });
       setSuccess(true);
     } catch (err) {
       if (!err.response) {
-        setErrMsg('No Server Response');
+        setErrMsg("No Server Response");
       } else if (err.response.status === 400) {
-        setErrMsg('Missing Username or Password');
+        setErrMsg("Missing Username or Password");
       } else if (err.response.status === 401) {
-        setErrMsg('Unauthorized');
+        setErrMsg("Unauthorized");
       } else {
-        setErrMsg('Login Failed');
+        setErrMsg("Login Failed");
       }
       // errRef.current.focus();
     }
@@ -96,7 +111,7 @@ const LogIn = () => {
   }
 
   return (
-    <div className="LogIn">
+    <div className="LogIn container">
       {googleUser || success ? (
         <section>
           <h1>You are logged in!</h1>
@@ -110,7 +125,7 @@ const LogIn = () => {
         </section>
       ) : (
         <section>
-          <p ref={errRef} className={errMsg ? 'errmsg' : 'offscreen'}>
+          <p ref={errRef} className={errMsg ? "errmsg" : "offscreen"}>
             {errMsg}
           </p>
           <h1>Sign In</h1>
@@ -129,7 +144,9 @@ const LogIn = () => {
             <button>Sign In</button>
           </form>
 
-          <button onClick={signInWithGoogle}>Sign in with Google</button>
+          <button className="mb-3" onClick={signInWithGoogle}>
+            Sign in with Google
+          </button>
 
           <p>
             Need an Account?
