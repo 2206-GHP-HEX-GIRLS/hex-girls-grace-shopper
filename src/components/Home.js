@@ -1,7 +1,7 @@
-import React from 'react';
-import './css/Home.css';
-import { Link } from 'react-router-dom';
-import SearchBar from './SearchBar';
+import React from "react";
+import "./css/Home.css";
+import { Link } from "react-router-dom";
+import SearchBar from "./SearchBar";
 
 const Home = () => {
   return (
@@ -21,7 +21,7 @@ const Home = () => {
             <div className="col-sm-8">
               <div className="row">
                 <div className="col-sm-6">
-                  <Link to="/">
+                  <Link to="/products/Cookies">
                     <img
                       src="https://images.aws.nestle.recipes/original/5b069c3ed2feea79377014f6766fcd49_Original_NTH_Chocolate_Chip_Cookie.jpg"
                       alt="cookies"
