@@ -17,38 +17,10 @@ const AllProductsView = () => {
   const filterProducts = (e) => {
     e.preventDefault();
 
-    let filteredArr = products;
-
-    const cookies = filteredArr.filter(
-      (product) => product.category === "Cookies"
+    let filteredProducts = products.filter(
+      (product) => product.category === e.target.value
     );
-
-    const cakes = filteredArr.filter((product) => product.category === "Cakes");
-
-    const pastries = filteredArr.filter(
-      (product) => product.category === "Pastries"
-    );
-
-    switch (e.target.value) {
-      case "Cookies":
-        setMappedProducts(cookies);
-        break;
-      case "Cakes":
-        setMappedProducts(cakes);
-        break;
-      case "Pastries":
-        setMappedProducts(pastries);
-        break;
-      case "All":
-        dispatch(getProducts());
-        setMappedProducts(products);
-        break;
-      default:
-        dispatch(getProducts());
-        setMappedProducts(products);
-    }
-
-    dispatch(getProducts());
+    setMappedProducts(filteredProducts);
   };
 
   return (
