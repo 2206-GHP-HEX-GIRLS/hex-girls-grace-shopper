@@ -13,13 +13,15 @@ const SingleProductView = () => {
 
   useEffect(() => {
     dispatch(getSingleProduct(id));
-  }, [dispatch, id]);
+  }, [id]);
 
   const _addToCart = (evt) => {
     evt.preventDefault();
     console.log('added to cart');
     // dispatch(addToCart(product))
   };
+
+  console.log('THIS IS THE SINGLE PRODUCT:', product);
 
   return (
     <div className="SingleProductView container">
@@ -36,7 +38,6 @@ const SingleProductView = () => {
           <div key={product.id}>
             <h3>${product.price}</h3>
             <div className="text-start">{product.description}</div>
-            <div>{product.review}</div>
             <div>
               <label htmlFor="Quantity">Qty:</label>
               <select name="Quantity">
@@ -57,14 +58,14 @@ const SingleProductView = () => {
               <br></br>
               <br></br>
               <h3>⭐️Reviews⭐️</h3>
-              {/* {product.reviews.length > 0 &&
+              {product.reviews &&
                 product.reviews.map((review, i) => (
                   <div key={review.id}>
                     Review #{++i}: {review.content}
                     <br></br>
                     Rating: {review.rating} ⭐️'s!
                   </div>
-                ))} */}
+                ))}
             </div>
           </div>
         </div>
