@@ -51,6 +51,7 @@ const SingleProductView = () => {
                 Add To Cart <ShoppingCartIcon />
               </button>
               <Link to={`/products/${product.id}/review`}>Write a review!</Link>
+              <Link to={`/products/${product.id}/edit`}>Edit Product</Link>
             </div>
             <div>
               <br></br>
