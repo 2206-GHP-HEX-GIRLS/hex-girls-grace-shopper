@@ -22,11 +22,10 @@ const Cart = () => {
           <CartTotals />
         </div>
         <div className="col-sm-6 cart-items">
-          {cart.length > 0
-            ? cart.map((product) => (
-                <CartItem key={product.id} product={product} />
-              ))
-            : 'No items in cart!'}
+          {cart &&
+            cart.map((product) => (
+              <CartItem key={product.id} product={product} />
+            ))}
         </div>
       </div>
     </div>

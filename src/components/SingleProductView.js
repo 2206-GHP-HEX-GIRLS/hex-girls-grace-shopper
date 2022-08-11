@@ -18,8 +18,8 @@ const SingleProductView = () => {
 
   const _addToCart = (evt) => {
     evt.preventDefault();
-    console.log('added to cart');
     dispatch(addToCart(product));
+    // alert('added to cart!');
   };
 
   return (
