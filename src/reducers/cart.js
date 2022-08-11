@@ -1,9 +1,9 @@
-import axios from "axios";
+import axios from 'axios';
 
-const GET_CART = "GET_CART";
-const ADD_TO_CART = "ADD_TO_CART";
-const UPDATE_CART = "UPDATE_CART";
-const REMOVE_FROM_CART = "REMOVE_FROM_CART";
+const GET_CART = 'GET_CART';
+const ADD_TO_CART = 'ADD_TO_CART';
+const UPDATE_CART = 'UPDATE_CART';
+const REMOVE_FROM_CART = 'REMOVE_FROM_CART';
 
 const _getCart = (items) => {
   return {
@@ -36,9 +36,8 @@ const _removeFromCart = (item) => {
 export const getCart = () => {
   return async (dispatch) => {
     try {
-      const response = await axios.get("/api/cart");
-      console.log(response.data);
-      dispatch(_getCart(response.data));
+      const { data } = await axios.get('/api/cart');
+      dispatch(_getCart(data));
     } catch (err) {
       console.error(err);
     }
@@ -48,9 +47,8 @@ export const getCart = () => {
 export const addToCart = (item) => {
   return async (dispatch) => {
     try {
-      const response = await axios.post("/api/cart", item);
-      console.log(response.data);
-      dispatch(_addToCart(response.data));
+      const { data } = await axios.post('/api/cart', item);
+      dispatch(_addToCart(data));
     } catch (err) {
       console.error(err);
     }
@@ -60,9 +58,8 @@ export const addToCart = (item) => {
 export const removeFromCart = (item) => {
   return async (dispatch) => {
     try {
-      const response = await axios.delete(`/api/cart/${item.id}`);
-      console.log(response);
-      dispatch(_removeFromCart(response.data));
+      const { data } = await axios.delete(`/api/cart/${item.id}`);
+      dispatch(_removeFromCart(data));
     } catch (err) {
       console.error(err);
     }
@@ -73,7 +70,6 @@ export const updateCart = (item) => {
   return async (dispatch) => {
     try {
       const response = await axios.put(`/api/cart/${item.id}`, item);
-      console.log(response);
       dispatch(_updateCart(response.data));
     } catch (err) {
       console.error(err);
@@ -88,16 +84,9 @@ const cartReducer = (state = initialState, action) => {
     case GET_CART:
       return action.items;
     case ADD_TO_CART:
-      return [...state, action.item];
+      return action.item;
     case UPDATE_CART:
-      return [...state].map((item) => {
-        if (item.id === action.item.id) {
-          item = action.item;
-          return item;
-        } else {
-          return item;
-        }
-      });
+      return action.item;
     case REMOVE_FROM_CART:
       return [...state].filter((item) => item.id !== action.item.id);
     default:
