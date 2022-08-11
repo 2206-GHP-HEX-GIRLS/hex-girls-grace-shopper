@@ -1,16 +1,5 @@
 const router = require('express').Router();
 const { LineItem, Order, Product } = require('../db');
-const lineitem = require('../db/models/lineitem');
-// const product = require("../db/models/product");
-
-// router.get("/", async (req, res, next) => {
-//   try {
-//     const cart = await LineItem.findAll();
-//     res.json(cart);
-//   } catch (err) {
-//     next(err);
-//   }
-// });
 
 router.get('/', async (req, res, next) => {
   try {
@@ -74,10 +63,43 @@ router.post('/', async (req, res, next) => {
   }
 });
 
-router.put('/:id', async (req, res, next) => {
+router.put('/', async (req, res, next) => {
   try {
-    const updatedCartItem = await LineItem.findByPk(req.params.id);
-    res.json(await updatedCartItem.update(req.body));
+    let cart = await Order.findOne({
+      where: {
+        isPurchased: false,
+      },
+      include: [Product],
+    });
+    if (!cart) {
+      cart = await Order.create({
+        isPurchased: false,
+      });
+    }
+    let product = await LineItem.findOne({
+      where: {
+        orderId: cart.id,
+        productId: req.body.item.id,
+      },
+    });
+    const newQty = product.quantity + req.body.quantity;
+    console.log('NEW QTY', newQty);
+    console.log('product qty', product.quantity);
+    console.log('body qty', req.body.quantity);
+    if (newQty <= 0) {
+      await product.destroy();
+    } else {
+      await product.update({ quantity: newQty });
+    }
+    res.send(
+      await Order.findOne({
+        where: {
+          id: cart.id,
+        },
+        include: [Product],
+        order: [[Product, 'id', 'DESC']],
+      })
+    );
   } catch (err) {
     next(err);
   }

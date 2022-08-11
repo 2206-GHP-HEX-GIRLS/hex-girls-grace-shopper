@@ -66,10 +66,13 @@ export const removeFromCart = (item) => {
   };
 };
 
-export const updateCart = (item) => {
+export const updateCart = (item, quantity) => {
   return async (dispatch) => {
     try {
-      const response = await axios.put(`/api/cart/${item.id}`, item);
+      const response = await axios.put(`/api/cart/`, {
+        item,
+        quantity,
+      });
       dispatch(_updateCart(response.data));
     } catch (err) {
       console.error(err);
