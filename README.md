@@ -2,26 +2,41 @@
 
 ![Logo](./public/BooleanBakerLogo.png)
 
+<br/>
+
 ## **About**
 
 Boolean Baker is a full-featured e-commerce website built by a team of four amazing bakers. We have everything you need to satisfy that sweet tooth.
 
+<br/>
+
 ## **Table of Contents**
 
-- [Bakers](#Bakers)
-- [Getting Started](#Getting-Started)
-- [Starting Server](#Starting-Server)
-- [Ingredients](#Ingredients)
-- [Create React App](#Create-React-App)
-- [Heroku](#Heroku)
+- [**Welcome to Boolean Bakers**](#welcome-to-boolean-bakers)
+  - [**About**](#about)
+  - [**Table of Contents**](#table-of-contents)
+  - [**Bakers**](#bakers)
+  - [**Getting Started**](#getting-started)
+  - [**Starting Server**](#starting-server)
+  - [**Ingredients**](#ingredients)
+    - [React](#react)
+    - [Redux](#redux)
+    - [Node.js](#nodejs)
+    - [Express](#express)
+    - [PostgreSQL](#postgresql)
+    - [Create React App](#create-react-app)
+  - [**Heroku**](#heroku)
+
+<br/>
 
 ## **Bakers**
 
-> [Yukstor Mei](https://github.com/ymei0072) <br/>
+> [Yukstor Mei](https://github.com/ymei0072)  <br/>
 > [Dakota Fabro](https://github.com/dakotafabro) <br/>
 > [Eve Frances](https://github.com/L0tusPetal) <br/>
 > [Kimberly Ma](https://github.com/KimBuyCookies)
 
+<br/>
 
 ## **Getting Started**
 
@@ -37,17 +52,27 @@ Step 2: Create Database
 createdb bakery
 ```
 
-Step 3: Install
+Step 3: Seed
+
+```sh
+npm run
+```
+
+Step 4: Install
 
 ```sh
 npm install
 ```
 
-## Starting Server
+<br/>
+
+## **Starting Server**
 
 ```sh
 npm run start:dev
 ```
+
+<br/>
 
 ## **Ingredients**
 
@@ -91,83 +116,82 @@ npm run start:dev
 
 ### PostgreSQL
 
-[![PostgreSQL](https://skills.thijs.gg/icons?i=postgres)](hhttps://www.postgresql.org/)
+[![PostgreSQL](https://skills.thijs.gg/icons?i=postgres)](https://www.postgresql.org/)
 
 <!-- <https://www.postgresql.org/> -->
 
 - PostgreSQL is an open source object-relational database system that uses and extends the SQL language
 
-## **Create React App**
+### Create React App
 
-# Getting Started with Create React App
+<img src="https://create-react-app.dev/img/logo.svg" data-canonical-src="https://create-react-app.dev/" width="50" height="50" />
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+- Getting Started with Create React App
 
-## Available Scripts
+  -This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-In the project directory, you can run:
+- Available Scripts
 
-### `npm start`
+  - In the project directory, you can run:
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+    - `npm start:dev`
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+      - Runs the app in the development mode.
 
-### `npm test`
+      - Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+      - The page will reload when you make changes.
 
-### `npm run build`
+      - You may also see any lint errors in the console.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+    - `npm test`
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+      - Launches the test runner in the interactive watch mode.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+      - See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `npm run eject`
+    - `npm run build`
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+      - Builds the app for production to the `build` folder.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+      - It correctly bundles React in production mode and optimizes the build for the best performance.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+      - The build is minified and the filenames include the hashes.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+        Your app is ready to be deployed!
 
-## Learn More
+- See the section about [deployment](#Heroku) for more information.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+  - `npm run eject`
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+    **Note: this is a one-way operation. Once you `eject`, you can't go back!**
 
-### Code Splitting
+    - If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+    - Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
 
-### Analyzing the Bundle Size
+    - You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+- Analyzing the Bundle Size
 
-### Making a Progressive Web App
+  - This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+- Making a Progressive Web App
 
-### Advanced Configuration
+  - This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+- Advanced Configuration
 
-### Deployment
+  - This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+- `npm run build` fails to minify
 
-### `npm run build` fails to minify
+  - This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+<br/>
 
 ## **Heroku**
+
+[![Heroku](https://skillicons.dev/icons?i=heroku)](https://www.heroku.com/)
+
+Deployed on Heroku: https://booleanbakers.herokuapp.com/
