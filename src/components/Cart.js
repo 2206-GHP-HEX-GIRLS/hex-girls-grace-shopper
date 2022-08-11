@@ -26,7 +26,7 @@ const Cart = () => {
             ? cart.map((product) => (
                 <CartItem key={product.id} product={product} />
               ))
-            : "Loading..."}
+            : "No items in cart!"}
         </div>
       </div>
     </div>

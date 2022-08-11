@@ -13,8 +13,11 @@ import AddProduct from "./AddProduct";
 import EditProduct from "./EditProduct";
 import LogIn from "./LogIn";
 import Category from "./Category";
+import { useSelector } from "react-redux";
 
 const Paths = () => {
+  let loggedInStatus = useSelector((state) => state.status);
+
   return (
     <Router>
       <div className="Paths">
@@ -22,20 +25,37 @@ const Paths = () => {
           <Header />
           <NavBar />
         </div>
-        <Routes>
-          <Route path="/products/category/:category" element={<Category />} />
-          <Route path="/products" element={<AllProductsView />} />
-          <Route path="/products/:id" element={<SingleProductView />} />
-          <Route path="/products/:id/review" element={<ReviewPage />} />
-          <Route path="*" element={<NotFound />} />
-          <Route path="/" element={<LogIn />} />
-          <Route path="/home" element={<Home />} />
-          <Route path="/register" element={<Register />} />
-          <Route path="/cart" element={<Cart />} />
-          <Route exact path="/products/add" element={<AddProduct />} />
-          <Route exact path="/products/:id/edit" element={<EditProduct />} />
-          <Route path="/login" element={<LogIn />} />
-        </Routes>
+        {loggedInStatus ? (
+          <Routes>
+            <Route path="/products/category/:category" element={<Category />} />
+            <Route path="/products" element={<AllProductsView />} />
+            <Route path="/products/:id" element={<SingleProductView />} />
+            <Route path="/products/:id/review" element={<ReviewPage />} />
+            <Route path="*" element={<NotFound />} />
+            <Route path="/home" element={<Home />} />
+            <Route path="/" element={<Home />} />
+            <Route path="/register" element={<Register />} />
+            <Route path="/cart" element={<Cart />} />
+            <Route exact path="/products/add" element={<AddProduct />} />
+            <Route exact path="/products/:id/edit" element={<EditProduct />} />
+            <Route path="/login" element={<Home />} />
+          </Routes>
+        ) : (
+          <Routes>
+            <Route path="/products/category/:category" element={<NotFound />} />
+            <Route path="/products" element={<NotFound />} />
+            <Route path="/products/:id" element={<NotFound />} />
+            <Route path="/products/:id/review" element={<NotFound />} />
+            <Route path="*" element={<NotFound />} />
+            <Route path="/home" element={<NotFound />} />
+            <Route path="/register" element={<Register />} />
+            <Route path="/cart" element={<NotFound />} />
+            <Route exact path="/products/add" element={<NotFound />} />
+            <Route exact path="/products/:id/edit" element={<NotFound />} />
+            <Route path="/" element={<LogIn />} />
+            <Route path="/login" element={<LogIn />} />
+          </Routes>
+        )}
       </div>
     </Router>
   );
