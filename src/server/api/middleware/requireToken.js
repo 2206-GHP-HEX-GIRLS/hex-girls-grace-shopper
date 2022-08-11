@@ -1,10 +1,11 @@
 const getAuth = require("firebase/auth");
+const User = require("../../db/models/user");
 
 const requireToken = async (req, res, next) => {
-  const uid = req.headers.authorization;
+  // const token = req.headers.authorization;
   try {
-    const userRecord = await getAuth().getUser(uid);
-    req.user = userRecord;
+    // const user = await User;
+    // req.user = user;
     next();
   } catch (error) {
     next(error);

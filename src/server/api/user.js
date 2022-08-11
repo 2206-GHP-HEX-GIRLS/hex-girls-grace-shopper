@@ -3,7 +3,6 @@ const { User } = require("../db");
 const bcrypt = require("bcrypt");
 
 router.post("/guest", async (req, res, next) => {
-  console.log("req body", req.body.accountId);
   try {
     const newGuest = await User.create({
       username: `guest${req.body.accountId}`,
@@ -20,12 +19,16 @@ router.post("/user", async (req, res, next) => {
   try {
     const user = await User.findOne({
       where: {
-        username: req.body.username,
+        username: req.body.user.username,
       },
     });
     if (user) {
-      const match = await bcrypt.compare(req.body.password, user.password);
+      const match = await bcrypt.compare(req.body.user.password, user.password);
       if (match) {
+        user.password = await bcrypt.hash(user.password, 5);
+        res.json(user);
+      } else if (req.body.user.password === user.password) {
+        user.password = await bcrypt.hash(user.password, 5);
         res.json(user);
       }
     }
@@ -40,6 +43,10 @@ router.post("/", async (req, res, next) => {
     const newUser = await User.create({
       username: req.body.username,
       password: hashedPwd,
+      accountId: req.body.accountId,
+      thirdPartyUsername: req.body.thirdPartyUsername
+        ? req.body.thirdPartyUsername
+        : null,
     });
     res.status(201).json(newUser);
   } catch (err) {

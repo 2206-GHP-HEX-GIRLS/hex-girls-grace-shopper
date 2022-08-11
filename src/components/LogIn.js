@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import "./css/LogIn.css";
-import { fetchUser } from "../reducers/user";
-import { useDispatch } from "react-redux";
+import { createUser, fetchUser } from "../reducers/user";
+import { useDispatch, useSelector } from "react-redux";
 import firebase from "firebase/compat/app";
 import "firebase/compat/firestore";
 import "firebase/compat/auth";
-import { useAuthState } from "react-firebase-hooks/auth";
 import { setGuest } from "../reducers/guest";
 import { useNavigate } from "react-router-dom";
+import { logIn } from "../reducers/loggedIn";
 
 firebase.initializeApp({
   apiKey: "AIzaSyAXsNmNFLAlhe9llgpU7lkayqvt4yuPhb0",
@@ -22,9 +22,9 @@ firebase.initializeApp({
 export const auth = firebase.auth();
 
 const LogIn = () => {
-  const [googleUser] = useAuthState(auth);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  let user = useSelector((state) => state.user);
 
   let [userInfo, setUserInfo] = useState({
     username: "",
@@ -32,8 +32,8 @@ const LogIn = () => {
     accountId: 0,
   });
 
-  let [errMsg, setErrMsg] = useState("");
   let [success, setSuccess] = useState(false);
+  let [errMsg, setErrMsg] = useState("");
 
   useEffect(() => {
     setErrMsg("");
@@ -50,9 +50,19 @@ const LogIn = () => {
     auth.signInWithPopup(provider);
     firebase.auth().onAuthStateChanged((user) => {
       if (user) {
-        setSuccess(true);
+        dispatch(
+          createUser({
+            username: user.uid,
+            password: user.uid,
+            accountId: accountNumGen(),
+            thirdPartyUsername: user.displayName.replace(" ", ""),
+          })
+        )
+          .then(setSuccess(true))
+          .then(window.localStorage.setItem("CURRENT_USER_ACCT", user.uid))
+          .then(window.localStorage.setItem("userToken", user.uid))
+          .then(dispatch(logIn()));
       }
-      window.localStorage.setItem("CURRENT_USER", user.uid);
     });
   };
 
@@ -67,87 +77,67 @@ const LogIn = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    try {
-      dispatch(fetchUser(userInfo));
-      // setSuccess(true); // THIS NEEDS TO CHANGE ONLY AFTER SUCCESSFUL LOGIN
-      setUserInfo({ username: "", password: "" });
-    } catch (err) {
-      if (!err.response) {
-        setErrMsg("No Server Response");
-      } else if (err.response.status === 400) {
-        setErrMsg("Missing Username or Password");
-      } else if (err.response.status === 401) {
-        setErrMsg("Unauthorized");
-      } else {
-        setErrMsg("Login Failed");
-      }
-    }
+    dispatch(fetchUser(userInfo))
+      .then(setSuccess(true))
+      .then(window.localStorage.setItem("CURRENT_USER_ACCT", user.accountId))
+      .then(window.localStorage.setItem("userToken", user.password))
+      .then(setUserInfo({ username: "", password: "" }))
+      .then(dispatch(logIn()));
   };
 
-  function SignOut() {
-    return (
-      auth.currentUser && (
-        <button className="signOutButton" onClick={() => auth.signOut()}>
-          Sign Out
-        </button>
-      )
-    );
-  }
+  // function SignOut() {
+  //   return (
+  //     auth.currentUser && (
+  //       <button className="signOutButton" onClick={() => auth.signOut()}>
+  //         Sign Out
+  //       </button>
+  //     )
+  //   );
+  // }
 
   const accountNumGen = () => {
-    return Math.floor(Math.random() * 10000000) + 1;
+    return Math.floor(Math.random() * 10000000000) + 1;
   };
 
   const setGuestInfo = () => {
     const guestCookie = accountNumGen();
-    dispatch(setGuest(guestCookie));
-    window.sessionStorage.setItem("userSession", guestCookie);
+    dispatch(setGuest(guestCookie))
+      .then(window.sessionStorage.setItem("userToken", guestCookie))
+      .then(window.localStorage.setItem("CURRENT_USER_ACCT", guestCookie))
+      .then(dispatch(logIn()));
   };
 
   return (
     <div className="LogIn container">
-      {googleUser || success ? (
-        <section>
-          <h1>You are logged in!</h1>
+      <section>
+        <p className={errMsg ? "errmsg" : "offscreen"}>{errMsg}</p>
+        <h1>Sign In</h1>
+        <form onSubmit={handleSubmit} onChange={handleChange}>
+          <label htmlFor="username">Username:</label>
+          <input type="text" name="username" autoComplete="off" required />
+
+          <label htmlFor="password">Password:</label>
+          <input name="password" type="password" id="password" required />
+          <button type="submit">Sign In</button>
+        </form>
+
+        <button className="mb-3" onClick={signInWithGoogle}>
+          Sign in with Google
+        </button>
+
+        <div>
+          Need an Account?
           <br />
-          <p>
-            <Link to="/home">Go to Home</Link>
-          </p>
-          <>
-            <SignOut />
-          </>
-        </section>
-      ) : (
-        <section>
-          <p className={errMsg ? "errmsg" : "offscreen"}>{errMsg}</p>
-          <h1>Sign In</h1>
-          <form onSubmit={handleSubmit} onChange={handleChange}>
-            <label htmlFor="username">Username:</label>
-            <input type="text" name="username" autoComplete="off" required />
-
-            <label htmlFor="password">Password:</label>
-            <input name="password" type="password" id="password" required />
-            <button>Sign In</button>
-          </form>
-
-          <button className="mb-3" onClick={signInWithGoogle}>
-            Sign in with Google
-          </button>
-
-          <div>
-            Need an Account?
-            <br />
-            <div className="line">
-              <Link to="/register">Sign Up</Link>
-            </div>
-            <div>
-              <Link to="/home" onClick={setGuestInfo}>
-                Continue As Guest
-              </Link>
-            </div>
+          <div className="line">
+            <Link to="/register">Sign Up</Link>
           </div>
-        </section>
-      )}
+          <div>
+            <Link to="/home" onClick={setGuestInfo}>
+              Continue As Guest
+            </Link>
+          </div>
+        </div>
+      </section>
     </div>
   );
 };

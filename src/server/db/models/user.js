@@ -8,7 +8,7 @@ const User = db.define("user", {
     allowNull: false,
   },
   password: {
-    type: Sequelize.STRING,
+    type: Sequelize.TEXT,
     allowNull: false,
   },
   // email: {
@@ -26,6 +26,9 @@ const User = db.define("user", {
   },
   accountId: {
     type: Sequelize.BIGINT,
+  },
+  thirdPartyUsername: {
+    type: Sequelize.TEXT,
   },
 });
 

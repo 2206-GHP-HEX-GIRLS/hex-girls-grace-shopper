@@ -27,7 +27,9 @@ export const createUser = (user) => {
 
 export const fetchUser = (user) => {
   return async (dispatch) => {
-    const { data } = await axios.post(`/api/users/user`, user);
+    const { data } = await axios.post(`/api/users/user`, {
+      user: user,
+    });
     dispatch(setUser(data));
   };
 };

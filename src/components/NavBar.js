@@ -3,8 +3,19 @@ import { Link } from "react-router-dom";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import "./css/NavBar.css";
 import { auth } from "./LogIn";
+import { useSelector, useDispatch } from "react-redux";
+import { logOut } from "../reducers/loggedIn";
 
 const NavBar = () => {
+  const dispatch = useDispatch();
+  const loggedInStatus = useSelector((state) => state.status);
+
+  const signOut = () => {
+    auth.signOut();
+    dispatch(logOut());
+    window.localStorage.clear();
+  };
+
   return (
     <nav className="navbar navbar-expand-lg bg-light NavBarCustom">
       <div className="container-fluid">
@@ -36,28 +47,46 @@ const NavBar = () => {
                     Create Account
                   </Link>
                 </li>
-                <li>
-                  <Link className="dropdown-item" to="/">
-                    Orders
-                  </Link>
-                </li>
+                {loggedInStatus ? (
+                  <li>
+                    <Link className="dropdown-item" to="/">
+                      Orders
+                    </Link>
+                  </li>
+                ) : (
+                  ""
+                )}
+
                 <li>
                   <Link className="dropdown-item" to="/login">
                     Log In
                   </Link>
                 </li>
-                <li onClick={() => auth.signOut()}>
-                  <Link className="dropdown-item" to="/">
-                    Sign Out
-                  </Link>
-                </li>
+                {loggedInStatus ? (
+                  <li onClick={signOut}>
+                    <Link className="dropdown-item" to="/">
+                      Sign Out
+                    </Link>
+                  </li>
+                ) : (
+                  ""
+                )}
               </ul>
             </li>
-            <li className="nav-item">
-              <Link className="nav-link active" aria-current="page" to="/cart">
-                <ShoppingCartIcon />
-              </Link>
-            </li>
+            {loggedInStatus ? (
+              <li className="nav-item">
+                <Link
+                  className="nav-link active"
+                  aria-current="page"
+                  to="/cart"
+                >
+                  <ShoppingCartIcon style={{ color: "white" }} />
+                </Link>
+              </li>
+            ) : (
+              ""
+            )}
+
             <li className="nav-item">
               <Link className="nav-link" to="/products">
                 Products
