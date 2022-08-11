@@ -1,5 +1,7 @@
 const router = require('express').Router();
 const { Product, Review } = require('../db/');
+const isAdmin = require('./middleware/isAdmin');
+const requireToken = require('./middleware/requireToken');
 
 //display all products
 router.get('/', async (req, res, next) => {
@@ -29,7 +31,7 @@ router.get('/:id', async (req, res, next) => {
 });
 
 //create product ADMINS ONLY
-router.post('/', async (req, res, next) => {
+router.post('/', isAdmin, requireToken, async (req, res, next) => {
   try {
     res.status(201).send(await Product.create(req.body));
   } catch (error) {
