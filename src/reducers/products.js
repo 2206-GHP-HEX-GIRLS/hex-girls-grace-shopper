@@ -45,7 +45,7 @@ const initialState = [];
 const productsReducer = (state = initialState, action) => {
   switch (action.type) {
     case GOT_PRODUCTS:
-      return [...state, action.product];
+      return action.products;
     case CREATE_PRODUCT:
       return [...state, action.product];
     default:
