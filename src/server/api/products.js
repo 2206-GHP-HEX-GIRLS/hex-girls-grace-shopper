@@ -51,7 +51,7 @@ router.delete('/:id', isAdmin, requireToken, async (req, res, next) => {
 });
 
 //update product ADMINS ONLY
-router.put('/:id', async (req, res, next) => {
+router.put('/:id', isAdmin, requireToken, async (req, res, next) => {
   try {
     const product = await Product.findByPk(req.params.id);
     res.send(await product.update(req.body));
