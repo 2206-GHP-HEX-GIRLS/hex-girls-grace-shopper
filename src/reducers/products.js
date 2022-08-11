@@ -19,7 +19,6 @@ const createProduct = (product) => {
 
 //thunk creator
 export const addProduct = (product) => {
-  console.log("HERE OMG", product);
   return async (dispatch) => {
     const response = await axios.post("/api/products", product);
     console.log(response.data);
@@ -46,7 +45,7 @@ const initialState = [];
 const productsReducer = (state = initialState, action) => {
   switch (action.type) {
     case GOT_PRODUCTS:
-      return action.products;
+      return [...state, action.product];
     case CREATE_PRODUCT:
       return [...state, action.product];
     default:

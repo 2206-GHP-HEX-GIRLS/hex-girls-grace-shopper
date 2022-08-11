@@ -1,8 +1,18 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import './css/CartTotals.css';
+import React from "react";
+import { useNavigate, Link } from "react-router-dom";
+import "./css/CartTotals.css";
 
 const CartTotals = () => {
+  const navigate = useNavigate();
+  const redirect = () => {
+    navigate("/confirmorder");
+  };
+
+  const checkout = (e) => {
+    e.preventDefault();
+    console.log("checking out things");
+    redirect();
+  };
   return (
     <div className="CartTotals container ">
       <div className="row align-items-center">
@@ -17,9 +27,9 @@ const CartTotals = () => {
           <h5>Total: $42.00</h5>
         </div>
         <div className="col-sm-4">
-          <Link to="/confirmorder">
-            <button className="checkout">Checkout</button>
-          </Link>
+          <button className="checkout" onClick={checkout}>
+            Checkout
+          </button>
         </div>
       </div>
     </div>
