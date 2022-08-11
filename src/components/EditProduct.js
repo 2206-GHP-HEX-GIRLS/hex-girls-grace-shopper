@@ -16,9 +16,12 @@ const EditProduct = () => {
   }, [dispatch]);
 
   let [editedProduct, setEditedProduct] = useState({
-    name: "",
-    price: 0.0,
-    description: "",
+    name: product.name,
+    price: product.price,
+    description: product.description,
+    quantity: product.quantity,
+    category: product.category,
+    imageUrl: product.imageUrl,
   });
 
   const handleChange = (evt) => {
@@ -48,7 +51,7 @@ const EditProduct = () => {
               required
               name="name"
               type="text"
-              value={product.name}
+              value={editedProduct.name}
               onChange={handleChange}
             />
 
@@ -58,7 +61,7 @@ const EditProduct = () => {
               name="price"
               type="number"
               placeholder="0.00"
-              value={product.price}
+              value={editedProduct.price}
               onChange={handleChange}
             />
 
@@ -67,7 +70,7 @@ const EditProduct = () => {
               required
               name="description"
               type="text"
-              value={product.description}
+              value={editedProduct.description}
               onChange={handleChange}
             />
           </div>
@@ -78,14 +81,14 @@ const EditProduct = () => {
               name="quantity"
               type="number"
               placeholder="0"
-              value={product.quantity}
+              value={editedProduct.quantity}
               onChange={handleChange}
             />
 
             <label>Product Category:</label>
             <select
               name="category"
-              value={product.category}
+              value={editedProduct.category}
               onChange={handleChange}
             >
               <option>Cookies</option>
@@ -98,7 +101,7 @@ const EditProduct = () => {
               name="ImageUrl"
               type="text"
               placeholder="https://"
-              value={product.imageUrl}
+              value={editedProduct.imageUrl}
               onChange={handleChange}
             />
           </div>

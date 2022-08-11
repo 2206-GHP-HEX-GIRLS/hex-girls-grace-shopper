@@ -32,31 +32,32 @@ const Paths = () => {
             <Route path="/products" element={<AllProductsView />} />
             <Route path="/products/:id" element={<SingleProductView />} />
             <Route path="/products/:id/review" element={<ReviewPage />} />
-            <Route path="*" element={<Home />} />
+            <Route path="*" element={<NotFound />} />
             <Route path="/home" element={<Home />} />
             <Route path="/" element={<Home />} />
             <Route path="/register" element={<Register />} />
             <Route path="/cart" element={<Cart />} />
-            <Route exact path="/products/add" element={<AddProduct />} />
-            <Route exact path="/products/:id/edit" element={<EditProduct />} />
+            <Route path="/products/add" element={<AddProduct />} />
+            <Route path="/products/:id/edit" element={<EditProduct />} />
             <Route path="/login" element={<Home />} />
             <Route path="/confirmorder" element={<OrderConfirm />} />
           </Routes>
         ) : (
           <Routes>
-            <Route path="/products/category/:category" element={<NotFound />} />
+            {/* <Route path="/products/category/:category" element={<NotFound />} />
             <Route path="/products" element={<NotFound />} />
             <Route path="/products/:id" element={<NotFound />} />
-            <Route path="/products/:id/review" element={<NotFound />} />
-            <Route path="*" element={<NotFound />} />
-            <Route path="/home" element={<NotFound />} />
+            <Route path="/products/:id/review" element={<NotFound />} /> */}
+            <Route path="*" element={<LogIn />} />
+            <Route path="/register" element={<Register />} />
+            {/* <Route path="/home" element={<NotFound />} />
             <Route path="/register" element={<Register />} />
             <Route path="/cart" element={<NotFound />} />
             <Route exact path="/products/add" element={<NotFound />} />
-            <Route exact path="/products/:id/edit" element={<NotFound />} />
+            <Route exact path="/products/:id/edit" element={<NotFound />} /> */}
             <Route path="/" element={<LogIn />} />
             <Route path="/login" element={<LogIn />} />
-            <Route path="/confirmorder" element={<OrderConfirm />} />
+            {/* <Route path="/confirmorder" element={<OrderConfirm />} /> */}
           </Routes>
         )}
       </div>
