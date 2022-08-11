@@ -33,10 +33,12 @@ const Paths = () => {
             <Route path="/products/:id/review" element={<ReviewPage />} />
             <Route path="*" element={<NotFound />} />
             <Route path="/home" element={<Home />} />
+            <Route path="/" element={<Home />} />
             <Route path="/register" element={<Register />} />
             <Route path="/cart" element={<Cart />} />
             <Route exact path="/products/add" element={<AddProduct />} />
             <Route exact path="/products/:id/edit" element={<EditProduct />} />
+            <Route path="/login" element={<Home />} />
           </Routes>
         ) : (
           <Routes>
@@ -46,7 +48,7 @@ const Paths = () => {
             <Route path="/products/:id/review" element={<NotFound />} />
             <Route path="*" element={<NotFound />} />
             <Route path="/home" element={<NotFound />} />
-            <Route path="/register" element={<NotFound />} />
+            <Route path="/register" element={<Register />} />
             <Route path="/cart" element={<NotFound />} />
             <Route exact path="/products/add" element={<NotFound />} />
             <Route exact path="/products/:id/edit" element={<NotFound />} />

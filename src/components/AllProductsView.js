@@ -4,6 +4,7 @@ import { getProducts } from "../reducers/products";
 import AllProductsCard from "./AllProductsCard";
 import SearchBar from "./SearchBar";
 import "./css/AllProductsView.css";
+import { Link } from 'react-router-dom';
 
 const AllProductsView = () => {
   const products = useSelector((state) => state.products);
@@ -41,6 +42,7 @@ const AllProductsView = () => {
           : products.map((product) => (
               <AllProductsCard key={product.id} product={product} />
             ))}
+        <Link to={`/products/add`}>Add Product</Link>
       </div>
     </div>
   );

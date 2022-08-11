@@ -1,9 +1,9 @@
-import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { getSingleProduct } from '../reducers/singleProduct';
-import { Link, useParams } from 'react-router-dom';
-import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
-import './css/SingleProductView.css';
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { getSingleProduct } from "../reducers/singleProduct";
+import { Link, useParams } from "react-router-dom";
+import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
+import "./css/SingleProductView.css";
 
 const SingleProductView = () => {
   let { id } = useParams();
@@ -13,11 +13,11 @@ const SingleProductView = () => {
 
   useEffect(() => {
     dispatch(getSingleProduct(id));
-  }, [id]);
+  }, [dispatch, id]);
 
   const _addToCart = (evt) => {
     evt.preventDefault();
-    console.log('added to cart');
+    console.log("added to cart");
     // dispatch(addToCart(product))
   };
 
@@ -51,6 +51,7 @@ const SingleProductView = () => {
                 Add To Cart <ShoppingCartIcon />
               </button>
               <Link to={`/products/${product.id}/review`}>Write a review!</Link>
+              <Link to={`/products/${product.id}/edit`}>Edit Product</Link>
             </div>
             <div>
               <br></br>

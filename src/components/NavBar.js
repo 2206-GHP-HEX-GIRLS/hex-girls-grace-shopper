@@ -42,11 +42,16 @@ const NavBar = () => {
                 Account
               </Link>
               <ul className="dropdown-menu">
-                <li>
-                  <Link className="dropdown-item" to="/register">
-                    Create Account
-                  </Link>
-                </li>
+                {!loggedInStatus ? (
+                  <li>
+                    <Link className="dropdown-item" to="/register">
+                      Create Account
+                    </Link>
+                  </li>
+                ) : (
+                  ""
+                )}
+
                 {loggedInStatus ? (
                   <li>
                     <Link className="dropdown-item" to="/">
@@ -86,12 +91,15 @@ const NavBar = () => {
             ) : (
               ""
             )}
-
-            <li className="nav-item">
-              <Link className="nav-link" to="/products">
-                Products
-              </Link>
-            </li>
+            {loggedInStatus ? (
+              <li className="nav-item">
+                <Link className="nav-link" to="/products">
+                  Products
+                </Link>
+              </li>
+            ) : (
+              ""
+            )}
           </ul>
         </div>
       </div>
