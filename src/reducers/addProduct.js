@@ -16,8 +16,9 @@ export const addProduct = (product) => {
   return async (dispatch) => {
     try {
       const { data: created } = await axios.post(
-        '/api/products',
+        `/api/products`,
         {
+          // body: product,
           headers: {
             authorization: window.localstorage.getItem('CURRENT_USER_ACCT'),
           },
