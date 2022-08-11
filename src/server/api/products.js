@@ -1,5 +1,7 @@
 const router = require('express').Router();
 const { Product, Review } = require('../db/');
+const isAdmin = require('./middleware/isAdmin');
+const requireToken = require('./middleware/requireToken');
 
 //display all products
 router.get('/', async (req, res, next) => {
@@ -29,16 +31,25 @@ router.get('/:id', async (req, res, next) => {
 });
 
 //create product ADMINS ONLY
-router.post('/', async (req, res, next) => {
+router.post('/', isAdmin, async (req, res, next) => {
+  const { price, quantity, description, category, name } = req.body;
   try {
-    res.status(201).send(await Product.create(req.body));
+    res.status(201).send(
+      await Product.create({
+        name,
+        price,
+        quantity,
+        description,
+        category,
+      })
+    );
   } catch (error) {
     next(error);
   }
 });
 
 //delete product ADMINS ONLY
-router.delete('/:id', async (req, res, next) => {
+router.delete('/:id', isAdmin, requireToken, async (req, res, next) => {
   try {
     const product = await Product.findByPk(req.params.id);
     await product.destroy();
@@ -49,7 +60,7 @@ router.delete('/:id', async (req, res, next) => {
 });
 
 //update product ADMINS ONLY
-router.put('/:id', async (req, res, next) => {
+router.put('/:id', isAdmin, requireToken, async (req, res, next) => {
   try {
     const product = await Product.findByPk(req.params.id);
     res.send(await product.update(req.body));

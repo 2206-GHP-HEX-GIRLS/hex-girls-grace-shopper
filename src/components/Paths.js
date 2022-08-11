@@ -1,19 +1,20 @@
-import React from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import AllProductsView from "./AllProductsView";
-import SingleProductView from "./SingleProductView";
-import NotFound from "./NotFound";
-import Header from "./Header";
-import Home from "./Home";
-import NavBar from "./NavBar";
-import Cart from "./Cart";
-import Register from "./Register";
-import ReviewPage from "./ReviewPage";
-import AddProduct from "./AddProduct";
-import EditProduct from "./EditProduct";
-import LogIn from "./LogIn";
-import Category from "./Category";
-import { useSelector } from "react-redux";
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import AllProductsView from './AllProductsView';
+import SingleProductView from './SingleProductView';
+import NotFound from './NotFound';
+import Header from './Header';
+import Home from './Home';
+import NavBar from './NavBar';
+import Cart from './Cart';
+import Register from './Register';
+import ReviewPage from './ReviewPage';
+import AddProduct from './AddProduct';
+import EditProduct from './EditProduct';
+import LogIn from './LogIn';
+import Category from './Category';
+import OrderConfirm from './OrderConfirm';
+import { useSelector } from 'react-redux';
 
 const Paths = () => {
   let loggedInStatus = useSelector((state) => state.status);
@@ -39,6 +40,7 @@ const Paths = () => {
             <Route exact path="/products/add" element={<AddProduct />} />
             <Route exact path="/products/:id/edit" element={<EditProduct />} />
             <Route path="/login" element={<Home />} />
+            <Route path="/confirmorder" element={<OrderConfirm />} />
           </Routes>
         ) : (
           <Routes>
@@ -54,6 +56,7 @@ const Paths = () => {
             <Route exact path="/products/:id/edit" element={<NotFound />} />
             <Route path="/" element={<LogIn />} />
             <Route path="/login" element={<LogIn />} />
+            <Route path="/confirmorder" element={<OrderConfirm />} />
           </Routes>
         )}
       </div>

@@ -1,7 +1,7 @@
-import axios from "axios";
+import axios from 'axios';
 
 //action type
-const CREATE_PRODUCT = "CREATE_PRODUCT";
+const CREATE_PRODUCT = 'CREATE_PRODUCT';
 
 //action creator
 const createProduct = (product) => {
@@ -15,10 +15,19 @@ const createProduct = (product) => {
 export const addProduct = (product) => {
   return async (dispatch) => {
     try {
-      const { data: created } = await axios.post("/api/products", product);
+      const { data: created } = await axios.post(
+        `/api/products`,
+        {
+          // body: product,
+          headers: {
+            authorization: window.localstorage.getItem('CURRENT_USER_ACCT'),
+          },
+        },
+        product
+      );
       dispatch(createProduct(created));
     } catch (error) {
-      console.error("Error adding product to DB!", error);
+      console.error('Error adding product to DB!', error);
     }
   };
 };

@@ -1,18 +1,18 @@
-import React, { useState } from "react";
-import { addProduct } from "../reducers/addProduct";
-import { useDispatch } from "react-redux";
-import { Link } from "react-router-dom";
-import "./css/AddProduct.css";
+import React, { useState } from 'react';
+import { addProduct } from '../reducers/addProduct';
+import { useDispatch } from 'react-redux';
+import { Link } from 'react-router-dom';
+import './css/AddProduct.css';
 
 const AddProduct = () => {
   const dispatch = useDispatch();
   let [product, setProduct] = useState({
-    name: "",
+    name: '',
     price: 0.0,
-    description: "",
+    description: '',
     quantity: 0,
-    category: "",
-    imageUrl: "",
+    category: '',
+    imageUrl: '',
   });
 
   const handleChange = (evt) => {
@@ -25,40 +25,47 @@ const AddProduct = () => {
 
   const handleSubmit = (evt) => {
     evt.preventDefault();
-    setProduct({
-      name: "",
-      price: 0.0,
-      description: "",
-      quantity: 0,
-      category: "",
-      imageUrl: "",
-    });
     dispatch(addProduct(product));
+    setProduct({
+      name: '',
+      price: 0.0,
+      description: '',
+      quantity: 0,
+      category: '',
+      imageUrl: '',
+    });
   };
 
   return (
     <div className="AddProduct">
       <h2>Add Product</h2>
-      <form
-        id="createProduct"
-        className="container"
-        onSubmit={handleSubmit}
-        onChange={handleChange}
-      >
+      <form id="createProduct" className="container" onSubmit={handleSubmit}>
         <div className="row">
           <div className="col-sm-6">
             <label>Product Name:</label>
-            <input required name="name" type="text" />
+            <input required name="name" type="text" onChange={handleChange} />
 
             <label>Product Price:</label>
-            <input required name="price" type="number" placeholder="0.00" />
+            <input
+              required
+              name="price"
+              type="number"
+              placeholder="0.00"
+              onChange={handleChange}
+            />
 
             <label>Product Description:</label>
             <textarea required name="description" type="text" />
           </div>
           <div className="col-sm-6">
             <label>Product Quantity:</label>
-            <input required name="quantity" type="number" placeholder="0" />
+            <input
+              required
+              name="quantity"
+              type="number"
+              placeholder="0"
+              onChange={handleChange}
+            />
 
             <label>Product Category:</label>
             <select name="category" onChange={handleChange}>
@@ -68,7 +75,12 @@ const AddProduct = () => {
             </select>
 
             <label>ImageUrl:</label>
-            <input name="ImageUrl" type="text" placeholder="https://" />
+            <input
+              name="ImageUrl"
+              type="text"
+              placeholder="https://"
+              onChange={handleChange}
+            />
           </div>
         </div>
 
