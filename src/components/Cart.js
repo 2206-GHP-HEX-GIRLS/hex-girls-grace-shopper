@@ -9,6 +9,14 @@ const Cart = () => {
   const cart = useSelector((state) => state.cart.products);
   const dispatch = useDispatch();
 
+  const totalPrice = () => {
+    let total = 0;
+    cart.map((product) => {
+      total += product.price * product.quantity;
+    });
+    return total;
+  };
+
   useEffect(() => {
     dispatch(getCart());
   }, [dispatch]);
@@ -19,7 +27,7 @@ const Cart = () => {
       <div className="row">
         <div className="col-sm-6">
           {' '}
-          <CartTotals />
+          <CartTotals price={totalPrice} />
         </div>
         <div className="col-sm-6 cart-items">
           {cart &&

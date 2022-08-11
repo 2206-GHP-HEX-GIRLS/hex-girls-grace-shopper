@@ -83,9 +83,6 @@ router.put('/', async (req, res, next) => {
       },
     });
     const newQty = product.quantity + req.body.quantity;
-    console.log('NEW QTY', newQty);
-    console.log('product qty', product.quantity);
-    console.log('body qty', req.body.quantity);
     if (newQty <= 0) {
       await product.destroy();
     } else {
