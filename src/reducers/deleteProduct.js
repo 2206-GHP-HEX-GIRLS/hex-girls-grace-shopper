@@ -15,10 +15,10 @@ const deletedProduct = (product) => {
 export const deleteProduct = (id) => {
   return async (dispatch) => {
     try {
-      const { data: products } = await axios.delete(`/api/students/${id}`);
+      const { data: products } = await axios.delete(`/api/products/${id}`);
       dispatch(deletedProduct(products));
     } catch (error) {
-      console.log("Error deleting Student from DB", error);
+      console.log("Error deleting Product from DB", error);
     }
   };
 };

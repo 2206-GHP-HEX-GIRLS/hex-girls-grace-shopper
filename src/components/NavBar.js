@@ -42,15 +42,9 @@ const NavBar = () => {
                 Account
               </Link>
               <ul className="dropdown-menu">
-                {!loggedInStatus ? (
-                  <li>
-                    <Link className="dropdown-item" to="/register">
-                      Create Account
-                    </Link>
-                  </li>
-                ) : (
-                  ""
-                )}
+                <Link className="dropdown-item" to="/register">
+                  <li>Create Account</li>
+                </Link>
 
                 {loggedInStatus ? (
                   <li>

@@ -1,10 +1,10 @@
-const router = require('express').Router();
-const { Product, Review } = require('../db/');
-const isAdmin = require('./middleware/isAdmin');
-const requireToken = require('./middleware/requireToken');
+const router = require("express").Router();
+const { Product, Review } = require("../db/");
+// const isAdmin = require('./middleware/isAdmin');
+// const requireToken = require('./middleware/requireToken');
 
 //display all products
-router.get('/', async (req, res, next) => {
+router.get("/", async (req, res, next) => {
   try {
     const allProducts = await Product.findAll();
     res.json(allProducts);
@@ -14,7 +14,7 @@ router.get('/', async (req, res, next) => {
 });
 
 //display single product
-router.get('/:id', async (req, res, next) => {
+router.get("/:id", async (req, res, next) => {
   try {
     const product = await Product.findOne({
       where: {
@@ -31,25 +31,18 @@ router.get('/:id', async (req, res, next) => {
 });
 
 //create product ADMINS ONLY
-router.post('/', isAdmin, async (req, res, next) => {
-  const { price, quantity, description, category, name } = req.body;
+router.post("/", async (req, res, next) => {
+  console.log("POSTING");
   try {
-    res.status(201).send(
-      await Product.create({
-        name,
-        price,
-        quantity,
-        description,
-        category,
-      })
-    );
+    const product = await Product.create(req.body);
+    res.json(product);
   } catch (error) {
     next(error);
   }
 });
 
 //delete product ADMINS ONLY
-router.delete('/:id', isAdmin, requireToken, async (req, res, next) => {
+router.delete("/:id", async (req, res, next) => {
   try {
     const product = await Product.findByPk(req.params.id);
     await product.destroy();
@@ -60,7 +53,7 @@ router.delete('/:id', isAdmin, requireToken, async (req, res, next) => {
 });
 
 //update product ADMINS ONLY
-router.put('/:id', isAdmin, requireToken, async (req, res, next) => {
+router.put("/:id", async (req, res, next) => {
   try {
     const product = await Product.findByPk(req.params.id);
     res.send(await product.update(req.body));
@@ -70,7 +63,7 @@ router.put('/:id', isAdmin, requireToken, async (req, res, next) => {
 });
 
 //post new review
-router.post('/:id/review', async (req, res, next) => {
+router.post("/:id/review", async (req, res, next) => {
   try {
     await Review.create({
       content: req.body.content,
