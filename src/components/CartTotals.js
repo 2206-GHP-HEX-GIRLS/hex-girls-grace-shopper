@@ -17,7 +17,9 @@ const CartTotals = () => {
           <h5>Total: $42.00</h5>
         </div>
         <div className="col-sm-4">
-          <button className="checkout">Checkout</button>
+          <Link to="/confirmorder">
+            <button className="checkout">Checkout</button>
+          </Link>
         </div>
       </div>
     </div>
