@@ -1,18 +1,24 @@
-import React, { useState } from 'react';
-import { addProduct } from '../reducers/addProduct';
-import { useDispatch } from 'react-redux';
-import { Link } from 'react-router-dom';
-import './css/AddProduct.css';
+import React, { useState } from "react";
+import { addProduct } from "../reducers/products";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import "./css/AddProduct.css";
 
 const AddProduct = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const redirect = () => {
+    navigate("/products");
+  };
+
   let [product, setProduct] = useState({
-    name: '',
+    name: "",
     price: 0.0,
-    description: '',
+    description: "",
     quantity: 0,
-    category: '',
-    imageUrl: '',
+    category: "",
+    imageUrl: "",
   });
 
   const handleChange = (evt) => {
@@ -25,14 +31,14 @@ const AddProduct = () => {
 
   const handleSubmit = (evt) => {
     evt.preventDefault();
-    dispatch(addProduct(product));
+    dispatch(addProduct(product)).then(redirect());
     setProduct({
-      name: '',
+      name: "",
       price: 0.0,
-      description: '',
+      description: "",
       quantity: 0,
-      category: '',
-      imageUrl: '',
+      category: "",
+      imageUrl: "",
     });
   };
 
@@ -55,7 +61,12 @@ const AddProduct = () => {
             />
 
             <label>Product Description:</label>
-            <textarea required name="description" type="text" />
+            <textarea
+              required
+              name="description"
+              type="text"
+              onChange={handleChange}
+            />
           </div>
           <div className="col-sm-6">
             <label>Product Quantity:</label>
@@ -69,6 +80,7 @@ const AddProduct = () => {
 
             <label>Product Category:</label>
             <select name="category" onChange={handleChange}>
+              <option>---</option>
               <option>Cookies</option>
               <option>Cakes</option>
               <option>Pastries</option>
@@ -84,9 +96,7 @@ const AddProduct = () => {
           </div>
         </div>
 
-        <Link to="/products">
-          <button type="submit">Add Product</button>
-        </Link>
+        <button type="submit">Add Product</button>
       </form>
     </div>
   );
