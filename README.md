@@ -55,7 +55,7 @@ createdb bakery
 Step 3: Seed
 
 ```sh
-npm run
+npm run seed
 ```
 
 Step 4: Install
