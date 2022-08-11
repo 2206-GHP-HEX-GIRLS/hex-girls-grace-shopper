@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import "./css/NavBar.css";
+import { auth } from "./LogIn";
 
 const NavBar = () => {
   return (
@@ -14,17 +15,6 @@ const NavBar = () => {
             className="img-fluid nav-logo"
           />
         </Link>
-        {/* <button
-          className="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="/navbarNavDropdown"
-          aria-controls="navbarNavDropdown"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <span className="navbar-toggler-icon"></span>
-        </button> */}
         <div
           className="collapse navbar-collapse d-flex justify-content-end"
           id="navbarNavDropdown"
@@ -56,7 +46,7 @@ const NavBar = () => {
                     Log In
                   </Link>
                 </li>
-                <li>
+                <li onClick={() => auth.signOut()}>
                   <Link className="dropdown-item" to="/">
                     Sign Out
                   </Link>

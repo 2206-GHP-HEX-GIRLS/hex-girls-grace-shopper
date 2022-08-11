@@ -1,25 +1,14 @@
-import React, { useRef, useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import "./css/LogIn.css";
-import { hashString } from "react-hash-string";
-
 import { fetchUser } from "../reducers/user";
 import { useDispatch } from "react-redux";
-
 import firebase from "firebase/compat/app";
 import "firebase/compat/firestore";
 import "firebase/compat/auth";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { setGuest } from "../reducers/guest";
-
-// firebase.initializeApp({
-//   apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
-//   authDomain: process.env.REACT_APP_FIREBASE_AUTH_DOMAIN,
-//   projectId: process.env.REACT_APP_FIREBASE_PROJ_ID,
-//   storageBucket: process.env.REACT_APP_FIREBASE_STOR_BUCKET,
-//   messagingSenderId: process.env.REACT_APP_FIREBASE_MSG_SENDR_ID,
-//   appId: process.env.REACT_APP_FIREBASE_APP_ID,
-// });
+import { useNavigate } from "react-router-dom";
 
 firebase.initializeApp({
   apiKey: "AIzaSyAXsNmNFLAlhe9llgpU7lkayqvt4yuPhb0",
@@ -30,41 +19,41 @@ firebase.initializeApp({
   appId: "1:792285495931:web:281671c3184a6efee398de",
 });
 
-const auth = firebase.auth();
+export const auth = firebase.auth();
 
 const LogIn = () => {
   const [googleUser] = useAuthState(auth);
-  const userRef = useRef();
-  const errRef = useRef();
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   let [userInfo, setUserInfo] = useState({
     username: "",
     password: "",
     accountId: 0,
   });
+
   let [errMsg, setErrMsg] = useState("");
   let [success, setSuccess] = useState(false);
-
-  // useEffect(() => {
-  //   userRef.current.focus();
-  // }, []);
 
   useEffect(() => {
     setErrMsg("");
   }, [userInfo]);
 
+  useEffect(() => {
+    if (success) {
+      navigate("/home");
+    }
+  });
+
   const signInWithGoogle = async () => {
     const provider = new firebase.auth.GoogleAuthProvider();
-    const profile = await auth.signInWithPopup(provider);
-    console.log(profile);
-    window.localStorage.setItem("COOKIE", profile.credential.idToken);
-  };
-
-  const setCookie = async (username) => {
-    let cookie = hashString(username);
-    window.localStorage.setItem("COOKIE", cookie);
-    return null;
+    auth.signInWithPopup(provider);
+    firebase.auth().onAuthStateChanged((user) => {
+      if (user) {
+        setSuccess(true);
+      }
+      window.localStorage.setItem("CURRENT_USER", user.uid);
+    });
   };
 
   const handleChange = (e) => {
@@ -79,10 +68,9 @@ const LogIn = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     try {
-      setCookie(userInfo.username);
       dispatch(fetchUser(userInfo));
+      // setSuccess(true); // THIS NEEDS TO CHANGE ONLY AFTER SUCCESSFUL LOGIN
       setUserInfo({ username: "", password: "" });
-      setSuccess(true); // THIS NEEDS TO CHANGE ONLY AFTER SUCCESSFUL LOGIN
     } catch (err) {
       if (!err.response) {
         setErrMsg("No Server Response");
@@ -93,12 +81,10 @@ const LogIn = () => {
       } else {
         setErrMsg("Login Failed");
       }
-      // errRef.current.focus();
     }
   };
 
   function SignOut() {
-    window.localStorage.removeItem("COOKIE");
     return (
       auth.currentUser && (
         <button className="signOutButton" onClick={() => auth.signOut()}>
@@ -133,19 +119,11 @@ const LogIn = () => {
         </section>
       ) : (
         <section>
-          <p ref={errRef} className={errMsg ? "errmsg" : "offscreen"}>
-            {errMsg}
-          </p>
+          <p className={errMsg ? "errmsg" : "offscreen"}>{errMsg}</p>
           <h1>Sign In</h1>
           <form onSubmit={handleSubmit} onChange={handleChange}>
             <label htmlFor="username">Username:</label>
-            <input
-              type="text"
-              name="username"
-              ref={userRef}
-              autoComplete="off"
-              required
-            />
+            <input type="text" name="username" autoComplete="off" required />
 
             <label htmlFor="password">Password:</label>
             <input name="password" type="password" id="password" required />
