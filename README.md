@@ -31,9 +31,9 @@ Boolean Baker is a full-featured e-commerce website built by a team of four amaz
 
 ## **Bakers**
 
-> [Yukstor Mei](https://github.com/ymei0072)  <br/>
-> [Dakota Fabro](https://github.com/dakotafabro) <br/>
-> [Eve Frances](https://github.com/L0tusPetal) <br/>
+> [Yukstor Mei](https://github.com/ymei0072) <br/> 
+> [Dakota Fabro](https://github.com/dakotafabro) <br/> 
+> [Eve Frances](https://github.com/L0tusPetal) <br/> 
 > [Kimberly Ma](https://github.com/KimBuyCookies)
 
 <br/>
@@ -78,7 +78,7 @@ npm run start:dev
 
 ### React
 
-[![React](https://skillicons.dev/icons?i=react)](https://skillicons.dev)
+[![React](https://skillicons.dev/icons?i=react)](https://reactjs.org/)
 
 <!-- <https://reactjs.org/> -->
 
@@ -124,7 +124,10 @@ npm run start:dev
 
 ### Create React App
 
-<img src="https://create-react-app.dev/img/logo.svg" data-canonical-src="https://create-react-app.dev/" width="50" height="50" />
+<a href="https://create-react-app.dev/">
+<img src="https://create-react-app.dev/img/logo.svg"
+width="50" height="50" />
+</a>
 
 - Getting Started with Create React App
 
