@@ -1,40 +1,48 @@
 import axios from 'axios';
 
 //action type
-const CREATE_PRODUCT = 'CREATE_PRODUCT'
+const CREATE_PRODUCT = 'CREATE_PRODUCT';
 
 //action creator
 const createProduct = (product) => {
-    return{
-        type: CREATE_PRODUCT,
-        product
-    }
-}
+  return {
+    type: CREATE_PRODUCT,
+    product,
+  };
+};
 
 //thunk creator
-export const addProduct = (product, history) => {
-    return async (dispatch) => {
-        try {
-            const { data: created } = await axios.post('/api/products', product)
-            dispatch(createProduct(created));
-            history.push('/')
-        }catch (error){
-            console.log('Error adding product to DB!', error)
-        }
+export const addProduct = (product) => {
+  return async (dispatch) => {
+    try {
+      const { data: created } = await axios.post(
+        `/api/products`,
+        {
+          // body: product,
+          headers: {
+            authorization: window.localstorage.getItem('CURRENT_USER_ACCT'),
+          },
+        },
+        product
+      );
+      dispatch(createProduct(created));
+    } catch (error) {
+      console.error('Error adding product to DB!', error);
     }
-}
+  };
+};
 
 //initial state
-const initialState = []
+const initialState = [];
 
 //reducer
 const addProductReducer = (state = initialState, action) => {
-    switch(action.type) {
-        case CREATE_PRODUCT:
-            return [...state, action.product]
-        default:
-            return state
-    }
-}
+  switch (action.type) {
+    case CREATE_PRODUCT:
+      return [...state, action.product];
+    default:
+      return state;
+  }
+};
 
-export default addProductReducer
+export default addProductReducer;

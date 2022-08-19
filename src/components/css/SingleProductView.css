@@ -1,3 +1,7 @@
+.SingleProductView {
+  padding: 7rem;
+}
+
 .SingleProductView img {
   max-height: 10rem;
 }
@@ -6,6 +10,8 @@
   border: none;
   color: white;
   background-color: var(--brown);
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
 }
 
 .SingleProductView select {

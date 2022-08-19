@@ -1,32 +1,39 @@
-import React, { useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import CartItem from "./CartItem";
-import CartTotals from "./CartTotals";
-import { getProducts } from "../reducers/products";
-import "./css/Cart.css";
+import React, { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import CartItem from './CartItem';
+import CartTotals from './CartTotals';
+import { getCart } from '../reducers/cart';
+import './css/Cart.css';
 
 const Cart = () => {
-  const products = useSelector((state) => state.products);
+  const cart = useSelector((state) => state.cart.products);
   const dispatch = useDispatch();
 
+  const totalPrice = () => {
+    let total = 0;
+    cart.map((product) => {
+      total += product.price * product.quantity;
+    });
+    return total;
+  };
+
   useEffect(() => {
-    dispatch(getProducts());
+    dispatch(getCart());
   }, [dispatch]);
 
   return (
     <div className="Cart container">
-      <h1>Your Cart</h1>
+      <h2>Your Cart</h2>
       <div className="row">
         <div className="col-sm-6">
-          {" "}
-          <CartTotals />
+          {' '}
+          <CartTotals price={totalPrice} />
         </div>
         <div className="col-sm-6 cart-items">
-          {products
-            ? products.map((product) => (
-                <CartItem key={product.id} product={product} />
-              ))
-            : "Loading..."}
+          {cart &&
+            cart.map((product) => (
+              <CartItem key={product.id} product={product} />
+            ))}
         </div>
       </div>
     </div>

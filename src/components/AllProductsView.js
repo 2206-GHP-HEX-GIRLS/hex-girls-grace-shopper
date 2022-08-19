@@ -1,14 +1,15 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getProducts } from "../reducers/products";
 import AllProductsCard from "./AllProductsCard";
 import SearchBar from "./SearchBar";
 import "./css/AllProductsView.css";
+import { Link } from "react-router-dom";
 
 const AllProductsView = () => {
   const products = useSelector((state) => state.products);
   const dispatch = useDispatch();
-  let [mappedProducts, setMappedProducts] = useState(products);
+  // let [mappedProducts, setMappedProducts] = useState(products);
 
   useEffect(() => {
     dispatch(getProducts());
@@ -17,38 +18,8 @@ const AllProductsView = () => {
   const filterProducts = (e) => {
     e.preventDefault();
 
-    let filteredArr = products;
-
-    const cookies = filteredArr.filter(
-      (product) => product.category === "Cookies"
-    );
-
-    const cakes = filteredArr.filter((product) => product.category === "Cakes");
-
-    const pastries = filteredArr.filter(
-      (product) => product.category === "Pastries"
-    );
-
-    switch (e.target.value) {
-      case "Cookies":
-        setMappedProducts(cookies);
-        break;
-      case "Cakes":
-        setMappedProducts(cakes);
-        break;
-      case "Pastries":
-        setMappedProducts(pastries);
-        break;
-      case "All":
-        dispatch(getProducts());
-        setMappedProducts(products);
-        break;
-      default:
-        dispatch(getProducts());
-        setMappedProducts(products);
-    }
-
-    dispatch(getProducts());
+    products.filter((product) => product.category === e.target.value);
+    // setMappedProducts(filteredProducts);
   };
 
   return (
@@ -62,13 +33,10 @@ const AllProductsView = () => {
         <option>Pastries</option>
       </select>
       <div className="row align-items-center">
-        {mappedProducts.length > 0
-          ? mappedProducts.map((product) => (
-              <AllProductsCard key={product.id} product={product} />
-            ))
-          : products.map((product) => (
-              <AllProductsCard key={product.id} product={product} />
-            ))}
+        {products.map((product) => (
+          <AllProductsCard key={product.id} product={product} />
+        ))}
+        <Link to={`/products/add`}>Add Product</Link>
       </div>
     </div>
   );

@@ -1,6 +1,7 @@
 const router = require("express").Router();
-const Product = require("../db/models/product");
-// const Review = require("../db/models/review");
+const { Product, Review } = require("../db/");
+// const isAdmin = require('./middleware/isAdmin');
+// const requireToken = require('./middleware/requireToken');
 
 //display all products
 router.get("/", async (req, res, next) => {
@@ -15,24 +16,32 @@ router.get("/", async (req, res, next) => {
 //display single product
 router.get("/:id", async (req, res, next) => {
   try {
-    const product = await Product.findByPk(req.params.id);
-    // need to associate with Review
+    const product = await Product.findOne({
+      where: {
+        id: req.params.id,
+      },
+      include: {
+        model: Review,
+      },
+    });
     res.json(product);
   } catch (error) {
     next(error);
   }
 });
 
-//create product
+//create product ADMINS ONLY
 router.post("/", async (req, res, next) => {
+  console.log("POSTING");
   try {
-    res.status(201).send(await Product.create(req.body));
+    const product = await Product.create(req.body);
+    res.json(product);
   } catch (error) {
     next(error);
   }
 });
 
-//delete product
+//delete product ADMINS ONLY
 router.delete("/:id", async (req, res, next) => {
   try {
     const product = await Product.findByPk(req.params.id);
@@ -43,13 +52,35 @@ router.delete("/:id", async (req, res, next) => {
   }
 });
 
-//update product
+//update product ADMINS ONLY
 router.put("/:id", async (req, res, next) => {
   try {
     const product = await Product.findByPk(req.params.id);
     res.send(await product.update(req.body));
   } catch (error) {
     next(error);
+  }
+});
+
+//post new review
+router.post("/:id/review", async (req, res, next) => {
+  try {
+    await Review.create({
+      content: req.body.content,
+      rating: req.body.rating,
+      productId: req.body.productId,
+    });
+    const product = await Product.findOne({
+      where: {
+        id: req.params.id,
+      },
+      include: {
+        model: Review,
+      },
+    });
+    res.json(product);
+  } catch (err) {
+    next(err);
   }
 });
 

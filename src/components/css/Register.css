@@ -1,26 +1,5 @@
-.Register * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-.Register html {
-  font-size: 18px;
-  color: #fff;
-}
-
-.Register body {
-  min-height: 100vh;
-}
-
 .Register section {
-  width: 100%;
-  max-width: 420px;
-  min-height: 400px;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  padding: 1rem;
+  padding: 0.5rem;
 }
 
 .Register form {
@@ -28,7 +7,6 @@
   flex-direction: column;
   justify-content: space-evenly;
   flex-grow: 1;
-  padding-bottom: 1rem;
 }
 
 .Register a,
@@ -38,20 +16,54 @@
 
 .Register input[type="text"],
 .Register input[type="password"],
-.Register input[type="email"],
 .Register button,
 .Register textarea {
-  font-size: 22px;
+  font-size: 1rem;
   padding: 0.25rem;
   border-radius: 0.5rem;
 }
 
-.Register label,
-.Register button {
-  margin-top: 1rem;
+.Register input,
+.Register label {
+  display: block;
+  margin: 0 auto;
+  padding: 0.25rem 1rem;
+  width: 100%;
+  border-radius: 0.25rem;
+  border: none;
+}
+
+.Register input,
+.Register textarea,
+.Register select {
+  box-shadow: var(--box-shadow);
 }
 
 .Register button {
+  border: none;
+  background-color: var(--brown);
+  color: white;
+  border-radius: 0.5rem;
+  box-shadow: var(--box-shadow);
+}
+
+.Register button:active {
+  transform: scale(0.98);
+}
+
+.Register label,
+.Register button {
+  margin-top: 0.5rem;
+}
+
+.Register label {
+  display: flex;
+  align-items: center;
+}
+
+.Register button {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
   padding: 0.5rem;
 }
 
@@ -76,14 +88,6 @@
 
 .Register .hide {
   display: none;
-}
-
-.Register .errmsg {
-  background-color: lightpink;
-  color: firebrick;
-  font-weight: bold;
-  padding: 0.5rem;
-  margin-bottom: 0.5rem;
 }
 
 .Register .line {

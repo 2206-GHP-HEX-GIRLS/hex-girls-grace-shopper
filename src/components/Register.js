@@ -1,14 +1,16 @@
-import React, { useRef, useState, useEffect } from "react";
-import { Link } from "react-router-dom";
-import "./css/Register.css";
+import React, { useRef, useState, useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { Link } from 'react-router-dom';
+import { createUser } from '../reducers/user';
+import './css/Register.css';
 
 const USER_REGEX = /^[A-z][A-z0-9-_]{3,23}$/;
 const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/;
 
 const Register = () => {
   const userRef = useRef();
-
-  const [email, setEmail] = useState("");
+  const dispatch = useDispatch();
+  // const [email, setEmail] = useState('');
 
   const [user, setUser] = useState("");
   const [validName, setValidName] = useState(false);
@@ -37,13 +39,17 @@ const Register = () => {
     setValidMatch(pwd === matchPwd);
   }, [pwd, matchPwd]);
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    //HANDLE SUBMIT FORM!
+    dispatch(createUser({ username: user, password: pwd }));
+    setSuccess(true);
+    setUser("");
+    setPwd("");
+    setMatchPwd("");
   };
 
   return (
-    <div className="Register">
+    <div className="Register container">
       {success ? (
         <section>
           <h1>Success!</h1>
@@ -53,16 +59,16 @@ const Register = () => {
         </section>
       ) : (
         <section>
-          <h1>Register</h1>
+          <h2>Register</h2>
           <form onSubmit={handleSubmit}>
-            <label htmlFor="email">Email:</label>
+            {/* <label htmlFor="email">Email:</label>
             <input
               type="email"
               autoComplete="off"
               onChange={(e) => setEmail(e.target.value)}
               value={email}
               required
-            />
+            /> */}
 
             <label htmlFor="username">Username:</label>
             <input
@@ -124,7 +130,9 @@ const Register = () => {
               className={
                 matchFocus && !validMatch ? "instructions" : "offscreen"
               }
-            ></p>
+            >
+              Must match the first password.
+            </p>
 
             <button
               disabled={!validName || !validPwd || !validMatch ? true : false}
@@ -136,7 +144,7 @@ const Register = () => {
             Already registered?
             <br />
             <span className="line">
-              <Link to="/">Sign In</Link>
+              <Link to="/login">Sign In</Link>
             </span>
           </p>
         </section>

@@ -1,20 +1,27 @@
-import React, { useState } from "react";
-import "./css/CartItem.css";
+import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { removeFromCart, updateCart } from '../reducers/cart';
+import './css/CartItem.css';
 
 const CartItem = ({ product }) => {
-  const removeFromCart = () => {
-    console.log("removed");
+  const dispatch = useDispatch();
+
+  const _removeFromCart = () => {
+    console.log('removed from cart');
+    dispatch(removeFromCart(product));
   };
 
-  let [qty, setQty] = useState(1); // this will eventually be passed down as a prop (maybe)
+  let [qty, setQty] = useState(product.quantity); // this will eventually be passed down as a prop (maybe)
   let subtotal = product.price * qty;
 
   const increaseQty = () => {
     setQty(qty + 1);
+    dispatch(updateCart(product, 1));
   };
 
   const decreaseQty = () => {
     setQty(qty - 1);
+    dispatch(updateCart(product, -1));
   };
 
   return (
@@ -41,7 +48,7 @@ const CartItem = ({ product }) => {
                 </p>
                 <p>Subtotal: ${subtotal}</p>
               </div>
-              <button onClick={removeFromCart}>Remove From Cart</button>
+              <button onClick={_removeFromCart}>Remove From Cart</button>
             </div>
           </div>
         </div>

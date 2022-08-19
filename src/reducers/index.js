@@ -1,14 +1,22 @@
 import { combineReducers } from "redux";
+import cartReducer from "./cart";
 import productsReducer from "./products";
-import addProductReducer from "./addProduct";
-import deleteProductReducer from "./deleteProduct";
 import singleProductReducer from "./singleProduct";
+import userReducer from "./user";
+import categoryReducer from "./category";
+import reviewReducer from "./review";
+import guestUserReducer from "./guest";
+import statusReducer from "./loggedIn";
 
 const rootReducer = combineReducers({
   products: productsReducer,
-  addProducts: addProductReducer,
-  deleteProducts: deleteProductReducer,
   singleProduct: singleProductReducer,
+  user: userReducer,
+  cart: cartReducer,
+  category: categoryReducer,
+  guest: guestUserReducer,
+  review: reviewReducer,
+  status: statusReducer,
 });
 
 export default rootReducer;

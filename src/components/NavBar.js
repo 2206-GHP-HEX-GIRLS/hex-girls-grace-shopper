@@ -1,8 +1,21 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import "./css/NavBar.css";
+import { auth } from "./LogIn";
+import { useSelector, useDispatch } from "react-redux";
+import { logOut } from "../reducers/loggedIn";
 
 const NavBar = () => {
+  const dispatch = useDispatch();
+  const loggedInStatus = useSelector((state) => state.status);
+
+  const signOut = () => {
+    auth.signOut();
+    dispatch(logOut());
+    window.localStorage.clear();
+  };
+
   return (
     <nav className="navbar navbar-expand-lg bg-light NavBarCustom">
       <div className="container-fluid">
@@ -13,17 +26,6 @@ const NavBar = () => {
             className="img-fluid nav-logo"
           />
         </Link>
-        <button
-          className="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="/navbarNavDropdown"
-          aria-controls="navbarNavDropdown"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <span className="navbar-toggler-icon"></span>
-        </button>
         <div
           className="collapse navbar-collapse d-flex justify-content-end"
           id="navbarNavDropdown"
@@ -40,38 +42,58 @@ const NavBar = () => {
                 Account
               </Link>
               <ul className="dropdown-menu">
+                <Link className="dropdown-item" to="/register">
+                  <li>Create Account</li>
+                </Link>
+
+                {loggedInStatus ? (
+                  <li>
+                    <Link className="dropdown-item" to="/">
+                      Orders
+                    </Link>
+                  </li>
+                ) : (
+                  ""
+                )}
+
                 <li>
-                  <Link className="dropdown-item" to="/Register">
-                    Create Account
-                  </Link>
-                </li>
-                <li>
-                  <Link className="dropdown-item" to="/">
-                    Orders
-                  </Link>
-                </li>
-                <li>
-                  <Link className="dropdown-item" to="/">
+                  <Link className="dropdown-item" to="/login">
                     Log In
                   </Link>
                 </li>
-                <li>
-                  <Link className="dropdown-item" to="/">
-                    Sign Out
-                  </Link>
-                </li>
+                {loggedInStatus ? (
+                  <li onClick={signOut}>
+                    <Link className="dropdown-item" to="/">
+                      Sign Out
+                    </Link>
+                  </li>
+                ) : (
+                  ""
+                )}
               </ul>
             </li>
-            <li className="nav-item">
-              <Link className="nav-link active" aria-current="page" to="/cart">
-                Cart
-              </Link>
-            </li>
-            <li className="nav-item">
-              <Link className="nav-link" to="/allproducts">
-                Products
-              </Link>
-            </li>
+            {loggedInStatus ? (
+              <li className="nav-item">
+                <Link
+                  className="nav-link active"
+                  aria-current="page"
+                  to="/cart"
+                >
+                  <ShoppingCartIcon style={{ color: "white" }} />
+                </Link>
+              </li>
+            ) : (
+              ""
+            )}
+            {loggedInStatus ? (
+              <li className="nav-item">
+                <Link className="nav-link" to="/products">
+                  Products
+                </Link>
+              </li>
+            ) : (
+              ""
+            )}
           </ul>
         </div>
       </div>

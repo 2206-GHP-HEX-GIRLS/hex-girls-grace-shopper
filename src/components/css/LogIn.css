@@ -1,0 +1,76 @@
+.LogIn {
+}
+
+.LogIn section {
+  padding: 1rem;
+}
+
+.LogIn form {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  flex-grow: 1;
+  padding-bottom: 1rem;
+}
+
+.LogIn a,
+.LogIn a:visited {
+  color: #716561;
+}
+
+.LogIn input[type="text"],
+.LogIn input[type="password"],
+.LogIn input[type="email"],
+.LogIn button,
+.LogIn textarea {
+  font-size: 22px;
+  padding: 0.25rem;
+  border-radius: 0.5rem;
+  border: none;
+  box-shadow: var(--box-shadow);
+}
+
+.LogIn label,
+.LogIn button {
+  margin-top: 1rem;
+}
+
+.LogIn label {
+  display: flex;
+  align-items: center;
+}
+
+.LogIn button {
+  padding: 0.5rem;
+  border: none;
+  background-color: var(--brown);
+  color: white;
+  box-shadow: var(--box-shadow);
+}
+
+.LogIn .instructions {
+  font-size: 0.75rem;
+  border-radius: 0.5rem;
+  background: #64b6ac;
+  color: #fff;
+  padding: 0.25rem;
+  position: relative;
+  bottom: -10px;
+}
+
+.LogIn .instructions > svg {
+  margin-right: 0.25rem;
+}
+
+.LogIn .offscreen {
+  position: absolute;
+  left: -9999px;
+}
+
+.LogIn .hide {
+  display: none;
+}
+
+.LogIn .line {
+  display: inline-block;
+}

@@ -18,10 +18,15 @@ Review.belongsTo(Product);
 Order.belongsToMany(Product, { through: LineItem });
 Product.belongsToMany(Order, { through: LineItem });
 
+// LineItem.belongsTo(Product);
+// LineItem.belongsTo(Order);
+// Order.hasMany(LineItem);
+
 module.exports = {
   db,
   Product,
   User,
   Review,
   Order,
+  LineItem,
 };

@@ -1,20 +1,119 @@
 const router = require('express').Router();
-const Cart = require('../db/models/lineitem')
+const { LineItem, Order, Product } = require('../db');
 
-//display cart
-router.get('/:id', async (req, res, next) => {
-    try{
-        const cart = await Cart.findByPk(req.params.id)
-    res.json(cart);
-} catch (error) {
-    next(error);
-}
-})
+router.get('/', async (req, res, next) => {
+  try {
+    const cart = await Order.findOne({
+      where: {
+        isPurchased: false,
+      },
+      include: [Product],
+      order: [[Product, 'id', 'DESC']],
+    });
+    res.send(cart);
+  } catch (err) {
+    next(err);
+  }
+});
 
-//delete item from cart
+router.post('/', async (req, res, next) => {
+  try {
+    let cart = await Order.findOne({
+      where: {
+        isPurchased: false,
+      },
+      include: [Product],
+    });
+    if (!cart) {
+      cart = await Order.create({
+        isPurchased: false,
+      });
+    }
+    let product = await LineItem.findOne({
+      where: {
+        orderId: cart.id,
+        productId: req.body.id,
+      },
+    });
+    if (!product) {
+      await LineItem.create({
+        id: req.body.id,
+        name: req.body.name,
+        price: req.body.price,
+        quantity: req.body.quantity,
+        orderId: cart.id,
+        productId: req.body.id,
+      });
+    } else {
+      let newQty = parseInt(product.quantity) + 1;
+      await product.update({ quantity: newQty });
+    }
+    // res.send(cart)
+    res.send(
+      await Order.findOne({
+        where: {
+          id: cart.id,
+        },
+        include: [Product],
+        order: [[Product, 'id', 'DESC']],
+      })
+    );
+  } catch (err) {
+    next(err);
+  }
+});
 
-//add item to cart?
-//^^ this should just go back to the shop. most likely a
-//component route/frontend route.
+router.put('/', async (req, res, next) => {
+  try {
+    let cart = await Order.findOne({
+      where: {
+        isPurchased: false,
+      },
+      include: [Product],
+    });
+    if (!cart) {
+      cart = await Order.create({
+        isPurchased: false,
+      });
+    }
+    let product = await LineItem.findOne({
+      where: {
+        orderId: cart.id,
+        productId: req.body.item.id,
+      },
+    });
+    const newQty = product.quantity + req.body.quantity;
+    if (newQty <= 0) {
+      await product.destroy();
+    } else {
+      await product.update({ quantity: newQty });
+    }
+    res.send(
+      await Order.findOne({
+        where: {
+          id: cart.id,
+        },
+        include: [Product],
+        order: [[Product, 'id', 'DESC']],
+      })
+    );
+  } catch (err) {
+    next(err);
+  }
+});
 
-//update item in cart?
+router.delete('/:id', async (req, res, next) => {
+  try {
+    const deletedCartItem = await LineItem.findByPk(req.params.id);
+    if (!deletedCartItem) {
+      res.send(404);
+    } else {
+      await deletedCartItem.destroy();
+      res.json(deletedCartItem);
+    }
+  } catch (err) {
+    next(err);
+  }
+});
+
+module.exports = router;

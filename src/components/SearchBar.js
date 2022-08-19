@@ -32,33 +32,32 @@ const SearchBar = () => {
     }
   };
 
-  console.log(searchWord);
-
   return (
     <div className="SearchBar container">
-      <div className="search-bar">
-        <input
-          type="text"
-          onChange={handleSearch}
-          placeholder="Search for yummy treats"
-          value={searchWord}
-        ></input>
-        {searchWord.length <= 0 ? (
-          <SearchIcon className="m-2" />
-        ) : (
-          <ClearIcon
-            className="m-2"
-            onClick={() => {
-              setSearchWord("");
-              setShowResults("results hidden");
-            }}
-          />
-        )}
+      <div className="search-bar row">
+        <div className="col-sm-12">
+          <input
+            type="text"
+            onChange={handleSearch}
+            placeholder="Search for yummy treats"
+            value={searchWord}
+          ></input>
+          {searchWord.length <= 0 ? (
+            <SearchIcon />
+          ) : (
+            <ClearIcon
+              onClick={() => {
+                setSearchWord("");
+                setShowResults("results hidden");
+              }}
+            />
+          )}
+        </div>
       </div>
       {searchWord.length > 0 ? (
         <div className={showResults}>
           {filteredProducts.map((product) => (
-            <Link to="/allProducts" key={product.id}>
+            <Link to={`/products/${product.id}`} key={product.id}>
               {product.name}
             </Link>
           ))}
